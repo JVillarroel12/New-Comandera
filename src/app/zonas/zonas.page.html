@@ -1,0 +1,87 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-text slot="start" style="margin-left: 20px">
+      <img
+        src="../../assets/img/logojaime-16.png"
+        alt=""
+        style="width: 100px; height: 40px"
+      />
+    </ion-text>
+    <ion-icon name="ban-outline" class="generarReporteReservaciones" (click)="modalAnularFactura()" slot="end" *ngIf="activarFacturacion == 'true'"></ion-icon>
+    <ion-icon name="eye-outline" class="generarReporteReservaciones" slot="end" (click)="reservacionesGlobales()" *ngIf="activarReservaciones == 'true' "></ion-icon>    
+    <ion-icon name="print-outline" class="generarReporteReservaciones" slot="end" (click)="reporteReservaciones()" *ngIf="activarReservaciones == 'true' "></ion-icon>
+    <!-- <ion-button color="warning" (click)="abrirAlertas()" *ngIf="alertasLlamadas.length >= 1" [ngClass]="{'parpadeoAlertas': alertasLlamadas.length >= 1}"><ion-icon name="alert-outline"></ion-icon></ion-button>-->
+    <ion-text slot="end" color="light">
+      <ion-icon
+        name="person-sharp"
+        color="success"
+        class="iconUser"
+        *ngIf="nameUser"
+      ></ion-icon
+      >{{nameUser}}
+    </ion-text>
+    <ion-button color="danger" (click)="cerrarSesion()" slot="end">
+      <ion-icon name="log-out-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row>
+    <!--ZONAS-->
+
+    <ion-col size-xl="3" size="3" class="areas">
+      <!--
+              <ion-button color="success" expand="block" >Realizar una orden</ion-button>
+              -->
+      <ion-list class="barra-areas">
+        <ion-card
+          *ngFor="let data of zonas"
+          (click)="mostrarMesas(data, data.mesas)"
+          [ngClass]="{'zonaActiva': active == data.zona_id}"
+        >
+          <ion-card-content>
+            <ion-text style="font-size: 13px">{{data.zona_id}}</ion-text>
+            <ion-badge  slot="end">
+              {{data.mesas.length}}
+            </ion-badge>
+          </ion-card-content>
+        </ion-card>
+        <ion-card (click)="abrirModalCaja()" *ngIf="activarFacturacion == 'true'">
+          <ion-card-content>
+              CAJA
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+
+    <!--MESAS-->
+    <ion-col size-xl="9" size="9" class="mesas">
+      <ion-list class="barra-mesas">
+        <ion-card
+          *ngFor="let data of mesas"
+          [ngClass]="{ 'cartasMesas': data.status == '0', 'mesaBloqueada': data.status == '3' }"
+          [routerLink]="['/cuentas',data.mesa_id]"
+        >
+          <ion-icon name="lock-closed" class="iconMesaBloqueada" *ngIf="data.status == '3'"></ion-icon>
+
+          <ion-icon
+            name="receipt"
+            [ngClass]="{ 'mesaOcupada': data.n_cuentas >= 1, 'mesaLibre': data.n_cuentas == 0}"
+          ></ion-icon>
+          <ion-icon name="calendar" class="reservaciones" *ngIf="data.n_reservaciones >= 1"></ion-icon>
+          <ion-card-content>
+            <ion-text> COD: {{data.mesa_id}} </ion-text>
+            <br>
+            <ion-text> {{data.name}} </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" horizontal="end" (click)="modalReservacionZonas()" slot="fixed" *ngIf="activarReservaciones == 'true'">
+    <ion-fab-button>
+      <ion-icon name="calendar-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Clave de usuario</ion-title>
+    <ion-button (click)="cerrarModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="rowRRHH">
+    <div>
+      <form action="" [formGroup]="formEmpleado">
+        <ion-card class="inputBuscarCliente">
+          <ion-input placeholder="Clave usuario" (keypress)="searchKeyEmpleado($event)" formControlName="clave" type="password" #input></ion-input>
+          <ion-icon name="search" (click)="buscarEmpleado()"></ion-icon>
+        </ion-card>
+      </form>
+    </div>
+  </ion-row>
+  <ion-button class="btnGuardarRRHH" [disabled]="!formEmpleado.valid" (click)="buscarEmpleado()">Enviar</ion-button>
+</ion-content>

@@ -1,0 +1,194 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Configuraciones</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <form action="" [formGroup]="form">
+
+    <ion-row class="rowMain">
+        <ion-col size="4" class="colList">
+            <div (click)="mostrarElementos('ip')" *ngIf="mode == undefined">
+              Cambiar IP
+            </div>
+            <div (click)="mostrarElementos('reservacion')" *ngIf="mode == undefined">
+              Reservaciones
+            </div>
+            <div (click)="mostrarElementos('estacion')" *ngIf="mode == undefined">
+              Estaciones
+            </div>
+            <div (click)="mostrarElementos('facturacion')" *ngIf="mode == undefined">
+              Facturacion
+            </div>
+            <div (click)="mostrarElementos('temas')">
+              Temas
+            </div>
+        </ion-col>
+        <ion-col size="8" class="colContent">
+          <div class="IP" *ngIf="mostrarIP == true">
+                <ion-card>
+                        <ion-label>Introducir la IP: </ion-label>
+                        <ion-input placeholder="Ej: 192.168.123.99:4000" formControlName="IP" [value]="ip"></ion-input>
+                </ion-card>
+          </div>
+            <div class="reservaciones" *ngIf="mostrarReservaciones == true">
+                <ion-card>
+
+                  <ion-card-content>
+                    <ion-checkbox formControlName="activarReservaciones"></ion-checkbox>
+                    <ion-label>Activar Reservaciones</ion-label>
+                  </ion-card-content>
+
+                </ion-card>
+            </div>
+            <div class="facturacion" *ngIf="mostrarFacturacion == true">
+              <ion-card>
+
+                <ion-card-content>
+                  <ion-checkbox formControlName="activarFacturacion"></ion-checkbox>
+                  <ion-label>Activar Facturacion</ion-label>
+                </ion-card-content>
+
+              </ion-card>
+          </div>
+            <div class="estaciones" *ngIf="mostrarEstaciones == true"> 
+              <h4 *ngIf="mostrarMensaje == true" style="text-align: center;">Asegurese de configurar una IP primero.</h4>
+                <ion-list>
+                    <ion-card *ngFor="let data of estaciones" (click)="seleccionarEstacion(data.estacion_id)" [ngClass]="{'estacionActiva': active == data.estacion_id}">
+                        <ion-card-content>
+                            {{data.name}}
+                        </ion-card-content>
+                    </ion-card>
+                </ion-list>
+            </div>
+            <div class="temas" *ngIf="mostrarTemas == true"> 
+                <div id="freshMint" (click)="cambiarTema('freshMint', 1)">
+                  <ion-row>
+                    <ion-col size="4" class="areasConfiguracion" style="background-color:var(--ion-color-mclaro);">
+                      <ion-list>
+                        <ion-card style="--background: var(--ion-color-mmedio)">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-mmedio)">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-mmedio)">
+
+                        </ion-card>
+                      </ion-list>
+                    </ion-col>
+                    <ion-col size="8" style="background-color:var(--ion-color-mmoscuro);" class="mesas">
+                      <ion-list>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-mclaro)">
+                            <ion-card-content>
+                            </ion-card-content>
+                         </ion-card>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-mclaro)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-mclaro)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-mclaro)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                      </ion-list>
+
+                    </ion-col>
+                  </ion-row>
+
+                </div>
+                <div id="summerWine"  (click)="cambiarTema('summerWine', 2)">
+                  <ion-row>
+                    <ion-col size="4" class="areasConfiguracion" style="background-color:var(--ion-color-fondo-light-2);">
+                      <ion-list>
+                        <ion-card style="--background: var(--ion-color-fondo-light);">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-fondo-light);">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-fondo-light);">
+
+                        </ion-card>
+                      </ion-list>
+                    </ion-col>
+                    <ion-col size="8" style="background-color:var(--ion-color-fondo);" class="mesas">
+                      <ion-list>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-fondo-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                         </ion-card>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-fondo-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-fondo-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-fondo-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                      </ion-list>
+
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <div id="pinkWine" (click)="cambiarTema('pinkWine', 3)">
+                  <ion-row>
+                    <ion-col size="4" class="areasConfiguracion" style="background-color:var(--ion-color-pink-light-2);">
+                      <ion-list>
+                        <ion-card style="--background: var(--ion-color-pink-light);">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-pink-light);">
+
+                        </ion-card>
+                        <ion-card style="--background: var(--ion-color-pink-light);">
+
+                        </ion-card>
+                      </ion-list>
+                    </ion-col>
+                    <ion-col size="8" style="background-color:var(--ion-color-pink);" class="mesas">
+                      <ion-list>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-pink-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                         </ion-card>
+                         <ion-card class="cartasMesas" style="--background:var(--ion-color-pink-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-pink-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                          <ion-card class="cartasMesas" style="--background:var(--ion-color-pink-light-2)">
+                            <ion-card-content>
+                            </ion-card-content>
+                          </ion-card>
+                      </ion-list>
+
+                    </ion-col>
+                  </ion-row>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>
+<ion-footer [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+      <ion-button (click)="guardarConfiguracion()" slot="end" class="guardarConfiguracion">Guardar</ion-button>
+  </ion-toolbar>
+</ion-footer>

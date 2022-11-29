@@ -1,0 +1,94 @@
+ion-header ion-toolbar{ 
+  color: white;;
+  ion-button{
+      font-size: 18px;
+      margin-right: 10px;
+  }
+}
+  ion-grid{
+    width: 100%;
+    height: 100%;
+  }
+  .unirTodaCuenta{
+      width: 100%;
+      --height: 25%;
+      padding-bottom: 15px;
+  }
+  
+  .unirTodaCuenta{
+    display: flex;
+    align-items: center;
+  }
+  .unirTodaCuenta ion-button{
+    text-align: center;
+    margin-top: 10px;
+  }
+  .filaComandas{
+    height: 75%;
+  }
+  .cardsUnir{
+    height: 100%;
+    background-color: transparent;
+    overflow-y: scroll;
+
+  }
+  
+  ion-footer{
+    text-align: center; 
+    height: 40px;
+    display:flex;
+    justify-content: center;
+    align-content: center;  
+    flex-direction: column;
+  }
+  ion-footer{
+    width: 100%;
+    text-align: center;
+  }
+  ion-footer ion-button{
+    width: 99%;
+    margin: 0 auto;
+  }
+  
+  /** MEDIA HEIGHT**/
+  @media screen and(max-height: 501px){
+    .filaComandas{
+      height: 70%;
+    }
+  }
+  @media screen and(max-height: 435px){
+    .filaComandas{
+      height: 65%;
+    }
+  }
+  @media screen and(max-height: 388px){
+    .filaComandas{
+      height: 60%;
+    }
+  }
+  @media screen and(max-height: 353px){
+    .filaComandas{
+      height: 55%;
+    }
+  }
+  @media screen and(max-height: 325px){
+    .filaComandas{
+      height: 50%;
+    }
+  }
+  @media screen and(max-height: 303px){
+    .filaComandas{
+      height: 45%;
+    }
+  }
+  @media screen and(max-height: 285px){
+    .filaComandas{
+      height: 40%;
+    }
+  }
+  @media screen and(max-height: 270px){
+    .filaComandas{
+      height: 30%;
+    }
+  }
+  

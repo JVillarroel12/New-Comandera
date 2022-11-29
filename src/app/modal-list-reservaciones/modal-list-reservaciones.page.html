@@ -1,0 +1,44 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Lista de reservaciones</ion-title>
+
+    <ion-icon name="print-outline" class="generarReporteReservaciones" slot="end"></ion-icon>
+
+    <ion-button (click)="cerralModal()" style="margin-right: 10px;" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="titleListReservaciones">
+    <ion-col size="12" class="title">
+      <ion-card>
+        <ion-card-content>
+          <span>RESERVACIONES</span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row class="fila-reservaciones">
+
+        <ion-list>
+
+          <div  *ngFor="let data of reservaciones">
+            <ion-icon name="calendar" style="margin-left: 15px;" class="calendario"></ion-icon>
+            <ion-label>Cliente: {{data.cliente_nombre}}</ion-label>
+    
+            <ion-label>Entrada: {{data.transformEntrada | date:'medium':'UTC'}}</ion-label>
+    
+            <ion-label>Salida: {{data.transformSalida | date:'medium':'UTC'}}</ion-label>
+    
+    
+            <div>
+              <ion-icon name="eye-outline" class="add" slot="end" (click)="verCuenta(data)" *ngIf="data.status == 1"></ion-icon>
+              <ion-icon name="add-circle-outline" class="add" slot="end" (click)="addCuentaReservacion(data)" *ngIf="data.status == 0"></ion-icon>
+              <ion-icon name="trash-outline" class="borrarReservacion" *ngIf="data.status == 0" (click)="borrarReservacion(data)"></ion-icon>
+            </div>
+          </div>
+        </ion-list>
+  </ion-row>
+</ion-content>

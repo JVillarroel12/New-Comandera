@@ -1,0 +1,6 @@
+{
+  "appId": "com.comanderableu.app",
+  "appName": "ComanderaBleu",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

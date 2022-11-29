@@ -1,0 +1,60 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Reservar zona y mesas</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+    <ion-row>
+          <!--ZONAS-->
+      
+          <ion-col size-xl="3" size="3" class="areas">
+            <!--
+            <ion-button color="success" expand="block" >Realizar una orden</ion-button>
+            -->
+              <ion-list class="barra-areas">
+                <ion-card class="zona" *ngFor="let data of zonas; let i = index" 
+                [ngClass]="{'seleccionarZona': data.seleccionada == 'si'}" (click)="mostrarMesas(data)">  
+                  <ion-card-content>
+                      <ion-text style="font-size: 13px;">{{data.zona_id}}</ion-text>
+
+                  </ion-card-content>
+                  <ion-checkbox class="checkSeleccionarZonas"  (ionChange)="seleccionarZona($event, data, i)" mode="ios"
+                  color="light"
+                  ></ion-checkbox> 
+                </ion-card>
+              </ion-list>
+          </ion-col>
+          <!--MESAS-->
+          <ion-col size-xl="9" size="9"  class="mesas">
+          
+            <ion-list class="barra-mesas">
+              <ion-card *ngFor="let data of mesas; let i = index" (click)="seleccionarMesa(data, i)" [ngClass]="{ 'cartasMesas': data.status == '0', 'mesaBloqueada': data.status == '3', 'seleccionarMesa': data.seleccionada == 'si'}" 
+              >
+            
+                <ion-icon name="lock-closed" class="iconMesaBloqueada" *ngIf="data.status == '3'"></ion-icon>
+
+                <ion-icon
+                  name="receipt"
+                  [ngClass]="{ 'mesaOcupada': data.n_cuentas >= 1, 'mesaLibre': data.n_cuentas == 0}"
+                ></ion-icon>
+                <ion-icon name="calendar" class="reservaciones" *ngIf="data.reservaciones >= 1"></ion-icon>
+                <ion-card-content>
+
+                  <ion-text> {{data.name}}  </ion-text>
+                  
+                </ion-card-content>
+                <ion-checkbox class="checkSeleccionarMesa" checked="true" mode="ios" *ngIf="data.seleccionada == 'si'"
+                color="light"
+              ></ion-checkbox>  
+              </ion-card>
+            </ion-list>
+          </ion-col>
+    </ion-row>
+</ion-content>
+<ion-footer [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+      <ion-button slot="end" [disabled]="mesasSeleccionadas.length < 1" (click)="enviarMesas()" class="buttonReservarVariaZonas">Guardar</ion-button>
+  </ion-toolbar>
+</ion-footer>

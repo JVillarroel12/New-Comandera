@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="mmoscuro">
+    <ion-title>Alertas</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="mmoscuro">
+  <ion-grid>
+        <ion-row>
+          <ion-list class="alertas">
+              <ion-card *ngFor="let data of alertasLlamadas" [ngClass]="{'muchoTiempo': data.tiempoTranscurrido > '02:00', 'demasiadoTiempo': data.tiempoTranscurrido > '05:00'}">
+                  <ion-card-header>
+                    <span style="margin-top: 13px; font-weight: 500;font-size: 18px;"> {{data.zona}}</span>
+                    <span>
+
+                      <span class="material-icons">
+                        table_restaurant 
+                      </span>
+                     
+                        {{data.mesa_id}}                      
+                     </span>
+                        
+                  </ion-card-header>
+                <ion-card-content>
+                  <ion-text style="color:#222428">{{data.tiempoTranscurrido}}</ion-text>
+                </ion-card-content>
+                
+            </ion-card>     
+            
+          </ion-list>
+        </ion-row>
+  </ion-grid>
+
+
+</ion-content>

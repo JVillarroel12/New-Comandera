@@ -1,0 +1,286 @@
+ion-header {
+    ion-toolbar {
+      color: whitesmoke;
+      height: 60px;
+    }
+  }
+  
+  ion-content {
+    width: 100%;
+    height: 100%;
+    .rowMain {
+      width: 100%;
+      height: 100%;
+  
+      .colMonedas {
+        width: 100%;
+        height: 100%;
+        .rowCliente{
+          width: 100%;
+          height: 120px;
+          div{
+            width: 100%;
+            margin: 0;
+            .inputBuscarCliente{
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0;
+              ion-icon{
+                font-size: 20px;
+                padding: 10px;
+                background-color: var(--ion-color-light);
+                color: black;
+                border-bottom-right-radius: 5px;
+                border-top-right-radius: 5px;
+              }
+            }
+          }
+          .infoCliente{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ion-card{
+              width: 100%;
+              height: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+        .comentario {
+          width: 100%;
+          height: 50px;
+          padding: 0;
+          margin-bottom: 50px;
+        }
+        .monedas {
+          width: 100%;
+          height: calc(100% - 220px);
+          padding-top: 0;
+          overflow-y: scroll;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          justify-items: center;
+          ion-card{
+            width: 95%;
+            height: 80px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: whitesmoke;
+            span{
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              font-size: 13px;
+              margin-right: 2px;
+            }
+          }
+        }
+        .monto {
+          width: 100%;
+          height: 100%;
+          padding-top: 0;
+          .input {
+            width: 100%;
+            height: 50px;
+          }
+        }
+      }
+  
+      .infoLines {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        .impuestos {
+          width: 100%;
+          height: 200px;
+          form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .tasa {
+            padding: 0;
+              display: inline-block;
+              justify-content: center;
+              align-items: center;
+              ion-card{
+                width: 99%;
+                height: 40px;
+                padding: 5px;
+                margin-top: 0;
+                display: flex;
+                color:white;
+                align-items: center;
+                justify-content: space-between;
+                
+            }
+          }
+          .total{
+              padding: 0;
+              display: inline-block;
+              justify-content: center;
+              align-items: center;
+              ion-card{
+                  width: calc(99% - 15px);
+                  height: 40px;
+                  padding: 5px;
+                  display: flex;
+                  align-items: center;
+                  margin-top: 0;
+                  color:white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  .iconPorcentaje{
+                    font-size: 25px;
+                    border-bottom-right-radius: 5px;
+                    border-top-right-radius: 5px;
+                    padding: 10px;
+                  }
+                  
+              }
+          }
+        }
+        .lines {
+          width: 100%;
+          height: calc(75% - 200px);
+          overflow-y: scroll;
+          .grid{
+              width: 100%;
+              grid-template-rows: 100%;
+              display: grid;
+              grid-template-columns: 25% 20% 25% 25% 5%;
+              grid-template-areas: "descripcion monto moneda cambio borrar";
+              border-top: 1px solid black;
+              border-right: 1px solid black;
+              &.columns-head {              
+                  color: whitesmoke;  
+                  height: 60px;
+                           
+                }
+              &__descripcion,
+              &__monto,
+              &__moneda,
+              &__cambio,
+              &__borrar,
+              &__configuration {
+      
+                font-size: 1rem;
+      
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+      
+              &__descripcion {
+                grid-area: descripcion;
+                padding-top: 15px;
+                padding-bottom: 15px;
+              }
+      
+              &__monto {
+                grid-area: monto;
+              }
+      
+              &__moneda {
+                grid-area: moneda;
+              }
+      
+              &__cambio {
+                grid-area: cambio;
+              }
+              &__borrar{
+                grid-area: borrar;
+                
+              }
+          }
+          .grid{
+            &:nth-child(odd) {
+            }
+  
+            &:nth-child(even) {
+            }
+             > span{
+              padding-top: 10px;
+              padding-bottom: 10px;
+              border-bottom: 1px solid black;
+              color: white;
+              text-align: center;
+              ion-icon{
+                  font-size: 22px !important;
+                  color: var(--ion-color-danger)
+              }
+             } 
+          }
+        }
+        .totales{
+          width: 100%;
+          height: 25%;
+          padding: 0;
+          display: grid;
+          grid-template-columns: 1fr;
+          .debeColumn{
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0;
+            div{
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              text-align: center;
+              padding: 5px;
+            }
+          }
+          .totalColumn{
+              width: 100%;
+              height: 100%;
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+              padding: 0;
+              .columns2{
+                padding: 0 !important;
+                grid-column: span 2;
+              }
+              div{
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                .contentSpan{
+                  width: 100%;
+                  height: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-around;
+
+                }
+              }
+              .btnFacturar{
+                background-color: var(--ion-color-success);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: black !important;
+                ion-icon{
+                  font-size: 25px;
+                  color: black;
+                  margin-left: 10px;
+                }
+              }
+          }
+          
+        }
+      }
+    }
+  }
+  

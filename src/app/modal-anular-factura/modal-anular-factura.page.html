@@ -1,0 +1,55 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Anular factura</ion-title>
+    <ion-button (click)="cerrarModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="rowRRHH">
+    <div class="buscarFactura">
+      <form action="" [formGroup]="formFactura">
+        <ion-card class="inputBuscarCliente">
+          <ion-input placeholder="Numero de Factura" (keypress)="searchKeyFactura($event.charCode)" formControlName="factura"></ion-input>
+          <ion-icon name="search" (click)="searchFactura()"></ion-icon>
+        </ion-card>
+      </form>
+    </div>
+    <div *ngIf="dataFactura">
+      <div class="grid columns-head">
+        <span class="grid__numero">
+          <ion-label>Nº. Factura</ion-label>
+        </span>
+        <span class="grid__tipo">
+          <ion-label>Tipo</ion-label>
+        </span>
+        <span class="grid__fecha">
+          <ion-label>Fecha</ion-label>
+        </span>
+        <span class="grid__monto">
+          <ion-label>Monto</ion-label>
+        </span>
+        <span class="grid_cliente">
+          <ion-label>Cliente</ion-label>
+        </span>
+      </div>
+      <span class="grid">
+        <span class="grid__numero">{{factura.num_factura}}</span>
+        <span class="grid__tipo">{{factura.tipo}}</span>
+        <span class="grid__fecha">{{factura.auxFecha | date:"dd/MM/yyyy hh:mm:ss a":"+0000"}}</span>
+        <span class="grid__monto">{{factura.total_fact | number:'1.2-2'}}bs</span>
+        <span class="grid__cliente">{{factura.cliente_nombre}}</span>
+      </span>
+    </div>
+    <div>
+      <form action="" [formGroup]="formComentario">
+        <ion-card>
+          <ion-textarea placeholder="Comentario" rows="3" formControlName="comentario"></ion-textarea>
+        </ion-card>
+      </form>
+    </div>
+  </ion-row>
+  <ion-button class="btnGuardarRRHH"  (click)="anularFactura()" [disabled]="dataFactura == false">Guardar</ion-button>
+</ion-content>

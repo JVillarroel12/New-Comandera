@@ -1,0 +1,148 @@
+ion-header{
+    ion-toolbar{
+        color: whitesmoke;
+    }
+}
+ion-footer{
+    ion-toolbar{
+        ion-button{
+            margin-right: 10px;
+        }
+    }
+}
+ion-content{
+    width: 100%;
+    height: 100%;
+    form{
+        width: 100%;
+        height: 100%;
+    }
+    .rowMain{
+        width: 100%;
+        height: 100%;
+        .colList{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            div{
+                width: 100%;
+                height: 50px;
+                margin-top: 5px;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                color: whitesmoke;
+            }
+        }
+        .colContent{
+            width: 100%;
+            height: 100%;
+            .IP{
+                ion-card{
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    height: 47px;
+                    padding: 5px;
+                }
+            }
+            .reservaciones{
+                ion-card{
+                    ion-card-content{
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        color: black;
+                        ion-checkbox{
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            .facturacion{
+                ion-card{
+                    ion-card-content{
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        color: black;
+                        ion-checkbox{
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            .estaciones{
+                width: 100%;
+                height: 100%;
+                overflow-y: scroll;
+                ion-list{
+                    background-color: transparent;
+                    ion-card{
+                        ion-card-content{
+                            color: black;
+                        }
+                    }
+                }
+                .estacionActiva {
+                    color: black !important;
+                  }
+            }
+            .temas{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                div{
+                    width: 99%;
+                    height: 120px;
+                    margin-top: 10px;
+                    
+                    ion-row{
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                        .areasConfiguracion{
+                            margin: 0;
+                            padding: 0;
+                            width: 100%;
+                            height: 100%;
+                            ion-list{
+                                width: 100%;
+                                height: 100%;
+                                justify-content: center;
+                                margin: 0;
+                                padding: 0;
+                                background-color: transparent;
+                                ion-card{
+                                    width: 70%;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                        .mesas{
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                            padding: 0;
+                            ion-list{
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                                display: grid;
+                                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                                background-color: transparent;
+                                align-items: ce;
+                                ion-card{
+                                    width: 90%;
+                                    height: 20px;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

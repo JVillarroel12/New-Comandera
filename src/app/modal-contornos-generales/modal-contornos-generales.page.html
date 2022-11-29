@@ -1,0 +1,70 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Contornos generales</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+      ><ion-icon name="close-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row>
+    <ion-col size="7" style="text-align: center" class="colContornos">
+      <div class="search">
+        <ion-searchbar
+        [(ngModel)]="search"
+          style="width: 100%"
+          color="light"
+          placeholder="Buscar contorno"
+          (ionChange)="buscador($event)"
+        ></ion-searchbar>
+        <ion-button
+          style="width: 97%"
+          (click)="crearContornoPersonalizado()"
+          class="contornoPersonalizado"
+          >Contorno personalizado</ion-button
+        >
+      </div>
+      <div class="lista-contornos">
+        <ion-list>
+          <ion-card
+            *ngFor="let data of grupoContornos | filter:search"
+            class="categoriaContorno"
+            (click)="abrirContorno(data)"
+          >
+            <ion-card-content> {{data.name}} </ion-card-content>
+          </ion-card>
+          <ion-card
+          *ngFor="let data of contornos | filter:search"
+          class="contornos"
+          (click)="seleccionarContorno(data)"
+        >
+          <ion-card-content> {{data.name}} </ion-card-content>
+        </ion-card>
+        </ion-list>
+      </div>
+    </ion-col>
+
+    <ion-col size="5" class="colAgregados">
+        <span>
+          <ion-title color="light" style="text-align: center; color: whitesmoke"
+            >Seleccionados</ion-title
+          >
+        </span>
+
+      <div class="lista-agregados">
+        <ion-list>
+          <ion-card
+            *ngFor="let data of contornosAgregados; let i = index"
+           
+            (click)="eliminarContornoAgregado(data,i)"
+          >
+            <ion-card-content> {{data.name}} </ion-card-content>
+          </ion-card>
+        </ion-list>
+      </div>
+      <ion-button (click)="guardarContornos('aux')" color="success"
+        >Guardar</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>

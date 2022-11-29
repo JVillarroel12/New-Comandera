@@ -1,0 +1,38 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Agregar cuenta a RRPP</ion-title>
+    <ion-button (click)="cerrarModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="rowRRHH">
+    <div>
+      <form action="" [formGroup]="formCliente">
+        <ion-card class="inputBuscarCliente">
+          <ion-input placeholder="Rif cliente" (keypress)="searchKeyCliente($event)" formControlName="rif" [value]="nombreCliente" type="number"></ion-input>
+          <ion-icon name="person-add" style="border-bottom-right-radius: 0px;border-top-right-radius: 0px; margin-right: 1px;" (click)="addCliente()"></ion-icon>
+          <ion-icon name="search" (click)="searchCliente()"></ion-icon>
+        </ion-card>
+      </form>
+    </div>
+    <div class="infoCliente">
+      <ion-card>
+        <span>{{nombreCliente}}</span>
+      </ion-card>
+      <ion-card>
+        <span>{{rifCliente}}</span>
+      </ion-card>
+    </div>
+    <div>
+      <form action="" [formGroup]="formComentario">
+        <ion-card>
+          <ion-textarea placeholder="Comentario" rows="3" formControlName="comentario"></ion-textarea>
+        </ion-card>
+      </form>
+    </div>
+  </ion-row>
+  <ion-button class="btnGuardarRRHH" [disabled]="rifCliente == '' && nombreCliente == ''" (click)="guardarRRPP()">Guardar</ion-button>
+</ion-content>

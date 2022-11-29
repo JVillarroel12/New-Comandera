@@ -1,0 +1,48 @@
+ion-header{
+    ion-toolbar{
+        color: white;
+    }
+}
+
+ion-content{
+    .rowRRHH{
+        width: 100%;
+        div{
+          width: 100%;
+          margin: 0;
+          .inputBuscarCliente{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            ion-icon{
+              font-size: 20px;
+              padding: 10px;
+              background-color: var(--ion-color-light);
+              color: black;
+              border-bottom-right-radius: 5px;
+              border-top-right-radius: 5px;
+            }
+          }
+        }
+        .infoCliente{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          ion-card{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+          }
+        }
+      }
+      .btnGuardarRRHH{
+          width: calc(100% - 4px);
+          position: absolute;
+          bottom:0;
+      }
+}

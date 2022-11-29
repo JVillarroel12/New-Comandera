@@ -1,0 +1,119 @@
+ion-header ion-toolbar{ 
+    color: whitesmoke;
+    ion-button{
+        font-size: 18px;
+        margin-right: 10px;
+    }
+}
+ion-content{
+    width: 100%;
+    height: 100%;
+    ion-list{
+        background-color: transparent;
+    }
+}
+ion-row{
+    height: 100%;
+}
+.colContornos{
+    border-right: 1px whitesmoke solid; 
+    height: 100%;
+    .lista-contornos{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        background-color: transparent;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        align-content: flex-start;
+        ion-card{
+        }
+    }
+}
+.colAgregados{
+    width: 100%;
+    height: 100%;
+    span{
+        width: 100%;
+        padding: 0;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lista-agregados{
+        background-color: transparent;
+        width: 100%;
+        height: calc(100% - 75px);
+        text-align: center;
+        overflow-y: scroll;
+        background-color: transparent;
+        ion-card{
+            color: whitesmoke;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    }
+    ion-button{
+        bottom: 0;
+        width: 97%;
+        position: absolute;
+        z-index: 99;
+        margin-top: 10px;
+    }
+     
+
+}
+.contornosProducto{
+    width: 90%;
+    height: 100px;
+    cursor: pointer;
+}
+.contornosProducto ion-card-content{
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+/**MAX WIDTH**/
+@media screen and (max-width: 1620px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    
+}
+
+@media screen and (max-width: 1390px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 1165px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 935px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 712px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 488px) {
+    .colContornos .lista-contornos{
+        grid-template-columns: 1fr;
+    }
+    
+}

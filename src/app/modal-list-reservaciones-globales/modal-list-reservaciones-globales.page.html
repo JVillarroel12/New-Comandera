@@ -1,0 +1,50 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Lista de reservacionse globales</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger" style="margin-right: 10px;"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="rowTitleReservaciones">
+    <ion-col size="12" class="title">
+      <ion-card>
+        <ion-card-content>
+          <span>RESERVACIONES</span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row class="fila-reservaciones">
+
+        <ion-list>
+            <div *ngFor="let data of reservaciones" line="none">
+              
+              <ion-item class="content" lines="none">
+                <ion-icon name="caret-forward-outline" style="margin-left: 5px;" *ngIf="data.mostrarReservaciones == false" (click)="mostrarReservacionesFun(data)"></ion-icon>
+                <ion-icon name="caret-down-outline" style="margin-left: 5px;" *ngIf="data.mostrarReservaciones == true" (click)="mostrarReservacionesFun(data)"></ion-icon>
+                <ion-icon name="calendar" class="calendar" style="margin-left: 5px;"></ion-icon>
+                <span>{{data.cliente_nombre}}</span>
+                <span>Entrada: {{data.transformEntrada | date:'medium':'UTC'}}</span>
+                <span>Salida: {{data.transformSalida | date:'medium':'UTC'}}</span>
+                <span *ngIf="data.status == 1">Estado: En curso</span>
+                <span *ngIf="data.status == 0">Estado: Pendiente</span>
+                
+                  <ion-icon slot="end" name="trash-outline" class="borrar" (click)="borrarTodaReservacion(data)"></ion-icon>
+              </ion-item>
+              <!-- <span class="content">
+                <ion-icon name="calendar" style="margin-left: 5px; visibility: hidden;" ></ion-icon>
+              </span> -->
+              <div *ngIf="data.mostrarReservaciones">
+                <div  *ngFor="let reservaciones of data.reservacion_lugars" class="listReservaciones"> 
+                  <span style="margin-left: 10%;">ZONA: {{reservaciones.zona}} - MESA: {{reservaciones.mesa_id}}</span>
+                  <ion-icon slot="end" name="trash-outline" class="borrar" (click)="borrarTodaReservacion(reservaciones)"></ion-icon>
+                </div>
+              </div>
+
+            </div>
+        </ion-list>
+  </ion-row>
+</ion-content>

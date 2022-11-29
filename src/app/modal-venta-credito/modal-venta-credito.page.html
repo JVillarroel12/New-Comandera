@@ -1,0 +1,52 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Venta a Credito</ion-title>
+    <ion-button (click)="cerrarModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="rowRRHH">
+    <div>
+        <ion-card class="inputBuscarCliente">
+          <ion-label>Tipo de documento:</ion-label>
+          <ion-label placeholder="Rif cliente" readonly>FACTURA</ion-label>
+        </ion-card>
+        <ion-card class="inputBuscarCliente">
+          <ion-label>Nº. Comprobante</ion-label>
+          <ion-label placeholder="Rif cliente" readonly>FACTURA</ion-label>
+        </ion-card>
+    </div>
+
+      <form action="" [formGroup]="formCredito">
+        <ion-card>
+          <ion-label>Fecha de Emision: </ion-label>
+          <ion-label>{{dateNow | date:'medium'}}</ion-label>
+        </ion-card>
+        <ion-card class="item date" id="fechaVencimiento">
+          <ion-label>Fecha de Vencimiento: </ion-label>
+          <ion-input placeholder="Fecha de Vencimiento" formControlName="fechaVencimiento" [value]="valueFechaVencimiento"></ion-input>
+          <ion-popover trigger="fechaVencimiento" style="overflow: scroll; margin-top: -150px;margin-bottom: 20px;">
+            <ng-template>
+              <ion-datetime
+                #fechaVencimiento
+                (ionChange)="valueFechaVencimiento = formatDate(fechaVencimiento.value)"
+                hourCycle="h12"
+                
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-card>
+        <ion-card>
+          <ion-label>Monto Bs:</ion-label>
+          <ion-label>{{faltante | number:'1.2-2'}}bs</ion-label>
+        </ion-card>
+        <ion-card class="columns2" style="height:60px">
+          <ion-input placeholder="Comentario" formControlName="comentario"></ion-input>
+        </ion-card>
+      </form>
+  </ion-row>
+  <ion-button class="btnGuardarRRHH"  (click)="guardarVentaCredito()">Guardar</ion-button>
+</ion-content>

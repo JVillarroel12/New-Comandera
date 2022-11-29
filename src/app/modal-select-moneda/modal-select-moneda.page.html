@@ -1,0 +1,74 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Agregar pago</ion-title>
+    <ion-text slot="end" style="margin-right: 10px;font-size: 20px;">Tasa {{tasa | number:'1.2-2'}}</ion-text>
+    <ion-button (click)="cerralModal()" slot="end" color="danger" style="margin-right: 15px;"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="tasa">
+    <ion-col size="6" class="descrip">
+      <ion-card>
+        <ion-card-content>
+          <span>{{pago.descripcion}}</span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6" class="descrip"> 
+    <ion-card>
+      <ion-card-content>Falta: {{total | number:'1.2-2'}}bs</ion-card-content>
+    </ion-card>
+    </ion-col>
+
+    <ion-col size="10" class="inputMonto">
+      <form action="" [formGroup]="formMetodoPago">
+        <ion-item color="gris">
+          <ion-label >Monto: </ion-label>
+          <ion-input  type="number" placeholder="Ingresar monto"  
+          #input formControlName="monto"
+          (keydown)="pressMonto($event, '1')" [value]="valueMonto">
+          </ion-input>
+        </ion-item>
+      </form>
+    </ion-col>
+    <ion-col size="2" class="simbolo">
+      <ion-card>
+        <ion-card-content>
+          <ion-label>{{pago.tipo}}</ion-label>
+        </ion-card-content>
+
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" class="inputIgtf">
+      <form action="" *ngIf="pagoDolares == false" [formGroup]="montoDolares">
+        <ion-card *ngIf="pagoDolares == false">
+          <ion-card-content>
+             <ion-label>Cant. Dolares:</ion-label>
+             <ion-input formControlName="dolares" (keydown)="pressMonto($event, '2')" [value]="cantDolares" type="number"></ion-input>
+             <ion-label style="font-size: 20px;">$</ion-label> 
+          </ion-card-content>   
+        </ion-card>
+      </form>
+      <ion-card *ngIf="pagoDolares == true">
+        <ion-card-content>
+           <ion-label readonly>Al cambio bs: {{auxValueMonto | number:'1.2-2'}}bs</ion-label> 
+        </ion-card-content>   
+      </ion-card>
+      <ion-card *ngIf="IGTF == true">
+        <ion-card-content>
+           <ion-label readonly>IGTF Dolar:  {{igtfDolar| number:'1.2-2'}}$</ion-label> 
+           <ion-label readonly>IGTF Bs:  {{igtfBs| number:'1.2-2'}}bs</ion-label> 
+        </ion-card-content>   
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+<ion-footer [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar class="guardar">
+    <ion-button slot="end" class="btnGuardarFacturacion" (click)="guardarMetodoPago()" [disabled]="!formMetodoPago.valid || valueMonto == null">Guardar</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,58 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Trasladar una cuenta</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row>
+    <!--ZONAS-->
+
+    <ion-col size-xl="3" size="3" class="areas">
+      <!--
+              <ion-button color="success" expand="block" >Realizar una orden</ion-button>
+              -->
+      <ion-list class="barra-areas">
+        <ion-card
+          *ngFor="let data of zonas"
+          (click)="mostrarMesas(data, data.mesas)"
+          [ngClass]="{'zonaActiva': active == data.zona_id}"
+        >
+          <ion-card-content>
+            <ion-text style="font-size: 13px">{{data.zona_id}}</ion-text>
+            <ion-badge  slot="end">
+              {{data.mesas.length}}
+            </ion-badge>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+
+    <!--MESAS-->
+    <ion-col size-xl="9" size="9" class="mesas">
+      <ion-list class="barra-mesas">
+        <ion-card
+          *ngFor="let data of mesas"
+          [ngClass]="{ 'cartasMesas': data.status == '0', 'mesaBloqueada': data.status == '3' }"
+          [routerLink]="['/cuentas',data.mesa_id]"
+          (click)="seleccionarMesa(data)"
+        >
+          <ion-icon name="lock-closed" class="iconMesaBloqueada" *ngIf="data.status == '3'"></ion-icon>
+
+          <ion-icon
+            name="receipt"
+            [ngClass]="{ 'mesaOcupada': data.n_cuentas >= 1, 'mesaLibre': data.n_cuentas == 0}"
+          ></ion-icon>
+          <ion-icon name="calendar" class="reservaciones" *ngIf="data.n_reservaciones >= 1"></ion-icon>
+          <ion-card-content>
+            <ion-text> COD: {{data.mesa_id}} </ion-text>
+            <br>
+            <ion-text> {{data.name}} </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
+

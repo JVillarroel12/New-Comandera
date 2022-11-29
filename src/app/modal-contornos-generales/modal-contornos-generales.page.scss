@@ -1,0 +1,124 @@
+ion-header ion-toolbar{ 
+    color: whitesmoke;
+    ion-button{
+        font-size: 18px;
+        margin-right: 10px;
+    }
+}
+ion-content{
+    width: 100%;
+    height: 100%;
+}
+ion-row{
+    height: 100%;
+}
+.colContornos{
+    width: 100%;
+    height: 100%;
+    border-right: 1px whitesmoke solid; 
+    .search{
+        width: 100%;
+        height: 100px;
+    }
+    .lista-contornos{
+        width: 100%;
+        height: calc(100% - 100px);
+        overflow-y: scroll;
+        ion-list{
+            background-color: transparent;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            ion-card{
+                width: 90%;
+                height: 100px;
+                cursor: pointer;
+                ion-card-content{
+                    text-align: center;
+                    position: relative;
+                    top: 50%;
+                    -ms-transform: translateY(-50%);
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                }
+            }
+
+        }
+    }
+}
+.colAgregados{
+    width: 100%;
+    height: 100%;
+    span{
+        width: 100%;
+        padding: 0;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lista-agregados{
+        background-color: transparent;
+        width: 100%;
+        height: calc(100% - 75px);
+        text-align: center;
+        overflow-y: scroll;
+        ion-list{
+            background-color: transparent;
+            ion-card{
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+
+
+    }
+    ion-button{
+        bottom: 0;
+        width: 97%;
+        position: absolute;
+        z-index: 99;
+        margin-top: 10px;
+    }
+     
+
+}
+
+/**MAX WIDTH**/
+@media screen and (max-width: 1892px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    
+}
+
+@media screen and (max-width: 1626px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 1365px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 1094px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 828px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}
+@media screen and (max-width: 560px) {
+    .colContornos .lista-contornos ion-list{
+        grid-template-columns: 1fr;
+    }
+    
+}

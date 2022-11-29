@@ -1,0 +1,46 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}"> 
+  <ion-toolbar>
+    <ion-title>Lista de Contornos</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+      ><ion-icon name="close-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row>
+    <ion-col size="7" style="text-align: center" class="colContornos">
+      <ion-list class="lista-contornos">
+        <ion-card
+          *ngFor="let data of contornos"
+          class="contornosProducto"
+          (click)="seleccionarContorno(data)"
+        >
+          <ion-card-content>{{data.name}}</ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+
+    <ion-col size="5" class="colAgregados">
+      <span>
+          <ion-title style="text-align: center; color: whitesmoke">Seleccionados</ion-title>
+      </span>
+
+      <div class="lista-agregados">
+        <ion-list>
+          <ion-card
+            *ngFor="let data of contornosAgregados; let i = index"
+            
+            (click)="eliminarContornoAgregado(data, i)"
+          >
+            <ion-card-content> {{data.name}} </ion-card-content>
+          </ion-card>
+        </ion-list>
+      </div>
+
+      <ion-button (click)="guardarContornos()" color="success"
+        >Guardar</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>

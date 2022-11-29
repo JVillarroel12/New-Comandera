@@ -1,0 +1,1969 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+.alert-title{
+    text-align: center;
+}
+.alert-sub-title{
+    text-align: center;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 15px;
+}
+
+::-webkit-scrollbar-track {
+    width: 5px;
+    background:transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(117, 117, 117);
+    width: 5px;
+    border-radius: 25px;
+}
+
+.inner-scroll {
+    scrollbar-width: thin;
+    width: 5px;
+
+}
+.toastCss{
+    text-align: center;
+}
+.botonOk , .botonContorno{
+    color: rgb(32, 32, 32)
+}
+.cancelar{
+  color: red;
+  --color:red;
+}
+    .modalContornos{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalUnir{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalSeparar{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalPrecios{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalReserva{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalAddCliente{
+        --width: 75%;
+        --height: 85%;
+    }
+    .modalListReservaciones{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalFacturacion{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalSelectMoneda{
+        --width: 55%;
+        --height: 70%;  
+    }
+    .modalConfiguraciones{
+        --width: 75%;
+        --height: 85%;
+    }
+    .modalReporteReservaciones{
+        --width: 75%;
+        --height: 85%;
+    }
+    .modalReservacionZonas{
+        --width: 95%;
+        --height: 95%;
+    }
+    .modalRRPP{
+        --width: 75%;
+        --height: 70%;
+    }
+    .modalClaveUsuario{
+        --width: 300px;
+        --height: 320px;
+    }
+    .modalAnularFactura{
+        --width: 75%;
+        --height: 70%;
+    }
+    .modalVentaCredito{
+        --width: 75%;
+        --height: 70%;
+    }
+.spinner {
+    --width: 14rem;
+    --height: 5rem;
+  
+    --background: var(--ion-color-light);
+    --spinner-color: black;
+  
+    font-size: 1.10rem;
+    color: black;
+  
+    --backdrop-opacity: 0.5;
+  
+    .loading-spinner:first-of-type {
+      --spinner-color: var(--white) !important;
+    }
+}
+
+
+
+// ! CSS GLOBAL THEMES
+////////////////////////////////////////////////////// ! AZUL  ///////////////////////////////////////////////////////////////////////
+    .summerWine{
+        --background: var(--ion-color-fondo);
+        ion-fab-button{
+            --background: var(--ion-color-succes-light);
+            color: black;
+        }
+        ion-toolbar{
+            --background: var(--ion-color-fondo);
+            .cerrarSesion{
+                margin-right: 10px;
+                font-size: 18px;
+            }
+            .mesaAbierta{
+                background: var(--azulClaro);
+            }
+
+            .agregarReserva{
+                background: var(--ion-color-fondo-light-2);
+            }
+        
+            .nombreMesa{
+                ion-icon{
+                    color: var(--ion-color-fondo-light-2);
+                }
+            }
+            .verPrecios{
+                background: var(--ion-color-succes-light);
+            }
+            .cuentaAbierta{
+                background: var(--azulClaro);
+            }
+            .actualizarCategorias{
+                --background: var(--ion-color-succes-light);
+            }
+            .generarReporteReservaciones{
+                background-color: var(--ion-color-succes-light);
+            }
+            .buttonReservarVariaZonas{
+                --background: var(--ion-color-succes-light);
+            }
+        }
+
+        // ! CSS MODAL CONFIGURACIONES
+        .guardarConfiguracion{
+            --background: var(--ion-color-succes-light);
+        }
+        .colList{
+            background-color: var(--ion-color-fondo-light-2);
+            div{
+                background-color: var(--ion-color-fondo-light);
+            }
+        }
+        .colContent{
+            background-color: var(--ion-color-fondo-light-1);
+            .estaciones{
+                .estacionActiva {
+                    background-color: var(--ion-color-fondo-light) !important;
+                  }
+            }
+        }  
+        // ! CSS LOGIN
+        .login{
+            .input{
+                ion-card{
+                    --background: transparent;
+                    border: 2px solid var(--ion-color-fondo-light-2);
+                    ion-icon{
+                        background-color: var(--ion-color-fondo-light);
+                    }
+            
+                }
+
+            }
+        }
+        // ! CSS ZONAS
+        .areas {
+            background-color: var(--ion-color-fondo-light-2);
+            .barra-areas {
+              ion-card {
+                background-color: var(--ion-color-fondo-light);
+              }
+              ion-badge{
+                  --background: var(--ion-color-succes-light)
+              }
+            }
+
+        }
+        .mesas {
+            background-color: var(--ion-color-fondo);      
+            .barra-mesas {
+              .cartasMesas {
+                --background: var(--ion-color-fondo-light-1);
+                box-shadow: 3px 1px 1px 1px rgb(160, 160, 160);
+
+              }
+              .mesaBloqueada {
+                background-color: rgb(36, 34, 34);
+                color: whitesmoke !important;
+              }
+
+              .iconMesaBloqueada {
+                color: var(--ion-color-fondo-light-2);
+              }
+              .mesaOcupada {
+                color: var(--ion-color-succes-light);
+              }
+              .mesaLibre {
+                color: var(--ion-color-fondo-light);
+              }
+              .seleccionarMesa{
+                --background: #0ac29d !important;
+                .mesaOcupada{
+                    color: #fff !important;
+                }
+                
+              }
+            }
+        }
+        // !  
+
+        // ! CSS CUENTAS
+        
+        .nuevaCuenta{
+            width: 100%;
+            height: 210px;
+            ion-card{
+            //--background: rgb(255, 228, 196); 
+            --background: var(--ion-color-fondo-light-1);
+            margin-top:15px;
+            margin-bottom: 15px;
+            }
+            .botonCrear{
+                ion-item{
+                    --background: var(--ion-color-gris);
+                }
+                ion-button{ 
+                    --background: var(--azulClaro); 
+                }
+            }
+            .botonSeparar{
+                --background: var(--ion-color-light); 
+                color:black;
+            }
+            .botonTransladar{
+                --background: var(--ion-color-succes-light);
+            }
+            .listReservaciones{
+                --background: var(--azulClaro);
+            }
+            .btnUnirCuentas{
+                --background: var(--ion-color-fondo-light-2);
+            }
+        }
+        .fila-cuentas{
+            .noComandas{
+                color: var(--ion-color-fondo);
+            }
+            .siComandas{
+                color: var(--azulClaro);
+            }
+            .pagarCuenta{
+                --background: var(--azulClaro);
+                color: white;
+            }
+            .transladarCuenta{
+
+                --background: var(--ion-color-succes-light);
+            }
+            .bloquearCuenta{
+                --background: var(--ion-color-fondo);
+                ion-icon{
+                    color: white;
+                }
+            }
+            .desbloquearCuenta{
+                --background: var(--ion-color-fondo-light-2);
+                ion-icon{
+                    color: black;
+                }
+            }
+        }
+        // !
+
+        // ! CSS COMANAS
+
+        .barra-comandas{
+            background-color: var(--ion-color-fondo-light-2);
+            .comentarioComandas{
+                --background: var(--azulClaro);
+            }
+            .nameProductCant{
+                ion-item{
+                    --background: var(--ion-color-fondo);
+                    ion-label, ion-note{
+                        color: white;
+                    }
+                }
+            }
+            .comandasPorGuardar{
+                --background: var(--ion-color-succes-light);
+                color: black;
+            }
+            .comandas{
+                --background: var(--ion-color-fondo-light);
+            }
+            .guardarComandas{
+                --background: var(--ion-color-fondo)
+            }
+        }
+        .categorias{
+            background-color: var(--ion-color-fondo);
+            .searchBar{
+                ion-button{
+                    --background: var(--ion-color-succes-light);
+                    color:black !important;
+                }    
+            }
+            ion-list ion-card{
+                box-shadow: 3px 1px 1px 1px #8f8f8f99;
+            }
+            .barra-categorias .precio{
+                background-color: var(--ion-color-fondo);
+            }
+            .cardCategorias{
+                color: black;
+                --background: var(--ion-color-fondo-light-2)
+            }
+            .cardProductos{
+                color: black;
+                --background: var(--ion-color-succes-light)
+            }
+        }
+        .precioTotalCard{
+            background-color: var(--azulClaro);
+        }
+        // !
+
+        // ! MODAL LIST RESERVACIONES
+        .titleListReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-2);
+                }
+            }
+        }
+        .fila-reservaciones{        
+            ion-list{
+                color: whitesmoke !important;
+
+                div{
+                    background-color: var(--ion-color-fondo-light);
+                    ion-item{
+                        color: whitesmoke !important;
+
+                    }
+                    .add{
+                        background: var(--ion-color-success);
+                    }
+                    .calendario{
+                        color: var(--ion-color-succes-light);
+                    }
+                }
+        
+            }
+
+        }
+        // !
+
+        // ! MODAL LISTA DE CONTORNOS EN LA COMANDA
+        .rowContornosComanda{
+            ion-card{
+                --background: var(--ion-color-succes-light);
+            }
+        }
+        // !
+
+        // ! MODAL CONTORNOS PRODUCTOS
+        .colContornos{
+            .lista-contornos{
+                .contornosProducto{
+                    color: black;
+                    --background: var(--ion-color-succes-light)
+                }
+            }
+        }
+        .colAgregados{
+            background-color: var(--ion-color-fondo-light-2) !important;
+            span{
+                background-color: var(--ion-color-fondo) !important; 
+            }
+        
+            .lista-agregados{
+                ion-card{
+                    color: whitesmoke !important;
+                    --background: var(--ion-color-fondo-light);
+                }
+        
+            }
+             
+        
+        }
+
+        // !
+
+        // ! CSS MODAL CONTORNOS GENERALES
+        .categoriaContorno{
+            color: black;
+            --background: var(--ion-color-fondo-light-1);
+        }
+        .contornos{
+            color: black;
+            --background: var(--ion-color-succes-light);
+        }
+        .contornoPersonalizado{
+            --background: var(--ion-color-fondo-light-1);
+        }
+        // !
+
+        // ! CSS MODAL UNIR CUENTAS
+        .cardsUnir{
+            .cardEnvia{
+                color: black;
+              --background: var(--ion-color-succes-light);
+            }
+            .cardRecibe{
+              --background: var(--ion-color-fondo-light-2);
+            }
+        }
+        .guardarUnirCuentas{
+            color: black;
+            --background: var(--ion-color-fondo-light-2);
+        }
+        // !
+
+        // ! CSS MODAL AGREGAR RESERVACIONES
+        .searchClient{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-2);
+                }
+            }
+            .input{
+            }
+            .btnAddCliente{
+                color: black !important;
+                --background: var(--ion-color-succes-light);
+            }
+            .btnBuscarCliente{
+                --background: var(--azulClaro)
+            }
+        }
+        .reservationData{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-2);
+                }
+            }
+            .dataInputs{
+                .button{
+                    ion-button{
+                        --background: var(--ion-color-fondo-light-2);
+                        color: var(--ion-color-dark);
+                    }
+                }
+                .cardNombreCliente{
+                    --background: var(--ion-color-fondo-light);
+                }
+                .btnAgregarTipoReservacion{
+                    --background: var(--azulClaro)
+                }
+            }
+        }
+        // !
+
+        // ! CSS MODAL ADD CLIENTE
+        .rowTitle{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-2);
+                }
+            }
+        }
+    
+        .dataCliente{
+            .button{
+                ion-button{
+                    color: var(--ion-color-dark);;
+                    --background: var(--ion-color-fondo-light-2)
+                }
+            }
+        }
+        // !
+
+        // ! MODAL RESERVACIONES ZONAS Y MESAS
+        .zona{
+            background-color: var(--ion-color-fondo-light);
+
+        }
+        .seleccionarZona{
+            background-color: #0ac29d !important;             
+
+        }
+        .zonaActiva{
+            background-color: #222428 !important; 
+        }
+        // ! MODAL GENERAR REPORTE RESERVACIONES
+
+        // ! MODAL LIST GLOBAL RESERVACIONES
+        .rowTitleReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-2)
+                }
+            }
+        }
+        .fila-reservaciones{
+            ion-list{
+                div{
+                    .content{
+                        .calendar{
+                            color: var(--ion-color-succes-light);
+                        }
+                    }
+                }
+        
+            }
+        }
+        // !
+
+        // ! GENERAR REPORTE RESERVACIONES
+        .btnGenerarReporte{
+            ion-button{
+               --background: var(--ion-color-fondo-light-1) !important;
+            }
+        }
+       // !
+
+       // ! MODAL FACTURACION
+       .rowMain {
+        .colMonedas {
+          background-color: var(--ion-color-fondo-light-2);
+          .rowCliente{
+            div{
+                ion-card{
+                    --background: var(--ion-color-fondo-light);
+                    color: white;
+                }
+
+
+            }
+            }
+          .comentario{
+              ion-card{
+                  --background: var(--azulClaro);
+                  color: black;
+              }
+          }
+          .monedas {
+            ion-card {
+              background-color: var(--ion-color-fondo-light);
+            }
+          }
+          .monto {
+            .input {
+              background-color: var(--ion-color-azulClaro);
+            }
+          }
+        }
+    
+        .infoLines {
+          .impuestos {
+            background-color: var(--ion-color-fondo-light);
+            .tasa {
+                ion-card{
+                  --background: var(--ion-color-fondo);
+              }
+            }
+            .total{
+                ion-card{
+                    --background: var(--ion-color-fondo);
+                }
+            }
+          }
+          .lines {
+            background-color: var(--ion-color-gris);
+            .grid{
+                &.columns-head {              
+                    background-color: rgb(66, 66, 66);           
+                  }
+                &__descripcion,
+                &__monto,
+                &__moneda,
+                &__cambio,
+                &__borrar,
+                &__configuration {
+                  border-right: 1px solid var(--background-principal);
+                }
+            }
+            .grid{
+              &:nth-child(odd) {
+                background-color: rgb(66, 66, 66);
+              }
+    
+              &:nth-child(even) {
+                background-color: rgb(94, 94, 94);
+              }
+               > span{
+                border-bottom: 1px solid black;
+                color: white;
+
+               } 
+            }
+          }
+          .totales{
+            .debeColumn{
+              div{
+                background-color: var(--ion-color-fondo-light-1);
+                border: 1px solid var(--ion-color-fondo);
+              }
+          }
+            .totalColumn{
+                div{
+                  background-color: var(--ion-color-succes-light);
+                  border: 1px solid var(--ion-color-fondo);
+                }
+            }
+            
+          }
+        }
+        }
+       // !
+
+       // ! MODAL AGREGAR PAGO
+       .tasa{
+            .descrip{       
+                ion-card{
+                    --background: var(--ion-color-succes-light);
+                    color: #222428;
+                }
+            }
+            .inputMonto{
+                ion-item{
+                    color: whitesmoke;
+                    ion-label{
+                        color: whitesmoke;
+                    }
+                    ion-input{
+                        color: whitesmoke;
+                    }
+                }
+            }
+            .simbolo{
+                ion-card{
+                    --background: var(--ion-color-fondo-light);
+                    ion-card-content{
+                        color: black;
+                    }
+                }
+            }
+            .inputIgtf{
+                ion-card{
+                    --background: var(--ion-color-succes-light);
+                    color: black;
+                }
+            }
+        }
+        .btnGuardarFacturacion{
+            --background: var(--ion-color-fondo-light)
+        }
+       // !
+        // ! MODAL DESCUENTO FACTURAR
+        .rowContentDescuento{
+            width: 100%;
+            ion-card{
+                --background: var(--ion-color-fondo-light-2);
+                color: black !important;
+            }
+            ion-button{
+                color: black;
+                --background: var(--azulClaro);
+            }
+        }
+        // !
+
+
+        // ! MODAL RRHH
+        .rowRRHH{
+            div{
+                ion-card{
+                    --background: var(--ion-color-fondo-light-1);
+                    color: white;
+                }
+            }
+        }
+        .btnGuardarRRHH{
+            --background: var(--ion-color-fondo-light);
+            color: white;
+        }
+        // !
+    }
+//////////////////////////////////////////////////// ! MORADO////////////////////////////////////////////////////////////////
+    .freshMint{
+        --background: var(--ion-color-mmoscuro);
+        ion-fab-button{
+            --background: var(--ion-color-aclaro);
+            --color: black;
+        }
+        ion-toolbar{
+            --background: var(--ion-color-mmoscuro);
+            .cerrarSesion{
+                margin-right: 10px;
+                font-size: 18px;
+            }
+            .mesaAbierta{
+                background: var(--ion-color-salmon);
+            }
+            .agregarReserva{
+                background: var(--ion-color-mclaro);
+            }
+        
+            .nombreMesa{
+                ion-icon{
+                    color: var(--ion-color-mclaro);
+                }
+            }
+            .verPrecios{
+                background-color: var(--ion-color-aclaro);
+                color: black !important;
+            }
+            .cuentaAbierta{
+                background: var(--ion-color-mclaro);
+            }
+            .actualizarCategorias{
+                --background: var(--ion-color-salmon);
+            }
+            .generarReporteReservaciones{
+                background-color: var(--ion-color-mclaro);
+            }
+            .buttonReservarVariaZonas{
+                color: black !important;
+                --background: var(--ion-color-salmon);
+            }
+
+        }
+        // ! CSS MODAL CONFIGURACIONES
+        .guardarConfiguracion{
+            --background: var(--ion-color-mclaro);
+            color: black;
+        }
+        .colList{
+            background-color: var(--ion-color-mclaro);
+            div{
+                background-color: var(--ion-color-moscuro);
+            }
+        }
+        .colContent{
+            background-color: var(--ion-color-mmedio);
+            .estaciones{
+                .estacionActiva {
+                    background-color: var(--ion-color-moscuro) !important;
+                  }
+            }
+        }
+        // !
+
+        // ! CSS LOGIN
+        .login{
+            .input{
+                ion-card{
+                    --background: transparent;
+                    border: 2px solid var(--ion-color-mclaro);
+                    ion-icon{
+                        background-color: var(--ion-color-moscuro);
+                    }
+            
+                }
+
+            }
+        }
+        // !
+
+        // ! CSS ZONAS
+        .areas {
+            background-color: var(--ion-color-mclaro);
+            .barra-areas {
+                ion-card {
+                background-color: var(--ion-color-moscuro);
+                }
+                ion-badge{
+                    color: black;
+                    --background: var(--ion-color-aclaro)
+                }
+            }
+
+        }
+        .mesas {
+            background-color: var(--ion-color-mmoscuro);      
+            .barra-mesas {
+                .cartasMesas {
+                --background: var(--ion-color-mmedio);
+                }
+                .mesaBloqueada {
+                background-color: rgb(36, 34, 34);
+                color: whitesmoke !important;
+                }
+
+                .iconMesaBloqueada {
+                 color: var(--ion-color-mclaro);
+                }
+                .mesaOcupada {
+                    color: var(--ion-color-aclaro);
+                }
+                .mesaLibre {
+                    color: var(--ion-color-moscuro);
+                }
+                .seleccionarMesa{
+                    --background: var(--ion-color-salmon) !important;
+                    .mesaOcupada{
+                        color: #fff !important;
+                    }
+                    
+                  }
+            }
+        }
+        // !
+
+        // ! CSS CUENTAS
+        ion-header{
+
+            .cerrarSesion{
+                margin-right: 10px;
+                font-size: 18px;
+            }
+            .mesaAbierta{
+                background: var(--ion-color-pink-succes);
+            }
+            .agregarReserva{
+                background: var(--ion-color-pink-light-2);
+            }
+        
+            .nombreMesa{
+                ion-icon{
+                    color: var(--ion-color-mclaro)
+                }
+            }
+            .verPrecios{
+                background: var(--ion-color-aclaro);
+            }
+
+        }
+        .nuevaCuenta{
+            width: 100%;
+            height: 210px;
+            ion-card{
+            //--background: rgb(255, 228, 196); 
+            --background: var(--ion-color-mmedio);
+            margin-top:15px;
+            margin-bottom: 15px;
+            }
+            .botonCrear{
+                ion-item{
+                    --background: var(--ion-color-gris);
+                }
+                ion-button{ 
+                    --background: var(--ion-color-salmon); 
+                }
+            }
+            .botonSeparar{
+                --background: var(--ion-color-aclaro); 
+                color:black;
+            }
+            .botonTransladar{
+                --background: var(--ion-color-mclaro);
+            }
+            .listReservaciones{
+                --background: var(--ion-color-salmon);
+            }
+            .btnUnirCuentas{
+                --background: var(--ion-color-mclaro);
+            }
+        }
+        .fila-cuentas{
+            .noComandas{
+                color: var(--ion-color-mmoscuro);
+            }
+            .siComandas{
+                color: var(--ion-color-amedio);
+            }
+            .pagarCuenta{
+                --background: var(--ion-color-salmon);
+                color: white;
+            }
+            .transladarCuenta{
+                --background: var(--ion-color-aclaro);
+                color: black;
+            }
+            .bloquearCuenta{
+                --background: var(--ion-color-mmoscuro);
+                color: white;
+            }
+            .desbloquearCuenta{
+                --background: var(--ion-color-mclaro);
+                color: black;
+            }
+        }
+        // !
+
+        // ! CSS COMANAS
+
+        .barra-comandas{
+            background-color: var(--ion-color-mclaro);
+            .comentarioComandas{
+                --background: var(--ion-color-salmon);
+            }
+            .nameProductCant{
+                ion-item{
+                    --background: var(--ion-color-mmoscuro);
+                    ion-label, ion-note{
+                        color: var(--ion-color-salmon);
+                    }
+                }
+            }
+            .comandasPorGuardar{
+                --background: var(--ion-color-aclaro);
+                color: black;
+            }
+            .comandas{
+                --background: var(--ion-color-moscuro);
+            }
+            .guardarComandas{
+                --background: var(--ion-color-mmoscuro)
+            }
+        }
+        .categorias{
+            background-color: var(--ion-color-mmoscuro);
+            .searchBar{
+                ion-button{
+                    --background: var(--ion-color-salmon);
+                    color:black !important;
+                }    
+            }
+            ion-list ion-card{
+                //box-shadow: 3px 1px 1px 1px #8f8f8f99;
+            }
+            .barra-categorias .precio{
+                background-color: var(--ion-color-mmoscuro);
+            }
+            .cardCategorias{
+                color: black;
+                --background: var(--ion-color-mclaro)
+            }
+            .cardProductos{
+                color: black;
+                --background: var(--ion-color-aclaro)
+            }
+        }
+        .precioTotalCard{
+            background-color: var(--ion-color-salmon);
+            
+        }
+        // !
+
+        // ! MODAL LIST RESERVACIONES
+        .titleListReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                }
+            }
+        }
+        .fila-reservaciones{        
+            ion-list{
+                div{
+                    background-color: var(--ion-color-moscuro);
+                    .add{
+                        background: var(--ion-color-success);
+                    }
+                    .calendario{
+                        color: var(--ion-color-aclaro);
+                    }
+                }
+        
+            }
+
+        }
+        // !
+
+        // ! MODAL LISTA DE CONTORNOS EN LA COMANDA
+        .rowContornosComanda{
+            ion-card{
+                --background: var(--ion-color-aclaro);
+            }
+        }
+        // !
+
+        // ! MODAL CONTORNOS PRODUCTOS
+        .colContornos{
+            .lista-contornos{
+                .contornosProducto{
+                    color: black;
+                    --background: var(--ion-color-aclaro)
+                }
+            }
+        }
+        .colAgregados{
+            background-color: var(--ion-color-mclaro) !important;
+            span{
+                background-color: var(--ion-color-moscuro) !important; 
+            }
+        
+            .lista-agregados{
+                ion-card{
+                    color: black;
+                    --background: var(--ion-color-salmon);
+                }
+        
+            }
+                
+        
+        }
+
+        // !
+        // ! CSS MODAL CONTORNOS GENERALES
+        .contornoPersonalizado{
+            color: black;
+            --background: var(--ion-color-mclaro);
+        }
+        .categoriaContorno{
+            color: black;
+            --background: var(--ion-color-mclaro);
+        }
+        .contornos{
+            color: black;
+            --background: var(--ion-color-aclaro);
+        }
+        // !
+
+        // ! CSS MODAL UNIR CUENTAS
+        .cardsUnir{
+            .cardEnvia{
+                color: black;
+                --background: var(--ion-color-aclaro);
+            }
+            .cardRecibe{
+                --background: var(--ion-color-salmon);
+            }
+        }
+        .guardarUnirCuentas{
+            color: black !important;
+            --background: var(--ion-color-mclaro);
+        }
+        // !
+
+        // ! CSS MODAL AGREGAR RESERVACIONES
+        .searchClient{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                }
+            }
+            .input{
+            }
+            .btnAddCliente{
+                color: black !important;
+                --background: var(--ion-color-aclaro);
+            }
+            .btnBuscarCliente{
+                --background: var(--ion-color-salmon)
+            }
+        }
+        .reservationData{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                }
+            }
+            .dataInputs{
+                .button{
+                    ion-button{
+                        --background: var(--ion-color-mclaro);
+                        color: var(--ion-color-dark);
+                    }
+                }
+                .cardNombreCliente{
+                    --background: var(--ion-color-moscuro);
+                }
+                .btnAgregarTipoReservacion{
+                    --background: var(--ion-color-salmon)
+                }
+            }
+        }
+        // !
+
+        // ! CSS MODAL ADD CLIENTE
+        .rowTitle{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                }
+            }
+        }
+    
+        .dataCliente{
+            .button{
+                ion-button{
+                    color: var(--ion-color-dark);
+                    --background: var(--ion-color-mclaro)
+                }
+            }
+        }
+        // !
+
+        // ! MODAL RESERVACIONES ZONAS Y MESAS
+        .zona{
+            background-color: var(--ion-color-fondo-light);
+
+        }
+        .seleccionarZona{
+            background-color: var(--ion-color-salmon) !important;             
+
+        }
+        .zonaActiva{
+            background-color: #222428 !important; 
+        }
+        // !
+
+        // ! MODAL LIST GLOBAL RESERVACIONES
+        .rowTitleReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                }
+            }
+        }
+        .fila-reservaciones{
+            ion-list{
+                div{
+                    .content{
+                        color: white !important;
+                        .calendar{
+                            color: var(--ion-color-salmon);
+                        }
+                    }
+                }
+        
+            }
+        }
+        // !
+          // ! GENERAR REPORTE RESERVACIONES
+          .btnGenerarReporte{
+            ion-button{
+               --background: var(--ion-color-mclaro) !important;
+            }
+        }
+       // !
+        // ! MODAL FACTURACION
+        .rowMain {
+        .colMonedas {
+            background-color: var(--ion-color-mclaro);
+            .rowCliente{
+                div{
+                  ion-card{
+                    --background: var(--ion-color-moscuro);
+                    color: white;
+                  }
+
+                }
+            }
+            .comentario{
+                ion-card{
+                    --background: var(--ion-color-mmoscuro);
+                    color: white;
+                }
+            }
+            .monedas {
+            ion-card {
+                background-color: var(--ion-color-moscuro);
+            }
+            }
+            .monto {
+                .input {
+                    background-color: var(--ion-color-azulClaro);
+                }
+            }
+        }
+
+        .infoLines {
+            .impuestos {
+            background-color: var(--ion-color-mmedio);
+            .tasa {
+                ion-card{
+                    --background: var(--ion-color-mmoscuro);
+                }
+            }
+            .total{
+                ion-card{
+                    --background: var(--ion-color-mmoscuro);
+                }
+            }
+            }
+            .lines {
+            background-color: var(--ion-color-mmoscuro);
+            .grid{
+                &.columns-head {              
+                    background-color: rgb(66, 66, 66);           
+                    }
+                &__descripcion,
+                &__monto,
+                &__moneda,
+                &__cambio,
+                &__borrar,
+                &__configuration {
+                    border-right: 1px solid var(--background-principal);
+                }
+            }
+            .grid{
+                &:nth-child(odd) {
+                background-color: rgb(66, 66, 66);
+                }
+
+                &:nth-child(even) {
+                background-color: rgb(94, 94, 94);
+                }
+                > span{
+                border-bottom: 1px solid black;
+                color: white;
+
+                } 
+            }
+            }
+            .totales{
+            .debeColumn{
+                div{
+                background-color: var(--ion-color-mmedio);
+                color: white !important;
+                border: 1px solid var(--ion-color-mmoscuro);
+                }
+            }
+            .totalColumn{
+                div{
+                    color: white !important;
+                    background-color: var(--ion-color-moscuro);
+                    border: 1px solid var(--ion-color-mmoscuro);
+                }
+            }
+            
+            }
+        }
+        }
+        // !
+        // ! MODAL AGREGAR PAGO
+        .tasa{
+            .descrip{       
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                    color: black;
+                }
+            }
+            .inputMonto{
+                ion-item{
+                    color: whitesmoke;
+                    ion-label{
+                        color: whitesmoke;
+                     }
+                    ion-input{
+                        color: whitesmoke;
+                    }
+                }
+            }
+            .simbolo{
+                ion-card{
+                    --background: var(--ion-color-moscuro);
+                    ion-card-content{
+                        color: black;
+                    }
+                }
+            }
+            .inputIgtf{
+                ion-card{
+                    --background: var(--ion-color-mclaro);
+                    color: black;
+                }
+            }
+            }
+            .btnGuardarFacturacion{
+                --background: var(--ion-color-salmon)
+        }
+        // !
+        // ! MODAL DESCUENTO FACTURAR
+        .rowContentDescuento{
+            width: 100%;
+            ion-card{
+                --background: var(--ion-color-mclaro);
+                color: black !important;
+            }
+            ion-button{
+                color: black;
+                --background: var(--ion-color-salmon);
+            }
+        }
+        // !
+        // ! MODAL RRHH
+        .rowRRHH{
+            div{
+                ion-card{
+                    --background: var(--ion-color-mmedio);
+                    color: white;
+                }
+            }
+        }
+        .btnGuardarRRHH{
+            --background: var(--ion-color-mclaro);
+            color: white;
+        }
+        // !
+    }
+////////////////////////////////////// ! ROSADOOOOOOOOOOOOOOOOO ////////////////////////////////////////////////////// 
+    .pinkWine{
+        --background: var(--ion-color-pink);
+        ion-fab-button{
+            --background: var(--ion-color-pink-succes);
+            color: black;
+        }
+        ion-toolbar{
+            --background: var(--ion-color-pink);
+            .cerrarSesion{
+                margin-right: 10px;
+                font-size: 18px;
+            }
+            .mesaAbierta{
+                background: var(--ion-color-pink-aqua);
+                color: black !important;
+            }
+
+            .agregarReserva{
+                background: var(--ion-color-pink-light-1);
+                color: white !important;
+            }
+        
+            .nombreMesa{
+                ion-icon{
+                    color: var(--ion-color-pink-light-2);
+                }
+            }
+            .verPrecios{
+                background: var(--ion-color-pink-succes);
+                ion-icon{
+                    color: white !important;
+                }
+            }
+            .cuentaAbierta{
+                background: var(--ion-color-pink-aqua);
+            }
+            .actualizarCategorias{
+                --background: var(--ion-color-pink-succes);
+            }
+            .generarReporteReservaciones{
+                background-color: var(--ion-color-pink-light-2);
+                color: black;
+            }
+            .buttonReservarVariaZonas{
+                color: black !important;
+                --background: var(--ion-color-pink-aqua);
+            }
+        }
+
+        // ! CSS MODAL CONFIGURACIONES
+        .guardarConfiguracion{
+            --background: var(--ion-color-pink-succes);
+        }
+        .colList{
+            background-color: var(--ion-color-pink-light-2);
+            div{
+                background-color: var(--ion-color-pink-light);
+            }
+        }
+        .colContent{
+            background-color: var(--ion-color-pink-light-1);
+            .estaciones{
+                .estacionActiva {
+                    background-color: var(--ion-color-pink-light) !important;
+                  }
+            }
+        }  
+        // ! CSS LOGIN
+        .login{
+            .input{
+                ion-card{
+                    --background: transparent;
+                    border: 2px solid var(--ion-color-pink-light-2);
+                    ion-icon{
+                        background-color: var(--ion-color-pink-light);
+                    }
+            
+                }
+
+            }
+        }
+        // ! CSS ZONAS
+        .areas {
+            background-color: var(--ion-color-pink-light-2);
+            .barra-areas {
+              ion-card {
+                background-color: var(--ion-color-pink-light);
+              }
+              ion-badge{
+                  --background: var(--ion-color-pink-succes)
+              }
+            }
+
+        }
+        .mesas {
+            background-color: var(--ion-color-pink);      
+            .barra-mesas {
+              .cartasMesas {
+                --background: var(--ion-color-pink-light-1);
+                box-shadow: 3px 1px 1px 1px rgb(160, 160, 160);
+
+              }
+              .mesaBloqueada {
+                background-color: rgb(36, 34, 34);
+                color: whitesmoke !important;
+              }
+
+              .iconMesaBloqueada {
+                color: var(--ion-color-pink-light-2);
+              }
+              .mesaOcupada {
+                color: var(--ion-color-pink-succes);
+              }
+              .mesaLibre {
+                color: var(--ion-color-pink-light);
+              }
+              .seleccionarMesa{
+                --background: var(--ion-color-pink-succes) !important;
+                .mesaOcupada{
+                    color: #fff !important;
+                }
+                
+              }
+            }
+        }
+        // !  
+
+        // ! CSS CUENTAS
+        
+        .nuevaCuenta{
+            width: 100%;
+            height: 210px;
+            ion-card{
+            //--background: rgb(255, 228, 196); 
+            --background: var(--ion-color-pink-light-2);
+            margin-top:15px;
+            margin-bottom: 15px;
+            }
+            .botonCrear{
+                ion-item{
+                    --background: rgb(138, 138, 138,.7);
+                    color: #222428;
+                }
+                ion-button{ 
+                    --background: var(--ion-color-light);
+                    color:black !important; 
+                }
+            }
+            .botonSeparar{
+                --background: var(--ion-color-light); 
+                color:black;
+            }
+            .botonTransladar{
+                --background: var(--ion-color-pink-succes);
+            }
+            .listReservaciones{
+                --background: var(--ion-color-pink-aqua);
+                color: black !important;
+            }
+            .btnUnirCuentas{
+                --background: var(--ion-color-pink-light-1);
+            }
+        
+        }
+        .fila-cuentas{
+            .noComandas{
+                color: var(--ion-color-pink);
+            }
+            .siComandas{
+                color: var(--ion-color-pink-aqua);
+            }
+            .pagarCuenta{
+                --background: var(--ion-color-pink-aqua);
+                color: black;
+            }
+            .transladarCuenta{
+
+                --background: var(--ion-color-pink-succes);
+            }
+            .bloquearCuenta{
+                --background: var(--ion-color-pink);
+                ion-icon{
+                    color: white;
+                }
+            }
+            .desbloquearCuenta{
+                --background: var(--ion-color-pink-light-1);
+                ion-icon{
+                    color: white;
+                }
+            }
+        }
+        // !
+
+        // ! CSS COMANDAS
+
+        .barra-comandas{
+            background-color: var(--ion-color-pink-light-2);
+            .comentarioComandas{
+                --background: var(--ion-color-pink-aqua);
+            }
+            .nameProductCant{
+                ion-item{
+                    --background: var(--ion-color-pink);
+                    ion-label, ion-note{
+                        color: white;
+                    }
+                }
+            }
+            .comandasPorGuardar{
+                --background: var(--ion-color-pink-succes);
+                color: black;
+            }
+            .comandas{
+                --background: var(--ion-color-pink-light);
+            }
+            .guardarComandas{
+                --background: var(--ion-color-pink)
+            }
+        }
+        .categorias{
+            background-color: var(--ion-color-pink);
+            .searchBar{
+                ion-button{
+                    --background: var(--ion-color-pink-light-1);
+                    color:white !important;
+                }    
+            }
+            ion-list ion-card{
+                box-shadow: 3px 1px 1px 1px #8f8f8f99;
+            }
+            .barra-categorias .precio{
+                background-color: var(--ion-color-dark);
+            }
+            .cardCategorias{
+                color: white;
+                --background: var(--ion-color-pink-light-1)
+            }
+            .cardProductos{
+                color: black;
+                --background: var(--ion-color-pink-succes)
+            }
+        }
+        .precioTotalCard{
+            background-color: var(--ion-color-pink-aqua);
+        }
+        // !
+
+        // ! MODAL LIST RESERVACIONES
+        .titleListReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-pink-light-2);
+                }
+            }
+        }
+        .fila-reservaciones{        
+            ion-list{
+                div{
+                    background-color: var(--ion-color-pink-light-1);
+                    color:white;
+                    .add{
+                        background: var(--ion-color-success);
+                    }
+                    .calendario{
+                        color: var(--ion-color-pink-succes);
+                    }
+                }
+        
+            }
+
+        }
+        // !
+
+        // ! MODAL LISTA DE CONTORNOS EN LA COMANDA
+        .rowContornosComanda{
+            ion-card{
+                --background: var(--ion-color-pink-succes);
+            }
+        }
+        // !
+
+        // ! MODAL CONTORNOS PRODUCTOS
+        .colContornos{
+            .lista-contornos{
+                .contornosProducto{
+                    color: black;
+                    --background: var(--ion-color-pink-succes)
+                }
+            }
+        }
+        .colAgregados{
+            background-color: var(--ion-color-pink-light-2) !important;
+            span{
+                background-color: var(--ion-color-pink) !important; 
+            }
+        
+            .lista-agregados{
+                ion-card{
+                    color: whitesmoke !important;
+                    --background: var(--ion-color-pink-light);
+                }
+        
+            }
+             
+        
+        }
+
+        // !
+
+        // ! CSS MODAL CONTORNOS GENERALES
+        .categoriaContorno{
+            color: black;
+            --background: var(--ion-color-pink-light-1);
+        }
+        .contornos{
+            color: black;
+            --background: var(--ion-color-pink-succes);
+        }
+        .contornoPersonalizado{
+            --background: var(--ion-color-pink-light-1);
+        }
+        // !
+
+        // ! CSS MODAL UNIR CUENTAS
+        .cardsUnir{
+            .cardEnvia{
+                color: black;
+              --background: var(--ion-color-pink-succes);
+            }
+            .cardRecibe{
+              --background: var(--ion-color-pink-light-2);
+            }
+        }
+        .guardarUnirCuentas{
+            color: black;
+            --background: var(--ion-color-pink-light-2);
+        }
+        // !
+
+        // ! CSS MODAL AGREGAR RESERVACIONES
+        .searchClient{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-pink-light-2);
+                }
+            }
+            .input{
+            }
+            .btnAddCliente{
+                color: black !important;
+                --background: var(--ion-color-pink-aqua);
+            }
+            .btnBuscarCliente{
+                --background: var(--ion-color-pink-succes);
+            }
+        }
+        .reservationData{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-pink-light-2);
+                }
+            }
+            .dataInputs{
+                .button{
+                    ion-button{
+                        --background: var(--ion-color-pink-light-2);
+                        color: var(--ion-color-dark);
+                    }
+                }
+                .cardNombreCliente{
+                    --background: var(--ion-color-pink-light);
+                }
+                .btnAgregarTipoReservacion{
+                    --background: var(--ion-color-pink-succes)
+                }
+            }
+        }
+        // !
+
+        // ! CSS MODAL ADD CLIENTE
+        .rowTitle{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-pink-light-2);
+                }
+            }
+        }
+    
+        .dataCliente{
+            .button{
+                ion-button{
+                    color: var(--ion-color-dark);
+                    --background: var(--ion-color-pink-light-2)
+                }
+            }
+        }
+        // !
+        // ! MODAL RESERVACIONES ZONAS Y MESAS
+        .zona{
+            background-color: var(--ion-color-pink-light);
+
+        }
+        .seleccionarZona{
+            background-color: var(--ion-color-pink-succes) !important;             
+
+        }
+        .zonaActiva{
+            background-color: #222428 !important; 
+        }
+        // !
+                   // ! MODAL LIST GLOBAL RESERVACIONES
+        .rowTitleReservaciones{
+            .title{
+                ion-card{
+                    --background: var(--ion-color-pink-light-2)
+                }
+            }
+        }
+        .fila-reservaciones{
+            ion-list{
+                div{
+                    .content{
+                        color: black !important;
+                        .calendar{
+                            color: var(--ion-color-pink-aqua);
+                        }
+                    }
+                }
+        
+            }
+        }
+        // !
+
+        // ! GENERAR REPORTE RESERVACIONES
+         .btnGenerarReporte{
+             ion-button{
+                --background: var(--ion-color-pink-light-1) !important;
+             }
+         }
+        // !
+        // ! MODAL FACTURACION
+        .rowMain {
+            .colMonedas {
+            background-color: var(--ion-color-pink-light-2);
+            .rowCliente{
+                div{
+                  ion-card{
+                    --background: var(--ion-color-pink-light);
+                    color: white;
+                  }
+                }
+            }
+            .comentario{
+                ion-card{
+                    --background: var(--ion-color-pink);
+                    color: white;
+                }
+            }
+            .monedas {
+                ion-card {
+                background-color: var(--ion-color-pink-light);
+                }
+            }
+            .monto {
+                .input {
+                background-color: var(--ion-color-azulClaro);
+                }
+            }
+            }
+        
+            .infoLines {
+            .impuestos {
+                background-color: var(--ion-color-pink-light);
+                .tasa {
+                    ion-card{
+                    --background: var(--ion-color-pink);
+                }
+                }
+                .total{
+                    ion-card{
+                        --background: var(--ion-color-pink);
+                    }
+                }
+            }
+            .lines {
+                background-color: var(--ion-color-pink);
+                .grid{
+                    &.columns-head {              
+                        background-color: rgb(66, 66, 66);           
+                    }
+                    &__descripcion,
+                    &__monto,
+                    &__moneda,
+                    &__cambio,
+                    &__borrar,
+                    &__configuration {
+                    border-right: 1px solid var(--background-principal);
+                    }
+                }
+                .grid{
+                &:nth-child(odd) {
+                    background-color: rgb(66, 66, 66);
+                }
+        
+                &:nth-child(even) {
+                    background-color: rgb(94, 94, 94);
+                }
+                > span{
+                    border-bottom: 1px solid black;
+                    color: white;
+
+                } 
+                }
+            }
+            .totales{
+                .debeColumn{
+                div{
+                    background-color: var(--ion-color-pink-light-1);
+                    border: 1px solid var(--ion-color-pink);
+                    color: black !important;
+                }
+            }
+                .totalColumn{
+                    div{
+                    background-color: var(--ion-color-pink-light);
+                    border: 1px solid var(--ion-color-pink);
+                    color: white !important;
+                    }
+                }
+                
+            }
+            }
+        }
+       // !
+        // ! MODAL AGREGAR PAGO
+        .tasa{
+        .descrip{       
+            ion-card{
+                --background: var(--ion-color-pink-light-1);
+                color: white;
+            }
+        }
+        .inputMonto{
+            ion-item{
+                color: whitesmoke;
+                ion-label{
+                    color: whitesmoke;
+                }
+                ion-input{
+                    color: whitesmoke;
+                }
+            }
+        }
+        .simbolo{
+            ion-card{
+                --background: var(--ion-color-pink-light);
+                ion-card-content{
+                    color: white;
+                }
+            }
+        }
+        .inputIgtf{
+            ion-card{
+                --background: var(--ion-color-pink-light-1);
+                color: white;
+            }
+        }
+        }
+        .btnGuardarFacturacion{     
+            --background: var(--ion-color-pink-aqua);
+            color: black;
+        }
+        // ! 
+
+        // ! MODAL DESCUENTO FACTURAR
+        .rowContentDescuento{
+            width: 100%;
+            ion-card{
+                --background: var(--ion-color-pink-light-2);
+                color: black !important;
+            }
+            ion-button{
+                color: black;
+                --background: var(--ion-color-pink-aqua);
+            }
+        }
+        // !
+
+        // ! MODAL RRHH
+        .rowRRHH{
+            div{
+                ion-card{
+                    --background: var(--ion-color-pink-light-1);
+                    color: black;
+                }
+            }
+        }
+        .btnGuardarRRHH{
+            --background: var(--ion-color-pink-light);
+            color: white;
+        }
+        // !
+    }

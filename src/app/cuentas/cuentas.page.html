@@ -1,0 +1,218 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-icon slot="start" name="arrow-back-outline" (click)="paginaAtras()" class="paginaAnterior"></ion-icon>
+    <ion-text slot="start" style="margin-left: 20px">
+      <img
+        src="../../assets/img/logojaime-16.png"
+        alt=""
+        style="width: 100px; height: 40px"
+      />
+    </ion-text>
+    <!--ICONO MESA Y NOMBRE-->
+    <ion-text slot="start" class="nombreMesa">
+      <ion-icon name="easel-outline"></ion-icon>
+      {{nameMesa}}
+    </ion-text>
+    <!-- <ion-button color="warning" (click)="abrirAlertas()" *ngIf="alertasLlamadas.length >= 1" [ngClass]="{'parpadeoAlertas': alertasLlamadas.length >= 1}"><ion-icon name="alert-outline" style="font-size: 25px;"></ion-icon></ion-button> -->
+    <!--ICONO USUARIO Y NOMBRE-->
+
+    <ion-icon 
+      class="mesaAbierta"      
+      (click)="bloquearMesa()"
+      *ngIf="statusMesa == '3'"
+      name="lock-closed"
+      >
+    </ion-icon>
+
+    <ion-icon
+      name="lock-open-outline"
+      slot="start"
+      class="mesaAbierta"
+      (click)="bloquearMesa()"
+      *ngIf="statusMesa == '0'"
+    ></ion-icon>
+    <!-- AGREGAR RESERVA -->
+    <ion-icon name="calendar-outline" slot="end" class="agregarReserva" (click)="addReserva()" *ngIf="activarReservaciones == 'true'"></ion-icon>
+    <!--VER PRECIOS-->
+    <ion-icon name="book-outline" slot="end" class="verPrecios" (click)="verPrecios()" style="font-size: 24px;"></ion-icon>
+    <ion-text slot="end">
+      <ion-icon
+        name="person-sharp"
+        color="success"
+        class="iconUser"
+        *ngIf="nameUser"
+      ></ion-icon
+      >{{nameUser}}
+    </ion-text>
+
+    <ion-button
+      color="danger"
+      (click)="cerrarSesion()"
+      slot="end"
+      class="cerrarSesion"
+      ><ion-icon name="log-out-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="nuevaCuenta">
+    <ion-col size="12" class="cardCrear">
+      <ion-card>
+        <ion-card-content style="text-align: center">
+          <ion-title
+            style="font-size: 16px; letter-spacing: 2px; color: whitesmoke"
+            >CREAR UNA NUEVA CUENTA</ion-title
+          >
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <!-- BOTON PARA CREAR UNA CUENTA -->
+    <ion-col class="botonCrear">
+      <form action="" [formGroup]="Formcuenta">
+        <ion-item style="margin-left: 20px; border-radius: 5px">
+          <ion-label position="floating" style="color: whitesmoke"
+            >Ingresar número de cuenta</ion-label
+          >
+
+          <ion-input
+            type="number"
+            style="color: whitesmoke"
+            formControlName="numeroCuenta"
+            maxlength="3"
+          ></ion-input>
+        </ion-item>
+      </form>
+    </ion-col>
+    <ion-col class="botonCrear">
+      <ion-button (click)="crearCuenta()" [disabled]="!Formcuenta.valid">
+        Crear cuenta</ion-button
+      >
+    </ion-col>
+    <ion-col size="12" class="cuentasExist">
+      <ion-card>
+        <ion-card-content style="text-align: center">
+          <ion-title
+            style="font-size: 16px; letter-spacing: 2px; color: whitesmoke"
+            >CUENTAS EN EXISTENCIA</ion-title
+          >
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" class="opcionesCuentas">
+      <div style="text-align: right">
+        <!--VER LISTA DE RESERVACIONES-->
+        <ion-button style="float: left;" (click)="verListaReservaciones()"  *ngIf="mesa.n_reservaciones >= 1 " class="listReservaciones">
+          <ion-icon name="eye-outline" style="margin-right: 5px;"></ion-icon>
+          Lista de reservaciones
+        </ion-button>
+        <!--TRANSLADAR MAS DE UNA CUENTA-->
+        <ion-button
+          *ngIf="cuentasSeleccionadas.length >= 2"
+          (click)="transladarCuenta()"
+          slot="end"
+          class="botonTransladar"
+          >Transladar cuentas</ion-button
+        >
+        <!-- BOTON SEPARAR -->
+        <ion-button
+          (click)="crearCuentaSeparar()"
+          slot="end"
+          class="botonSeparar"
+          >Separar cuentas</ion-button
+        >
+        <!-- BOTON UNIR -->
+        <ion-button class="btnUnirCuentas" (click)="abrirUnirCuentas()" slot="end"
+          >Unir cuentas</ion-button
+        >
+      </div>
+    </ion-col>
+  </ion-row>
+  <!-- LISTA DE LAS CUENTAS -->
+
+  <ion-row class="fila-cuentas">
+    <ion-list>
+
+      <ion-item
+        *ngFor="let data of cuentas"
+        button
+        lines="none"
+        [ngClass]="{ 'cuentaBloqueada': data.status == '2', 'cuentaNoBloqueada': data.status == '0'}"
+      >
+        <ion-label [routerLink]="['/comandas',data.cuenta_id]"
+          >Número de cuenta: {{data.cuenta}}</ion-label
+        >
+      <ion-item></ion-item>
+        <ion-label [routerLink]="['/comandas',data.cuenta_id]"
+          >Número de comandas: {{data.n_comandas}}</ion-label
+        >
+          <!--BOTON RRPP-->
+          <ion-button
+          (click)="modalRRPP(data)"
+          class="transladarCuenta"
+          *ngIf="activarFacturacion == 'true'"
+        >
+          <ion-icon
+            name="people-outline"
+            style="padding: 0; margin: 0; font-size: 24px"
+          ></ion-icon>
+        </ion-button>
+        <!--BOTON PAGAR CUENTA-->
+        <ion-button class="pagarCuenta" (click)="abrirModalCaja(data)" *ngIf="activarFacturacion == 'true' && data.subtotal !=null">
+          <ion-icon name="card-outline" style="padding: 0; margin: 0; font-size: 24px"></ion-icon>
+        </ion-button>
+        <ion-icon
+          name="fast-food"
+          slot="start"
+          [ngClass]="{ 'siComandas': data.n_comandas >= 1, 'noComandas': data.n_comandas == 0}"
+        ></ion-icon>
+        <ion-icon slot="start" *ngIf="data.reservacion_id != null" name="calendar" style="margin-left: 5px;" color="fondo-light-2"></ion-icon>
+
+        <!-- BOTON TRANSLADAR CUENTA -->
+        <ion-button
+          *ngIf="cuentasSeleccionadas.length < 2"
+          (click)="transladarCuenta(data)"
+          class="transladarCuenta"
+        >
+          <ion-icon
+            name="push-outline"
+            style="padding: 0; margin: 0; font-size: 24px"
+          ></ion-icon>
+        </ion-button>
+        <!-- BOTON BLOQUEAR CUENTA -->
+        <ion-button
+        class="desbloquearCuenta"
+          (click)="bloquearCuenta(data)"
+          *ngIf="data.status == '2'"
+        >
+        <ion-icon 
+        style="padding: 0; margin: 0; font-size: 24px" 
+        name="lock-closed"
+        >
+      </ion-icon>
+        </ion-button>
+
+        <!-- BOTON SELECCIONAR CUENTA -->
+
+        <ion-button
+          class="bloquearCuenta"
+          style="height: 40px; margin-right: 20px; width: 40px"
+          (click)="bloquearCuenta(data)"
+          *ngIf="data.status == '0'"
+        >
+          <ion-icon
+            name="lock-open-outline"
+            style="padding: 0; margin: 0; font-size: 24px"
+          ></ion-icon>
+        </ion-button>
+
+        <ion-checkbox
+          (ionChange)="seleccionarCuentas($event, data)"
+          color="success"
+          style="height: 39px; width: 39px"
+        ></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-icon name="settings-outline" slot="end" (click)="modalConfiguraciones()" alt="Configuracion"></ion-icon>
+    <ion-text slot="end" style="margin-right: 20px;">
+      <img src="../../assets/img/logojaime-16.png" alt="" style="width: 100px; height: 40px;">
+    </ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+
+  <div class="reservaciones" (click)="abrirModalConfiguracionesAdmin()" [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+
+  </div>
+  <!-- <ion-card (click)="abrirModalCaja()">
+    <ion-card-content>
+        CAJA
+    </ion-card-content>
+  </ion-card> -->
+     <div class="login">
+        <div size="12" class="img">
+          <img src="../../assets/img/CDBLEU.png" alt="">
+        </div>
+
+          <div size="12" class="input">
+            <form action="" [formGroup]="formLogin">
+              <br>
+                <ion-card>
+                  <ion-icon name="lock-closed"></ion-icon>
+                  <ion-input type="password" placeholder="Contraseña" formControlName="psw" (keypress)="enviar($event.charCode)"></ion-input>
+                </ion-card>
+                <ion-button color="light" type="submit" [disabled]="formLogin.invalid" (click)="enviar(13)">Ingresar</ion-button>
+            </form>
+          </div>
+      </div>     
+     
+</ion-content>

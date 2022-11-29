@@ -1,0 +1,80 @@
+ion-header ion-toolbar ion-button{
+    font-size: 18px;
+    margin-right: 10px;
+}
+ion-grid{
+    width: 100%;
+    height: 100%;
+
+}
+
+ion-row{
+    width: 100%;
+    overflow: scroll;
+    .alertas{
+        width: 100%;
+        background-color: transparent;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        justify-items: center;
+
+        ion-card{
+            width: 170px;
+            height: 170px;
+            background-color: var(--ion-color-mclaro);
+            ion-card-header{
+                width: 100%;
+                color:white;
+                background-color: var(--ion-color-mmedio);
+                display: flex;
+                span{
+                    width: 100%;
+                    justify-content: center;
+                    align-content: center;
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+            }
+            ion-card-content{
+                width: 100%;
+                color: var(--ion-color-dark);
+
+                text-align: center;
+                position: relative;
+                top: 30%;
+                -ms-transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                ion-text{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+}
+
+.muchoTiempo{
+    cursor: pointer;
+    animation-name: mucho-tiempo;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.demasiadoTiempo{
+    background-color: var(--ion-color-aclaro) !important;
+    cursor: pointer;
+    animation-name: demasiado-tiempo;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+}
+@keyframes mucho-tiempo{
+    0% {transform: scale( 0.9, 0.9)}
+    50% {transform: scale(1, 1)}
+    100% {transform: scale(0.9, 0.9)}
+}
+@keyframes demasiado-tiempo{
+    0% {transform: scale( 0.9, 0.9)}
+    50% {transform: scale(1, 1)}
+    100% {transform: scale(0.9, 0.9)}
+}

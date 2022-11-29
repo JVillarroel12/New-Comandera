@@ -1,0 +1,65 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Separar cuentas</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-grid>
+      <ion-row style="border-bottom: 1px solid black;" class="unirTodaCuenta">
+                  <ion-col size="8"> 
+            <div style="text-align: center; width: 100%;">
+              <h3 style="color: whitesmoke;">Presionar el boton para para pasar toda la cuenta</h3>
+            </div>
+             
+          </ion-col>
+          <ion-col size="4" style="text-align: center;" >
+            
+           <ion-button color="success" (click)="alertaUnirTodaCuenta()">Pasar toda la cuenta</ion-button>
+        
+          </ion-col>
+      </ion-row>
+          
+            <ion-row class="filaComandas">
+              <ion-col size="6"  style="align-items: center;height: 100%;">
+
+                <ion-list class="cardsUnir">
+
+                      <ion-card style="width: 90%;" class="cardEnvia" *ngFor="let data of comandasCuentaPrincipal; let i = index" (click)="pasarComanda(data, i)"
+   
+                      >
+                          <ion-card-content>
+                              {{data.name}}
+                              <ion-note slot="end" style="float: right;color: rgb(29, 29, 29);">{{data.qty}}</ion-note> 
+                          </ion-card-content>
+                      </ion-card>
+                  </ion-list>
+              </ion-col>
+                          
+                <ion-col size="6" style="align-items: center; height: 100%;">
+                  <ion-list class="cardsUnir">
+                        <ion-card style="width: 90%;" class="cardRecibe" *ngFor="let data of comandasNuevaCuenta; let i = index" (click)="devolverComanda(data, i)"
+
+                        >
+                          <ion-card-content style="color: black;">
+                            {{data.name}}
+                            <ion-note slot="end" style="float: right;color: rgb(29, 29, 29);">{{data.qtyAux}}</ion-note>
+                          </ion-card-content>
+                      </ion-card>
+                 </ion-list>
+              </ion-col>
+              
+             
+          </ion-row>
+     
+    </ion-grid>
+
+</ion-content>
+<ion-footer *ngIf="mostrarFooter" [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-button (click)="guardarItems()" class="guardarUnirCuentas" style="color: black;"
+    >Guardar</ion-button
+  >
+  </ion-toolbar>
+</ion-footer>

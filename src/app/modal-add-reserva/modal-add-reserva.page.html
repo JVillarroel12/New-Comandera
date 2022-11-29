@@ -1,0 +1,118 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Agregar una reserva</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <form action="" [formGroup]="formRif">
+    <ion-row class="searchClient">
+      <ion-col size="12" class="title">
+        <ion-card>
+          <ion-card-content>
+            <span>BUSCAR UN CLIENTE</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col class="input">
+        <ion-card style="padding: 5px;">
+          <ion-label>Cedula del cliente:</ion-label>
+          <ion-input placeholder="Cedula del cliente" formControlName="rif" (keypress)="buscarCliente($event.charCode)" type="tel"> </ion-input>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-button class="btnBuscarCliente" (click)="buscarCliente(13)" [disabled]="!formRif.valid">
+          <ion-icon name="search-outline" style="margin-right: 5px;" ></ion-icon> 
+          Buscar
+        </ion-button>
+        <ion-button class="btnAddCliente" style="margin-left: 15px;" (click)="agregarCliente()">
+          <ion-icon name="person-add-outline" style="margin-right: 5px;"></ion-icon>
+          Agregar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-row class="reservationData">
+    <ion-col size="12" class="title">
+      <ion-card>
+        <ion-card-content>
+          <span>DATOS DE LA RESERVACION</span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" class="dataInputs">
+      <div class="inputs">
+        <form action="" [formGroup]="form">
+          <ion-card class="cardNombreCliente" style="color: whitesmoke;">
+            <ion-label>Nombre del cliente:</ion-label>
+            <ion-input style="margin-left: 10px;" disabled>{{nombreCliente}}</ion-input>
+          </ion-card>
+          <ion-card>
+            <ion-label>Telefono de contacto:</ion-label>
+            <ion-input placeholder="Telefono" formControlName="telf" type="number" [value]="numeroCliente"></ion-input>
+          </ion-card>
+          <ion-card class="item date" id="fechaInicio">
+            <ion-label>Fecha de entrada:</ion-label>
+            <ion-input placeholder="Fecha de entrada" formControlName="fechaInicio" [value]="valueFechaInicio"></ion-input>
+            <ion-popover trigger="fechaInicio" style="overflow: scroll; margin-top: -150px; margin-bottom: 20px;">
+              <ng-template>
+                <ion-datetime
+                  #fechaInicio
+                  (ionChange)="valueFechaInicio = formatDate(fechaInicio.value)"
+                  hourCycle="h12"
+                  
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-card>
+          <ion-card class="item date" id="fechaFin">
+            <ion-label>Fecha de salida:</ion-label>
+            <ion-input placeholder="Fecha de salida" formControlName="fechaFin" [value]="valueFechaFin"></ion-input>
+            <ion-popover trigger="fechaFin" style="overflow: scroll; margin-top: -150px;margin-bottom: 20px;">
+              <ng-template>
+                <ion-datetime
+                  #fechaFin
+                  (ionChange)="valueFechaFin = formatDate(fechaFin.value)"
+                  hourCycle="h12"
+                  
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-card>
+          <ion-card>
+            <ion-label>Cantidad de adultos:</ion-label>
+            <ion-input placeholder="Cantidad de adultos" formControlName="cantAdultos" type="number"> </ion-input>
+          </ion-card>
+          <ion-card>
+            <ion-label>Cantidad de niños:</ion-label>
+            <ion-input placeholder="Cantidad de niños" formControlName="cantNinos" type="number"> </ion-input>
+          </ion-card>
+          <ion-card >
+            <ion-label>Tipo de reservacion:</ion-label>
+              <ion-select interface="popover" formControlName="tipoReservacion" style="position: absolute;right:0; margin-right: 15px; width: 50%;">
+                <ion-select-option *ngFor="let data of tipoReservaciones" [value]="data.tipo_reservacion_id">
+                  <span>{{data.descripcion}}</span>
+                </ion-select-option>
+              </ion-select>
+          </ion-card>
+          <ion-card class="btnAgregarTipoReservacion" (click)="agregarTipoReservacion()">
+            Agregar tipo de reservacion
+          </ion-card>
+          <ion-card class="columns2">
+            <ion-label>Comentario :</ion-label>
+            <ion-input placeholder="Comentario adicional" formControlName="comentario"></ion-input>
+          </ion-card>
+        </form>
+        <div class="button">
+          <ion-button [disabled]="!form.valid " (click)="agregarReservacion()">Enviar</ion-button>
+        </div>
+
+
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

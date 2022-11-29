@@ -1,0 +1,190 @@
+ion-header ion-toolbar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+  
+    ion-text {
+      margin-right: 15px;
+      align-items: center;
+      display: flex;
+    }
+    .iconUser {
+      font-size: 22px;
+      margin-right: 3px;
+    }
+    ion-button {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    .generarReporteReservaciones{
+      font-size: 24px;
+      color: #222428;
+      margin-right: 15px;
+      border-radius: 5px;
+      padding: 6px 8px;
+      cursor: pointer;
+  }
+  }
+  ion-list {
+    background-color: transparent;
+  }
+  ion-content {
+    width: 100%;
+    height: 100%;
+    ion-row {
+      width: 100%;
+      height: 100%;
+    }
+    //CSS AREAS
+    .areas {
+      height: 100%;
+      overflow-y: scroll;
+      .barra-areas {
+        width: 100%;
+ 
+        ion-card {
+          color: whitesmoke;
+          cursor: pointer;
+          margin-top: 15px;
+          ion-card-content{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+      }
+  
+      .zonaActiva {
+        color: whitesmoke !important;
+        background-color: #222428 !important;
+      }
+      .pedidos-area ion-text {
+        font-size: 17px;
+      }
+      .areas img {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 60%;
+      }
+    }
+    //CSS MESAS
+    .mesas {
+      width: 100%;
+      height: calc(100% - 8px);
+      overflow-y: scroll;
+      text-align: center;
+  
+      .barra-mesas {
+        width: 100%;
+        display: grid;
+        padding-right: 10px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        ion-card {
+          text-align: center;
+          width: 95%;
+          height: 120px;
+          color: black;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          flex-direction: column;
+          margin-top: 1px;
+        }
+        .cartasMesas {
+          width: 95%;
+          height: 120px;
+          color: #fff;
+        }
+        .mesaBloqueada {
+          width: 95%;
+          height: 120px;
+          color: whitesmoke !important;
+        }
+        .reservaciones{
+          color: whitesmoke;
+          position: absolute;
+          margin: 5px;
+          bottom: 0;
+          left: 0;
+          font-size: 28px;
+        }
+        .iconMesaBloqueada {
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          font-size: 30px;
+        }
+        .mesaOcupada {
+          position: absolute;
+          z-index: 10;
+          top: 2px;
+          font-size: 30px;
+          right: 2px;
+        }
+        .mesaLibre {
+          position: absolute;
+          z-index: 10;
+          top: 2px;
+          font-size: 30px;
+          right: 2px;
+        }
+      }
+    }
+  }
+
+  @keyframes parpadeo-pedido {
+    from {
+      transform: scale(0.8, 0.8);
+    }
+    to {
+      transform: scale(1.2, 1.2);
+    }
+    100% {
+      background-color: #ffff00;
+    }
+  }
+
+  
+  .parpadeoAlertas {
+    cursor: pointer;
+    animation-name: parpadeo-alertas;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes parpadeo-alertas {
+    from {
+      transform: scale(0.8, 0.8);
+    }
+    to {
+      transform: scale(1, 1);
+    }
+  }
+  
+  @media screen and(max-width: 1300px) {
+    .mesas .barra-mesas {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+    }
+  }
+  @media screen and(max-width: 1040px) {
+    .mesas .barra-mesas {
+      grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    }
+  }
+  @media screen and(max-width: 800px) {
+    .mesas .barra-mesas {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+  @media screen and(max-width: 620px) {
+    .mesas .barra-mesas {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+  

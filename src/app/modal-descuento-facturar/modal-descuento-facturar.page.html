@@ -1,0 +1,50 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Aplicar descuento</ion-title>
+
+      <ion-text slot="end" class="total">Total bs: {{total | number:'1.2-2'}}</ion-text>
+
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+    <ion-row class="rowContentDescuento">
+      <form action="" [formGroup]="formDescuento">
+        <ion-card>
+          <ion-label>Porcentaje %:</ion-label>
+            <ion-input 
+            type="number"
+            placeholder="Ingresar cant porcentaje"           
+            (keydown)="calcularDescuento($event, 'p')"
+            formControlName="porcentaje"
+            #porcentaje
+            > 
+
+            </ion-input>
+        </ion-card>
+        <ion-card>
+          <ion-label>Descuento bs:</ion-label>
+          <ion-input 
+          type="number"
+          placeholder="Ingresar cant bs" 
+          (keydown)="calcularDescuento($event, 'm')"
+          formControlName="montoBs"
+          #montoBs
+          > 
+
+          </ion-input>
+        </ion-card>
+        <ion-card *ngIf="porcentajeBsBoolean == true">
+          Porcentaje del descuento: {{porcentajeBs | number:'1.2-2'}}%
+        </ion-card>
+        <ion-card>
+          Total descuento: {{montoDescuento | number:'1.2-2'}}bs
+        </ion-card>
+      </form>
+
+    <ion-button [disabled]="btnGuardar == false" (click)="enviarDescuento()">Guardar</ion-button>
+    </ion-row>
+</ion-content>

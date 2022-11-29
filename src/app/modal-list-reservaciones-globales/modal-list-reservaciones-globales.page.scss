@@ -1,0 +1,90 @@
+ion-header{
+    ion-toolbar{
+        color: white;
+    }
+}
+ion-content{
+    .rowTitleReservaciones{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        .title{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ion-card{
+                width: 98%;
+                margin:0;
+                --min-height:40px;
+                --max-height:40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 40px;
+                ion-card-content{
+                    font-size: 18px;
+                    color: black;
+                }
+            }
+        }
+    }
+    .fila-reservaciones{
+        width: 100%;
+        height: calc(100% - 100px);
+        overflow-y: scroll;
+    
+        ion-list{
+            background-color: transparent;
+            width: 100%;    
+            margin:0;
+            padding:0;
+            div{
+                width: 100%;
+                height: auto;
+                margin-top: 5px;
+                display: grid;
+                padding: 5px;
+                grid-template-columns: 1fr;
+                .content{
+                    --padding: 0;
+                    display: flex;
+                    align-items: center;
+                    width: 100% !important;
+                    --min-height: 30px !important;
+                    height: 30px !important;
+                    --background: transparent;
+                    span{
+                        margin: 0px 7px;
+                        font-size: 14px;
+                    }
+                    ion-icon{
+                        font-size: 25px;
+                    }
+
+                }
+                .borrar{
+                    padding: 4px 4px;
+                    border-radius: 5px;
+                    background-color: var(--ion-color-danger);
+                    color: white;;
+                } 
+            }
+            .listReservaciones{
+                border-top: 1px solid black;
+                display: flex;
+                align-items: center;
+                .borrar{
+                    position: absolute;
+                    right:0;
+                    margin-right: 50px;
+                }
+            }
+    
+        }
+    }
+}

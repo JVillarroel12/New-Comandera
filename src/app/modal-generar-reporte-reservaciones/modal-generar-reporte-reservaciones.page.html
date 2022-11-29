@@ -1,0 +1,68 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-title>Generar reporte de reservaciones</ion-title>
+    <ion-button (click)="cerralModal()" slot="end" color="danger"
+    ><ion-icon name="close-outline"></ion-icon
+  ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="reservationData">
+    <ion-col size="12" class="title">
+      <ion-card>
+        <ion-card-content>
+          <span>DATOS PARA EL REPORTE</span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" class="dataInputs">
+      <div class="inputs">
+        <form action="" [formGroup]="form">
+          <ion-card class="item date" id="fechaInicio">
+            <ion-label>Fecha de inicio:</ion-label>
+            <ion-input placeholder="Fecha de entrada" formControlName="fechaInicio" [value]="valueFechaInicio"></ion-input>
+            <ion-popover trigger="fechaInicio" style="overflow: scroll; margin-top: -150px; margin-bottom: 20px;">
+              <ng-template>
+                <ion-datetime
+                  #fechaInicio
+                  (ionChange)="valueFechaInicio = formatDate(fechaInicio.value)"
+                  hourCycle="h12"
+                  
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-card>
+          <ion-card class="item date" id="fechaFin">
+            <ion-label>Fecha de salida:</ion-label>
+            <ion-input placeholder="Fecha de salida" formControlName="fechaFin" [value]="valueFechaFin"></ion-input>
+            <ion-popover trigger="fechaFin" style="overflow: scroll; margin-top: -150px;margin-bottom: 20px;">
+              <ng-template>
+                <ion-datetime
+                  #fechaFin
+                  (ionChange)="valueFechaFin = formatDate(fechaFin.value)"
+                  hourCycle="h12"
+                  
+                ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-card>
+          <ion-card >
+            <ion-label>Tipo de estado:</ion-label>
+              <ion-select interface="popover" formControlName="estado" style="position: absolute;right:0; margin-right: 15px; width: 50%;">
+                <ion-select-option value="t"><span>TODOS</span></ion-select-option>
+                <ion-select-option value="0"><span>PENDIENTE</span></ion-select-option>
+                <ion-select-option value="1"><span>EN CURSO</span></ion-select-option>
+                <ion-select-option value="2"><span>CANCELADA</span></ion-select-option>
+                <ion-select-option value="3"><span>COMPLETADO</span></ion-select-option>
+                <ion-select-option value="4"><span>VENCIDO</span></ion-select-option>
+              </ion-select>
+          </ion-card>
+        </form>
+        <div class="btnGenerarReporte">
+          <ion-button [disabled]="!form.valid " (click)="generarReporte()">Enviar</ion-button>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

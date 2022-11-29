@@ -1,0 +1,118 @@
+ion-header{
+    ion-toolbar{
+        color: white;
+    }
+}
+ion-content{
+    width: 100%;
+    height: 100%;
+    div{
+        width: 100%;
+        margin: 0;
+        .inputBuscarCliente{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0;
+          ion-icon{
+            font-size: 20px;
+            padding: 10px;
+            background-color: var(--ion-color-light);
+            color: black;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+        }
+        .grid{
+            width: 100%;
+            grid-template-rows: 100%;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+            grid-template-areas: "numero tipo fecha monto cliente";
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            color
+            &.columns-head {              
+                color: whitesmoke;  
+                height: 60px;
+              }
+            &__numero,
+            &__tipo,
+            &__fecha,
+            &__monto,
+            &__pagado,
+            &__configuration {
+    
+              font-size: 1rem;
+    
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+    
+            &__numero {
+              grid-area: numero;
+              padding-top: 15px;
+              padding-bottom: 15px;
+            }
+    
+            &__tipo {
+              grid-area: tipo;
+            }
+    
+            &__fecha {
+              grid-area: fecha;
+            }
+    
+            &__monto {
+              grid-area: monto;
+            }
+            &__pagado{
+              grid-area: pagado;
+              
+            }
+            &__cliente{
+              grid-area: cliente;
+              ion-icon{
+                color: white;
+                padding: 5px;
+                font-size: 18px;
+                border-radius: 5px;
+                margin-right: 5px;
+                cursor: pointer;
+              }
+              .anular{
+                background-color: var(--ion-color-danger);
+              }
+              .pagar{
+                background-color: var(--green-success);
+              }
+            }
+        }
+        .grid{
+          &:nth-child(odd) {
+            background-color: rgb(71, 71, 71);
+          }
+
+          &:nth-child(even) {
+            background-color: rgb(128, 128, 128);
+          }
+           > span{
+            height: 45px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           } 
+        }
+    }
+    .btnGuardarRRHH{
+        width: calc(100% - 4px);
+        position: absolute;
+        bottom:0;
+    }
+}

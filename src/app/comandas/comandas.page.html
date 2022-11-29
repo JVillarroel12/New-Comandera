@@ -1,0 +1,252 @@
+<ion-header [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-toolbar>
+    <ion-icon slot="start" name="arrow-back-outline" (click)="paginaAtras()" class="paginaAnterior"></ion-icon>
+    <ion-text slot="start" style="margin-left: 20px">
+      <img
+        src="../../assets/img/logojaime-16.png"
+        alt=""
+        style="width: 100px; height: 40px"
+      />
+    </ion-text>
+    
+    <ion-text slot="start" class="nombreMesa">
+      <ion-icon name="easel-outline"></ion-icon>
+      {{nameMesa}}
+    </ion-text>
+
+    <ion-icon 
+    slot="start"
+    class="cuentaAbierta"
+    name="lock-closed"
+    *ngIf="statusCuenta == '2'"
+    (click)="bloquearCuenta()"
+    >
+  </ion-icon>
+    <ion-icon
+      name="lock-open-outline"
+      class="cuentaAbierta"
+      slot="start"
+      *ngIf="statusCuenta == '0'"
+      (click)="bloquearCuenta()"
+    ></ion-icon>
+    <ion-text style="font-size: 18px;margin-left: 15px;">
+      Tasa: {{tasa | number:'1.2-2'}}bs
+    </ion-text>
+    <ion-text slot="end">
+      <ion-icon
+        name="person-sharp"
+        color="success"
+        class="iconUser"
+        *ngIf="nameUser"
+      ></ion-icon
+      >{{nameUser}}
+    </ion-text>
+    <ion-button class="actualizarCategorias" slot="end" (click)="actualizarCategorias()"
+      ><ion-icon name="reload-outline"></ion-icon
+    ></ion-button>
+    <ion-button color="danger" (click)="cerrarSesion()" slot="end"
+      ><ion-icon name="log-out-outline"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+  <ion-row class="pantalla">
+    <!--COMANDAS-->
+
+    <ion-col size-xl="3" size="4" class="barra-comandas">
+      <form action="" [formGroup]="formComentario">
+        <ion-card class="comentarioComandas">
+          <ion-input placeholder="Comentario" formControlName="comentario" [value]="detalle_cuenta" (keypress)="keyComentario($event.charCode)"></ion-input>
+          <ion-icon name="chatbox-ellipses-outline" (click)="addComentario()"></ion-icon>
+        </ion-card>
+      </form>
+
+      <div class="nameProductCant" size="12">
+        <ion-item
+          lines="full"
+          style="border-radius: 5px"
+        >
+          <ion-label>Producto</ion-label>
+          <ion-note slot="end">CANT</ion-note>
+        </ion-item>
+      </div>
+
+      <ion-list class="listComandas">
+        <ion-card
+        class="comandasPorGuardar"
+          *ngFor="let data of comandasPorGuardar"
+          (click)="opcionesComanda(data)"
+        >
+          <ion-card-content style="font-size: 13px">
+            <span
+              style="display: flex; align-content: center; align-items: center"
+            >
+              <ion-icon
+                name="grid-outline"
+                *ngIf="data.contorno_comandas.length >= 1"
+                style="font-size: 20px"
+              ></ion-icon>
+              {{data.name}}
+            </span>
+            <ion-text
+              style="
+                padding-right: 10px;
+                margin-right: 10px;
+                border-right: 1px solid rgb(75, 75, 75);
+              "
+              >{{data.auxPriceDolar * data.qty | number : '1.2-2'}}$</ion-text
+            >
+
+            <ion-text>{{data.priceAux * data.qty | number : '1.2-2'}}bs</ion-text>
+            <ion-note slot="end" style="float: right; color: rgb(36, 36, 36)"
+              >{{data.qty}}</ion-note
+            >
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card
+          class="comandas"
+          *ngFor="let data of comandas"
+          style="color: white"
+          (click)="verContornosComanda(data);"
+        >
+          <ion-card-content style="font-size: 13px">
+            <ion-icon
+              name="grid-outline"
+              slot="start"
+              style="font-size: 20px; position: absolute; left: 5px"
+              *ngIf="data.contorno_comandas.length >= 1"
+            ></ion-icon>
+            <ion-text style="margin-left: 10px">{{data.name }}</ion-text>
+            <br />
+            <ion-text
+              style="
+                margin-left: 10px;
+                padding-right: 10px;
+                margin-right: 10px;
+                border-right: 1px solid rgb(173, 173, 173);
+              "
+              >{{data.auxPriceDolar * data.qty | number : '1.2-2'}}$</ion-text
+            >
+
+            <ion-text>{{data.auxPrice * data.qty | number : '1.2-2'}}bs</ion-text>
+            <ion-note slot="end" style="float: right; color: whitesmoke"
+              >{{data.qty}}</ion-note
+            >
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+      <ion-button (click)="guardarComandas()" class="guardarComandas"
+        *ngIf="comandasPorGuardar.length >= 1"
+        >Guardar</ion-button>
+      
+    </ion-col>
+
+    <!--PRODUCTOS-->
+
+    <ion-col size-xl="9" size="8" class="categorias">
+
+      <ion-row class="searchBar">
+        <div>
+          <ion-button
+            (click)="devolverCategorias()"
+            style="color: white; float: left; margin-left: 8px"
+            *ngIf="menuCategoria.length >= 1"
+          >
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button
+            *ngFor="let data of menuCategoria"
+            (click)="abrirCategoria(data)"
+            style="color: white; float: left; margin-left: 8px"
+            class="menu"
+          >
+            {{data.name}}
+          </ion-button>
+        </div>
+        <div class="searchDiv2">
+          <ion-col>
+            <ion-searchbar
+            [(ngModel)]="search"
+              color="light"
+              placeholder="Buscar categoria"
+            >
+            </ion-searchbar>
+          </ion-col>
+          <ion-col>
+            <form action="" [formGroup]="formCliente">
+              <ion-card>
+                <ion-input placeholder="Buscar Cliente" formControlName="rif" (keypress)="searchKeyCliente($event)" [value]="rifCliente" type="number"></ion-input>
+                <ion-icon name="person-add" (click)="addCliente()"></ion-icon>
+              </ion-card>
+              <ion-card>
+                {{nombreCliente}}
+              </ion-card>
+            </form>
+
+          </ion-col>
+
+        </div>
+
+      </ion-row>
+      
+      <ion-row class="rowCategorias" [ngClass]="{'marginCategorias': menuCategoria.length >= 1}">
+        <ion-list class="barra-categorias">
+          <ion-card
+            class="cardCategorias"
+            *ngFor=" let data of categorias | filter:search"
+            (click)="abrirCategoria(data)"
+          >
+              <div [ngClass]="{'cardNoImg': data.imagen == null}">
+                <img [src]="data.imagen" alt="" *ngIf="data.imagen != null">
+                <ion-icon name="duplicate-outline" *ngIf="data.imagen == null"></ion-icon> 
+              </div>
+              <div [ngClass]="{'cardNoImg': data.imagen == null}">
+                {{data.name}}
+              </div>
+
+          </ion-card>
+  
+          <ion-card
+            *ngFor="let data of productos | filter:search"
+            (click)="crearComanda(data)"
+            class="cardProductos"
+          >
+          <div [ngClass]="{'cardNoImg': data.imagen == null}">            
+              <ion-text
+              style="position: absolute; top: 2px; left: 2px; font-size: 11px"
+              class="precio"
+              >{{data.price3Aux | number:'1.2-2'}}$</ion-text>
+              <img [src]="data.imagen" alt="" *ngIf="data.imagen != null">
+              <ion-icon
+                name="remove-circle-outline"
+                *ngIf="data.contornos.length == 0 && data.imagen == null"
+              ></ion-icon>
+              <ion-icon
+                name="grid-outline"
+                *ngIf="data.contornos.length >= 1 && data.imagen == null"
+              ></ion-icon>
+          </div>
+          <div [ngClass]="{'cardNoImg': data.imagen == null}">
+            <ion-text>{{(data.name | slice:0:50)+'...'}}</ion-text>
+          </div>
+
+
+          </ion-card>
+        </ion-list>
+      </ion-row>
+
+    </ion-col>
+    <ion-card class="precioTotalCard" (click)="imprimirPreCuenta()">
+      <ion-text style="float: left"> 
+        Total bolivares: {{precioTotal | number:'1.2-2'}}bs
+      </ion-text>
+
+      <ion-text style="float: right">
+        Total dolares: {{precioTotalDollar | number:'1.2-2'}}$
+      </ion-text>
+    </ion-card>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,107 @@
+ion-header{
+    ion-toolbar{
+        width: 100%;
+        height: 55px;
+        color: whitesmoke;
+    }
+}
+ion-content{
+    width: 100%;
+    height: 100%;
+}
+.tasa{
+    width: 100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    .descrip{
+        width: 100%;
+        display: flex;
+        justify-content: center;        
+        ion-card{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ion-card-content{
+                font-size: 17px;
+            }
+        }
+    }
+    .inputMonto{
+        ion-item{
+            width: 90%;
+            height: 60px;
+            padding: 5px;
+            color: whitesmoke;
+            ion-label{
+                color: whitesmoke;
+            }
+            ion-input{
+                color: whitesmoke;
+            }
+        }
+    }
+    .simbolo{
+
+        display: flex;
+        justify-content: center;
+        ion-card{
+            width: 70%;
+            height: 50px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ion-card-content{
+                font-size: 17px;
+                color: whitesmoke !important;
+            }
+        }
+    }
+    .inputIgtf{
+        ion-card{
+            width: 90%;
+            height: 50px;
+            padding: 5px;
+            font-size: 17px;
+            ion-card-content{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+            }
+        }
+    }
+}
+.guardar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    ion-button{
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .descrip{
+        padding: 0;
+        margin: 0;
+    }
+    .inputMont{
+        padding: 0;
+        margin: 0;
+    }
+
+    .simbolo{
+        padding: 0;
+        margin: 0;
+    }
+    .inputIgtf{
+        padding: 0;
+        margin: 0;
+    }
+}
