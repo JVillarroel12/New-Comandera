@@ -81,6 +81,7 @@
             style="color: whitesmoke"
             formControlName="numeroCuenta"
             maxlength="3"
+            (keypress)="pressCrearCuenta($event.charCode)"
           ></ion-input>
         </ion-item>
       </form>
@@ -151,7 +152,7 @@
           <ion-button
           (click)="modalRRPP(data)"
           class="transladarCuenta"
-          *ngIf="activarFacturacion == 'true'"
+          *ngIf="activarFacturacion == 'true' && data.subtotal !=null"
         >
           <ion-icon
             name="people-outline"
@@ -159,6 +160,9 @@
           ></ion-icon>
         </ion-button>
         <!--BOTON PAGAR CUENTA-->
+        <ion-button class="pagarCuenta" (click)="imprimirPreCuenta(data)" *ngIf="data.subtotal !=null">
+          <ion-icon name="print-outline" style="padding: 0; margin: 0; font-size: 24px"></ion-icon>
+        </ion-button>
         <ion-button class="pagarCuenta" (click)="abrirModalCaja(data)" *ngIf="activarFacturacion == 'true' && data.subtotal !=null">
           <ion-icon name="card-outline" style="padding: 0; margin: 0; font-size: 24px"></ion-icon>
         </ion-button>

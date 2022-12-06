@@ -51,9 +51,9 @@ export class ModalGenerarReporteReservacionesPage implements OnInit {
       loading.dismiss();
     } else{
       let reporte = {
-        fechaInicio: fechaEntrada,
-        fechaSalida: fechaFin,
-        estado: this.form.value['estado']
+        fechaInicio: fechaEntrada - 14400000,
+        fechaSalida: fechaFin - 14400000,
+        estatus: this.form.value['estado']
       }
       console.log("REPORTE =>", reporte);
       
@@ -159,7 +159,7 @@ export class ModalGenerarReporteReservacionesPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

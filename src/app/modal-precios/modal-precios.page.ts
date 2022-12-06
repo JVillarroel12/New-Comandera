@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
@@ -7,6 +7,7 @@ import { ModalContornosComandaPage } from '../modal-contornos-comanda/modal-cont
 import { ModalContornosGeneralesPage } from '../modal-contornos-generales/modal-contornos-generales.page';
 import { ModalContornosPage } from '../modal-contornos/modal-contornos.page';
 import { ModalFacturacionPage } from '../modal-facturacion/modal-facturacion.page';
+import { ModalOpcionComandasPage } from '../modal-opcion-comandas/modal-opcion-comandas.page';
 import { ApiServiceService } from '../services/api-service.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { ApiServiceService } from '../services/api-service.service';
   styleUrls: ['./modal-precios.page.scss'],
 })
 export class ModalPreciosPage implements OnInit {
-
+  @ViewChild('btnGuardarComandas') btnGuardarComandas: ElementRef;
   @Input() mesas;
   @Input() mode;
   search = '';
@@ -216,6 +217,10 @@ export class ModalPreciosPage implements OnInit {
       
       this.comandasPorGuardar.push(crearComanda);
       //this.devolverCategorias();
+      setTimeout(() => {
+        this.btnGuardarComandas.nativeElement.focus();
+      }, 50);
+      
       console.log('COMANDAS POR GUARDAR', this.comandasPorGuardar);
     } else {
       const modal = await this.modalCtrl.create({
@@ -256,6 +261,9 @@ export class ModalPreciosPage implements OnInit {
         };
         this.comandasPorGuardar.push(crearComandaContornos);
         //this.devolverCategorias();
+        setTimeout(() => {
+          this.btnGuardarComandas.nativeElement.focus();
+        }, 50);
         console.log('ENVIANDO COMANDA', crearComandaContornos);
       }
     }
@@ -264,102 +272,38 @@ export class ModalPreciosPage implements OnInit {
   }
   /** CODIGO DE LA ALERTA QUE SALE PARA MODIFICAR LA CANTIDAD DE COMANDA**/
   async opcionesComanda(_data) {
-    console.log('COMANDAA', _data);
-
-    const alert = await this.alertCtrl.create({
-      cssClass: 'alertCantidad',
-      subHeader: 'Opciones',
-      inputs: [
-        {
-          name: 'cantidad',
-          type: 'number',
-          placeholder: 'Ingresar cantidad',
-          cssClass: 'cantidad',
-        },
-      ],
-
-      buttons: [
-        ,
-        {
-          text: 'Guardar cantidad',
-          cssClass: 'botonOk',
-          handler: (data) => {
-            console.log('DATA OK', _data);
-            this.cantidadComanda = data.cantidad;
-
-            if (this.cantidadComanda == 0 || this.cantidadComanda == '') {
-              this.cantidadComanda = 1;
-              this.toast('El campo esta vacio', 'danger');
-            }
-            if(Number.isInteger(Number(this.cantidadComanda)) == false){
-              this.toast('Solo se puede guardar numeros enteros', 'danger');
-            }else{
-              if (this.cantidadComanda < 0) {
-                this.toast('No se puede guardar esa cantidad', 'danger');
-              } else {
-                _data.qty = Number(this.cantidadComanda);
-                /*_data.price = (_data.price) * (_data.qty);
-                _data.priceDolar = (_data.priceDolar) * (_data.qty);*/
-              }
-            }
-
-
-            console.log('ACTUALIZADOOOO', this.comandasPorGuardar);
-            this.calcularTotal();
-          },
-        },
-        {
-          text: 'Agregar contorno',
-          cssClass: 'botonContorno',
-          handler: async (data) => {
-            const modal = await this.modalCtrl.create({
-              component: ModalContornosGeneralesPage,
-
-              swipeToClose: true,
-              backdropDismiss: true,
-              cssClass: 'modalContornos',
-              componentProps: {
-                comandaModal: _data,
-              },
-            });
-            await modal.present();
-
-            const comanda = await modal.onDidDismiss();
-
-            if (comanda['data'] != undefined) {
-              console.log('saliendoo', comanda);
-
-              _data.contorno_comandas.length = 0;
-              this.respuestaContornosGenerales = comanda.data['data'];
-              console.log('CONTORNOS', this.respuestaContornosGenerales);
-
-              this.respuestaContornosGenerales.forEach((res) => {
-                _data.contorno_comandas.push(res);
-              });
-              console.log(_data);
-            }
-          },
-        },
-        {
-          text: 'Eliminar comanda',
-          cssClass: 'botonEliminar',
-          handler: (blah) => {
-            this.borrarComandaLocal(_data);
-          },
-        },
-        {
-          text: 'cerrar',
-          role: 'cancel',
-          cssClass: 'botonCancelar',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
-
-    console.log(this.cantidadComanda);
-    await alert.present();
+    console.log("COMANDA SELECCIONADA =>", _data);
+    
+    const modal = await this.modalCtrl.create({
+      component: ModalOpcionComandasPage,
+      cssClass: 'modalOpcionesComanda',
+      componentProps:{
+        comanda: _data
+      }
+    })
+    modal.present();
+    const comanda = await modal.onDidDismiss();
+    if(comanda['data'] != undefined){
+      console.log("Comanda =>", comanda);
+      
+      console.log("Comanda saliendo =>", comanda['data']);
+      if(comanda['data'].cantidad == "si"){
+        _data.qty = comanda['data'].comanda.cantidad;
+      }
+      if(comanda['data'].contornos == "si"){
+          _data.contorno_comandas.length = 0;
+          this.respuestaContornosGenerales = comanda.data.comanda['data'];
+          console.log("CONTORNOS ASIGNADOS =>", this.respuestaContornosGenerales);
+          
+          this.respuestaContornosGenerales.forEach((res) => {
+            _data.contorno_comandas.push(res);
+          });
+      }
+      if(comanda['data'].borrar == "si"){
+        this.borrarComandaLocal(_data)
+      }
+      this.calcularTotal();
+    }
   }
 
   /** FUNCION PARA BORRAR UNA COMANDA DE MANERA LOCAL**/
@@ -649,7 +593,7 @@ export class ModalPreciosPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

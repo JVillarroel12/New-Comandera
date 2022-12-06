@@ -60,6 +60,11 @@ export class ModalClaveUsuarioPage implements OnInit {
 
     },(error)=>{
       this.toast(error.error.message, "danger")
+      if(error.error.message){
+        this.toast(error.error.message, "danger")
+      }else{
+        this.toast("Ha ocurrido un error", "danger");
+      }
       console.log("ERROR =>", error.error);
       
       loading.dismiss();
@@ -70,7 +75,7 @@ export class ModalClaveUsuarioPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

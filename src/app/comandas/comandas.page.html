@@ -137,9 +137,7 @@
           </ion-card-content>
         </ion-card>
       </ion-list>
-      <ion-button (click)="guardarComandas()" class="guardarComandas"
-        *ngIf="comandasPorGuardar.length >= 1"
-        >Guardar</ion-button>
+      <button (click)="guardarComandas()" class="guardarComandas" #btnGuardarComandas *ngIf="comandasPorGuardar.length >= 1">Guardar</button>
       
     </ion-col>
 
@@ -240,13 +238,14 @@
 
     </ion-col>
     <ion-card class="precioTotalCard" (click)="imprimirPreCuenta()">
-      <ion-text style="float: left"> 
+      <ion-text > 
         Total bolivares: {{precioTotal | number:'1.2-2'}}bs
       </ion-text>
 
-      <ion-text style="float: right">
+      <ion-text>
         Total dolares: {{precioTotalDollar | number:'1.2-2'}}$
       </ion-text>
+      <ion-icon name="print-outline"></ion-icon>
     </ion-card>
   </ion-row>
 </ion-content>

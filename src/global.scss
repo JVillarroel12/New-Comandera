@@ -125,6 +125,10 @@
         --width: 75%;
         --height: 70%;
     }
+    .modalOpcionesComanda{
+        --width: 300px;
+        --height: 320px;
+    }
 .spinner {
     --width: 14rem;
     --height: 5rem;
@@ -352,7 +356,7 @@
                 --background: var(--ion-color-fondo-light);
             }
             .guardarComandas{
-                --background: var(--ion-color-fondo)
+                background: var(--ion-color-fondo)
             }
         }
         .categorias{
@@ -976,7 +980,7 @@
                 --background: var(--ion-color-moscuro);
             }
             .guardarComandas{
-                --background: var(--ion-color-mmoscuro)
+                background: var(--ion-color-mmoscuro)
             }
         }
         .categorias{
@@ -1247,7 +1251,7 @@
             }
             }
             .lines {
-            background-color: var(--ion-color-mmoscuro);
+            background-color: var(--ion-color-gris);
             .grid{
                 &.columns-head {              
                     background-color: rgb(66, 66, 66);           
@@ -1580,7 +1584,7 @@
                 --background: var(--ion-color-pink-light);
             }
             .guardarComandas{
-                --background: var(--ion-color-pink)
+                background: var(--ion-color-pink)
             }
         }
         .categorias{
@@ -1849,7 +1853,7 @@
                 }
             }
             .lines {
-                background-color: var(--ion-color-pink);
+                background-color: var(--ion-color-gris);
                 .grid{
                     &.columns-head {              
                         background-color: rgb(66, 66, 66);           

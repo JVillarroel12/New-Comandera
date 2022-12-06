@@ -126,13 +126,15 @@ export class ModalContornosGeneralesPage implements OnInit {
         
         this.modalCtrl.dismiss({
           data: this.enviarContornos,
-          aux: 'si'
+          aux: 'si',
+          contornos: 'si'
         });
       })
     }else{
       this.modalCtrl.dismiss({
         data: this.enviarContornos,
-        aux: 'si'
+        aux: 'si',
+        contornos: 'si'
       });
       }
     }else{
@@ -205,7 +207,7 @@ export class ModalContornosGeneralesPage implements OnInit {
       message:msg,
       position:'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass:"toastCss"
     });
     toast.present();

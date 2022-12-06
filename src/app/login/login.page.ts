@@ -28,17 +28,6 @@ export class LoginPage implements OnInit {
   logoImg : string;
   numero = 10;
   tema = localStorage.getItem('cambiarTema');
-  prueba = [
-    {
-      "name": "feo"
-    },
-    {
-      "name": "fea"
-    },
-    {
-      "name": "culo"
-    },
-  ]
   constructor(
     public fb: FormBuilder,
     public router: Router,
@@ -70,16 +59,7 @@ export class LoginPage implements OnInit {
   }
 
   async ngOnInit() {
-    // let data = 
-    //   {"cmd":"facturar","serial":null,"factura":{"cliente":{"nombre":"Jaime Villarroel","rif":"V28468368"},"cabecera":[],"pie":["BARRA 1 GRACIAS POR PREFERIRNOS"],"notaFiscal":null,"items":[{"codigo":"BAQ012","producto":"BOLITAS DE CARNE","precio":12.8276,"cantidad":10,"tasa":"G","descuento":0,"tipo_descuento":"","texto":""},{"codigo":"BAQ005","producto":"BROCHETAS DE CAPRESA","precio":8.75864,"cantidad":1,"tasa":"G","descuento":0,"tipo_descuento":"","texto":""},{"codigo":"BAQ002","producto":"BROCHETAS DE LOMITO","precio":13.1724,"cantidad":1,"tasa":"G","descuento":0,"tipo_descuento":"","texto":""},{"codigo":"BAQ013","producto":"CROQUETAS DE PESCADO","precio":19.72416,"cantidad":1,"tasa":"G","descuento":0,"tipo_descuento":"","texto":""},{"codigo":"BAQ016","producto":"DADOS DE POLLO Y POLENTA","precio":4.8276,"cantidad":10,"tasa":"G","descuento":0,"tipo_descuento":"","texto":""},{"codigo":"","producto":"SERVICIO (10,00%)","precio":21.82072,"cantidad":1,"tasa":"E","descuento":0,"tipo_descuento":"","texto":""}],"pagos":[{"monto":500,"metodo":"T.CREDITO","metodo_id":1,"impuesto":null}],"descuento":{"tipo_descuento":"","descuento":0}},"textoNFF":null,"textoNF":null,"reimprimir":null}
-    
-    //   this.http.post("http://192.168.123.70:5500/printer", data).subscribe(res=>{
-    //     console.log(res);
-        
-    //   },(error)=>{
-    //     console.log(error);
-        
-    //   })
+
   }
   ionViewWillEnter() {
     this.blockIp = 0;
@@ -278,7 +258,7 @@ export class LoginPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

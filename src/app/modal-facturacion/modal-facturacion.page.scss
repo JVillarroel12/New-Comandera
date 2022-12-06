@@ -73,12 +73,15 @@ ion-header {
             align-items: center;
             font-size: 18px;
             color: whitesmoke;
-            span{
+            ion-badge{
               position: absolute;
               bottom: 0;
               right: 0;
               font-size: 13px;
               margin-right: 2px;
+              --background:var(--ion-color-light);
+              padding: 4px;
+              color: black;;
             }
           }
         }
@@ -240,6 +243,10 @@ ion-header {
               align-items: center;
               text-align: center;
               padding: 5px;
+            }
+            .columns2{
+              padding: 0 !important;
+              grid-column: span 2;
             }
           }
           .totalColumn{

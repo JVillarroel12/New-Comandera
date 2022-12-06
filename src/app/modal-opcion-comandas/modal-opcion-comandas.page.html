@@ -1,0 +1,33 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>Opciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="rowOpcionesComanda">
+    <form action="" [formGroup]="formCantidad">
+        <ion-card>
+          <ion-label>Cant:</ion-label>
+          <ion-input placeholder="Cantidad" #focus formControlName="cantidad" type="number" (keypress)="pressGuardarCantidad($event.charCode)"></ion-input>
+        </ion-card>
+        <ion-button color="success" (click)="guardarCantidad()">
+          <ion-label style="color: black;">Guardar Cantidad </ion-label>
+          <ion-icon name="save-outline" slot="end" style="color: black;"></ion-icon>
+        </ion-button>
+        <ion-button color="success" (click)="agregarContorno()">
+          <ion-label style="color: black;">Contornos </ion-label>
+          <ion-icon name="grid-outline" slot="end" style="color: black;"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="borrarComanda()">
+          <ion-label>Borrar Comanda </ion-label>    
+          <ion-icon name="trash-outline" slot="end"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="cerrarModal()">
+          <ion-label>Cancelar </ion-label>        
+          <ion-icon name="close-outline" slot="end"></ion-icon>
+        </ion-button>
+
+    </form>
+  </ion-row>
+</ion-content>

@@ -79,7 +79,7 @@ export class ModalSelectMonedaPage implements OnInit {
       }
       this.auxValueMonto = this.total;
       
-    }, 300);    
+    }, 100);    
 
   }
   pressMonto(_event, _mode){
@@ -113,16 +113,23 @@ export class ModalSelectMonedaPage implements OnInit {
       }
 
       if(this.IGTF){
+        
         let auxIGTFBS = this.auxValueMonto * (3) / 100;
 
         this.igtfDolar = auxIGTFBS / this.tasa;
-        console.log("1111111111111", this.igtfDolar);
-        console.log("22222222222222", auxIGTFBS);
-
         
         this.igtfBs = Math.round(auxIGTFBS*100)/100 ;
-        console.log("TOTAL =>", this.igtfBs);
-        
+
+        if(this.formMetodoPago.value.monto > this.valueMonto){
+          let auxTotal = this.valueMonto * this.tasa;
+ 
+          let auxIGTFBS = this.auxValueMonto * (3) / 100;
+          let auxIGTFBs2 = auxTotal * (3) / 100
+          this.igtfDolar = auxIGTFBs2 / this.tasa;
+          
+          this.igtfBs = Math.round(auxIGTFBs2*100)/100 ;
+          console.log("VALUE MONTO TOTAL =>",this.valueMonto);
+        }
       }else{
         this.igtfBs = 0;
       }
@@ -137,12 +144,9 @@ export class ModalSelectMonedaPage implements OnInit {
 
       let auxIGTFBS = this.auxValueMonto * (3) / 100;
 
-      this.igtfDolar = auxIGTFBS / this.tasa;
-      console.log("1111111111111", this.igtfDolar);
-      console.log("22222222222222", auxIGTFBS);
+      //this.igtfDolar = auxIGTFBS / this.tasa;
 
-      
-      this.igtfBs = Math.round(auxIGTFBS*100)/100 ;
+      //this.igtfBs = Math.round(auxIGTFBS*100)/100 ;
       console.log("TOTAL =>", this.igtfBs);
       
     }else{

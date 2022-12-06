@@ -45,7 +45,7 @@
         <ion-card *ngFor="let data of metodosPagos" (click)="openPayment(data)">
           {{data.descripcion}}
 
-          <span>{{data.tipo}}</span>
+          <ion-badge>{{data.tipo}}</ion-badge>
         </ion-card>
       </ion-row>
     </ion-col>
@@ -132,6 +132,9 @@
             <span *ngIf="faltanteBs > 0" style="font-size: 16px;">Falta Dolares:</span>
             <span *ngIf="faltanteBs < 0" style="font-size: 16px;">Cambio Dolares:</span>
              <span style="font-size: 19px;">{{faltanteBs / tasa | number:'1.2-2'}}$</span>
+          </div>
+          <div class="columns2" *ngIf="faltanteBs < 0">
+              Posible cambio: <span style="font-size: 19px;">{{truncFaltanteDolar}}$</span> con <span style="font-size: 19px;">{{faltanteBs - (truncFaltanteDolar * tasa)| number:'1.2-2'}}bs</span>
           </div>
         </ion-col>
         <ion-col class="totalColumn">

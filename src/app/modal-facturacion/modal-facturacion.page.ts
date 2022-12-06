@@ -34,6 +34,7 @@ export class ModalFacturacionPage implements OnInit {
   auxIva = 0;
   auxServicio = 0;
   faltanteBs: number;
+  truncFaltanteDolar: number;
   montoDescuento:number;
   montoIva: number;
   montoServicio: number;
@@ -141,6 +142,7 @@ export class ModalFacturacionPage implements OnInit {
           this.IGTFBs = Math.round(this.IGTFBs*100)/100 +  Math.round(data.data.igtf*100)/100;
           this.auxTotalBs = this.auxTotalBs + this.IGTFBs;
           this.faltanteBs = this.faltanteBs + this.IGTFBs;
+          this.truncFaltanteDolar = Math.trunc(this.faltanteBs / this.tasa);
         }
         this.linesPagos.push(data.data);
         this.calcularFaltantePagar(data.data);
@@ -178,6 +180,7 @@ export class ModalFacturacionPage implements OnInit {
               this.IGTFBs = 0;
             }
             this.faltanteBs = this.faltanteBs + sumaTotal;
+            this.truncFaltanteDolar = Math.trunc(this.faltanteBs / this.tasa);
             this.linesPagos.splice(_index, 1);
           }
         }
@@ -244,6 +247,7 @@ export class ModalFacturacionPage implements OnInit {
 
       this.auxTotalBs = Math.round(this.totalBs*100)/100 - Math.round(descuento*100)/100 + Math.round(this.auxIva*100)/100 + Math.round(this.montoServicio*100)/100;
       this.faltanteBs = Math.round(this.auxTotalBs*100)/100;
+      this.truncFaltanteDolar = Math.trunc(this.faltanteBs / this.tasa);
       this.linesPagos.length = 0;
       this.montoDescuento = descuento;
      }
@@ -269,6 +273,7 @@ export class ModalFacturacionPage implements OnInit {
         
       this.auxTotalBs = Math.round(this.totalBs*100)/100 + Math.round(this.auxIva*100)/100 + Math.round(this.montoServicio*100)/100 + Math.round( this.IGTFBs*100)/100;   
       this.faltanteBs = Math.round(this.auxTotalBs*100)/100;
+      this.truncFaltanteDolar = Math.trunc(this.faltanteBs / this.tasa);
     }, 100);
   }
   calcularFaltantePagar(_pago){
@@ -280,6 +285,7 @@ export class ModalFacturacionPage implements OnInit {
     }
     this.auxTotalBs = Math.round(this.auxTotalBs * 100) / 100;
     this.faltanteBs = Math.round(this.faltanteBs*100)/100 - Math.round(restaTotal*100)/100;
+    this.truncFaltanteDolar = Math.trunc(this.faltanteBs / this.tasa);
   }
   async pagarCuenta(){
     const loading = await this.loadingController.create({
@@ -536,7 +542,7 @@ export class ModalFacturacionPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

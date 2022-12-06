@@ -87,9 +87,7 @@
           </ion-card-content>
         </ion-card>
       </ion-list>
-      <ion-button (click)="guardarComandas()" class="guardarComandas"
-        *ngIf="comandasPorGuardar.length >= 1"
-        >Guardar</ion-button>
+      <button (click)="guardarComandas()" class="guardarComandas" #btnGuardarComandas *ngIf="comandasPorGuardar.length >= 1">Guardar</button>
       
     </ion-col>
 

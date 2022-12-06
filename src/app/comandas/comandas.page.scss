@@ -60,6 +60,8 @@ ion-list{
         justify-content: center;
         align-items: center;
         color: black;
+        text-align: center;
+        justify-items: center;
         font-size: 14px;
         ion-icon{
             font-size: 20px;
@@ -88,12 +90,18 @@ ion-list{
             }
         }
     }
-    ion-button{
+    button{
         bottom: 0;
-        width: 96%;
+        width:calc(100% - 9px);
         position: absolute;
         z-index: 99;
         margin-top: 10px;
+        height: 35px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+        color: white;
+        font-size: 17px;
     }
 }
 
@@ -235,6 +243,15 @@ width: 60%;
     width: 45%;
     padding: 10px;
     color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    ion-icon{
+        position: absolute;
+        right:0;
+        margin-right: 5px;
+        font-size: 25px;
+    }
 }
 
 .parpadeoAlertas{

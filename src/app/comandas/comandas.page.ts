@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, AlertController, LoadingController, ModalController, Platform, ToastController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonButton, IonInput, LoadingController, ModalController, Platform, ToastController } from '@ionic/angular';
 import { ApiServiceService } from '../services/api-service.service';
 import { Location } from '@angular/common';
 import { ModalContornosPage } from '../modal-contornos/modal-contornos.page';
@@ -11,6 +11,8 @@ import { AlertasMeseroPage } from '../alertas-mesero/alertas-mesero.page';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalAddClientePage } from '../modal-add-cliente/modal-add-cliente.page';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ModalOpcionComandasPage } from '../modal-opcion-comandas/modal-opcion-comandas.page';
+import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-comandas',
@@ -18,7 +20,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./comandas.page.scss'],
 })
 export class ComandasPage implements OnInit {
-
+  //@ViewChild('guardarComandas', { static: false }) btnGuardarComandas: IonButton;
+  @ViewChild('btnGuardarComandas') btnGuardarComandas: ElementRef;
   user_image: SafeResourceUrl;
   imagenes = [];
   formComentario: FormGroup;
@@ -87,7 +90,6 @@ export class ComandasPage implements OnInit {
     this.tema = localStorage.getItem('cambiarTema');
   }
   async ngOnInit() {
-
     console.log("IMAGENES =.>", this.imagenes);
     this.formComentario = this.formBuilder.group({
       comentario: ['']
@@ -335,51 +337,121 @@ export class ComandasPage implements OnInit {
   /** CODIGO PARA CREAR UNA COMANDA **/
   async crearComanda(_data) {
     console.log("PRODUCTO =>", _data);
-    
-    if (_data.contornos.length == 0) {
-      let ivaBolivares = Number(_data.PRICE1)*(_data.IVAP/100);
-
-      let crearComanda = {
-        cuenta_id: this.id,
-        product_id: _data.producto_id,
-        category_id: _data.categoria_id,
-        name: _data.name.replace(/[']+/g, ''),
-        pricebase: Number(_data.price1),
-        price: Number(_data.price1),
-        priceAux:  _data.price1Aux,
-        pricedolar: Number(_data.price3),
-        auxPriceDolar:_data.price3Aux,
-        qty: 1,
-        discount: 0,
-        iva: _data.cod_iva,
-        ivaP: _data.iva,
-        user_id: this.user.user_id,
-        estacion_id: this.user.estacion_id,
-        deposito_id: this.user.deposito_id,
-        contorno_comandas: [],
-      };
-    
-      this.comandasPorGuardar.push(crearComanda);
-      //this.devolverCategorias();
-      console.log('COMANDAS POR GUARDAR', this.comandasPorGuardar);
-    } else {
-      const modal = await this.modalCtrl.create({
-        component: ModalContornosPage,
-        swipeToClose: true,
-        backdropDismiss: false,
-        cssClass: 'modalContornos',
-        componentProps: {
-          data: _data,
-        },
+    _data.comprobarPrecio = false;
+    if(_data.price1 == 0){
+      const alert = await this.alertCtrl.create({
+        header: 'Atencion',
+        subHeader: 'El producto tiene el precio en 0, lo cual puede ocasionar problemas al momento de imprimirlo',
+        message: '¿Desea continuar de todos modos?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              _data.comprobarPrecio = false;
+            },
+          },
+          {
+            text: 'OK',
+            role: 'confirm',
+            handler:async() => {
+              console.log("HOLAAA");
+              
+              _data.comprobarPrecio = true;
+              if(_data.comprobarPrecio == true){
+                if (_data.contornos.length == 0) {
+                  let ivaBolivares = Number(_data.PRICE1)*(_data.IVAP/100);
+            
+                  let crearComanda = {
+                    cuenta_id: this.id,
+                    product_id: _data.producto_id,
+                    category_id: _data.categoria_id,
+                    name: _data.name.replace(/[']+/g, ''),
+                    pricebase: Number(_data.price1),
+                    price: Number(_data.price1),
+                    priceAux:  _data.price1Aux,
+                    pricedolar: Number(_data.price3),
+                    auxPriceDolar:_data.price3Aux,
+                    qty: 1,
+                    discount: 0,
+                    iva: _data.cod_iva,
+                    ivaP: _data.iva,
+                    user_id: this.user.user_id,
+                    estacion_id: this.user.estacion_id,
+                    deposito_id: this.user.deposito_id,
+                    contorno_comandas: [],
+                  };
+                
+                  this.comandasPorGuardar.push(crearComanda);
+                  //this.devolverCategorias();
+                  //this.btnGuardarComandas.nativeElement.autofocus;
+                  setTimeout(() => {
+                    this.btnGuardarComandas.nativeElement.focus();
+                  }, 50);
+                  console.log('COMANDAS POR GUARDAR', this.comandasPorGuardar);
+                } else {
+                  const modal = await this.modalCtrl.create({
+                    component: ModalContornosPage,
+                    swipeToClose: true,
+                    backdropDismiss: false,
+                    cssClass: 'modalContornos',
+                    componentProps: {
+                      data: _data,
+                    },
+                  });
+                  await modal.present();
+            
+                  const { data } = await modal.onDidDismiss();
+                  if (data == undefined) {
+                    console.log('saliendo vacio');
+                  } else {
+                    console.log(data.data);
+                    let crearComandaContornos = {
+                      cuenta_id: this.id,
+                      product_id: _data.producto_id,
+                      category_id: _data.categoria_id,
+                      name: _data.name.replace(/[']+/g, ''),
+                      pricebase: Number(_data.price1),
+                      price: Number(_data.price1),
+                      priceAux:  _data.price1Aux,
+                      pricedolar: Number(_data.price3),
+                      auxPriceDolar:_data.price3Aux,
+                      contorno_comandas: data.data,
+                      qty: 1,
+                      discount: 0,
+                      iva: _data.cod_iva,
+                      ivaP: _data.iva,
+                      user_id: this.user.user_id,
+                      estacion_id: this.user.estacion_id,
+                      deposito_id: this.user.deposito_id,
+                    };
+                    this.comandasPorGuardar.push(crearComandaContornos);
+                    //this.devolverCategorias();
+                    console.log('ENVIANDO COMANDA', crearComandaContornos);
+                    setTimeout(() => {
+                      this.btnGuardarComandas.nativeElement.focus();
+                    }, 50);
+                    //this.btnGuardarComandas.nativeElement.autofocus;
+                  }
+                }
+              }
+            },
+          },
+        ],
       });
-      await modal.present();
-
-      const { data } = await modal.onDidDismiss();
-      if (data == undefined) {
-        console.log('saliendo vacio');
-      } else {
-        console.log(data.data);
-        let crearComandaContornos = {
+  
+      await alert.present();
+    }else{
+      _data.comprobarPrecio = true;
+      
+    }
+    console.log("COMANDA 2222 =>", _data);
+    
+    if(_data.comprobarPrecio == true){
+      if (_data.contornos.length == 0) {
+        let ivaBolivares = Number(_data.PRICE1)*(_data.IVAP/100);
+  
+        let crearComanda = {
           cuenta_id: this.id,
           product_id: _data.producto_id,
           category_id: _data.categoria_id,
@@ -389,7 +461,6 @@ export class ComandasPage implements OnInit {
           priceAux:  _data.price1Aux,
           pricedolar: Number(_data.price3),
           auxPriceDolar:_data.price3Aux,
-          contorno_comandas: data.data,
           qty: 1,
           discount: 0,
           iva: _data.cod_iva,
@@ -397,108 +468,100 @@ export class ComandasPage implements OnInit {
           user_id: this.user.user_id,
           estacion_id: this.user.estacion_id,
           deposito_id: this.user.deposito_id,
+          contorno_comandas: [],
         };
-        this.comandasPorGuardar.push(crearComandaContornos);
+      
+        this.comandasPorGuardar.push(crearComanda);
         //this.devolverCategorias();
-        console.log('ENVIANDO COMANDA', crearComandaContornos);
+        //this.btnGuardarComandas.nativeElement.autofocus;
+        setTimeout(() => {
+          this.btnGuardarComandas.nativeElement.focus();
+        }, 50);
+        console.log('COMANDAS POR GUARDAR', this.comandasPorGuardar);
+      } else {
+        const modal = await this.modalCtrl.create({
+          component: ModalContornosPage,
+          swipeToClose: true,
+          backdropDismiss: false,
+          cssClass: 'modalContornos',
+          componentProps: {
+            data: _data,
+          },
+        });
+        await modal.present();
+  
+        const { data } = await modal.onDidDismiss();
+        if (data == undefined) {
+          console.log('saliendo vacio');
+        } else {
+          console.log(data.data);
+          let crearComandaContornos = {
+            cuenta_id: this.id,
+            product_id: _data.producto_id,
+            category_id: _data.categoria_id,
+            name: _data.name.replace(/[']+/g, ''),
+            pricebase: Number(_data.price1),
+            price: Number(_data.price1),
+            priceAux:  _data.price1Aux,
+            pricedolar: Number(_data.price3),
+            auxPriceDolar:_data.price3Aux,
+            contorno_comandas: data.data,
+            qty: 1,
+            discount: 0,
+            iva: _data.cod_iva,
+            ivaP: _data.iva,
+            user_id: this.user.user_id,
+            estacion_id: this.user.estacion_id,
+            deposito_id: this.user.deposito_id,
+          };
+          this.comandasPorGuardar.push(crearComandaContornos);
+          //this.devolverCategorias();
+          console.log('ENVIANDO COMANDA', crearComandaContornos);
+          setTimeout(() => {
+            this.btnGuardarComandas.nativeElement.focus();
+          }, 50);
+          //this.btnGuardarComandas.nativeElement.autofocus;
+        }
       }
     }
+
     this.calcularTotal();
     //console.log(this.comandasPorGuardar);
   }
   /** CODIGO DE LA ALERTA QUE SALE PARA MODIFICAR LA CANTIDAD DE COMANDA**/
   async opcionesComanda(_data) {
-    console.log('COMANDAA', _data);
-
-    const alert = await this.alertCtrl.create({
-      cssClass: 'alertCantidad',
-      subHeader: 'Opciones',
-      inputs: [
-        {
-          name: 'cantidad',
-          type: 'number',
-          placeholder: 'Ingresar cantidad',
-          cssClass: 'cantidad',
-        },
-      ],
-
-      buttons: [
-        ,
-        {
-          text: 'Guardar cantidad',
-          cssClass: 'botonOk',
-          handler: (data) => {
-            console.log('DATA OK', _data);
-            this.cantidadComanda = data.cantidad;
-
-            if (this.cantidadComanda == 0 || this.cantidadComanda == '') {
-              this.cantidadComanda = 1;
-              this.toast('El campo esta vacio', 'danger');
-            } else {
-              if (this.cantidadComanda < 0) {
-                this.toast('No se puede guardar esa cantidad', 'danger');
-              } else {
-                _data.qty = Number(this.cantidadComanda);
-              }
-            }
-            console.log('ACTUALIZADOOOO', this.comandasPorGuardar);
-            this.calcularTotal();
-          },
-        },
-        {
-          text: 'Agregar contorno',
-          cssClass: 'botonContorno',
-          handler: async (data) => {
-            const modal = await this.modalCtrl.create({
-              component: ModalContornosGeneralesPage,
-              swipeToClose: true,
-              backdropDismiss: true,
-              cssClass: 'modalContornos',
-              componentProps: {
-                comandaModal: _data,
-              },
-            });
-            await modal.present();
-
-            const comanda = await modal.onDidDismiss();
-            console.log('SALIENDO', comanda);
-
-            if (comanda['data'] != undefined) {
-              //console.log('saliendoo', comanda);
-
-              _data.contorno_comandas.length = 0;
-              this.respuestaContornosGenerales = comanda.data['data'];
-              //console.log('CONTORNOS', this.respuestaContornosGenerales);
-
-              this.respuestaContornosGenerales.forEach((res) => {
-                _data.contorno_comandas.push(res);
-                console.log('SE ESTA PASANDO');
-              });
-              //console.log(_data);
-            } else {
-            }
-          },
-        },
-        {
-          text: 'Eliminar comanda',
-          cssClass: 'botonEliminar',
-          handler: (blah) => {
-            this.borrarComandaLocal(_data);
-          },
-        },
-        {
-          text: 'cerrar',
-          role: 'cancel',
-          cssClass: 'botonCancelar',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
-
-    console.log(this.cantidadComanda);
-    await alert.present();
+    console.log("COMANDA SELECCIONADA =>", _data);
+    
+    const modal = await this.modalCtrl.create({
+      component: ModalOpcionComandasPage,
+      cssClass: 'modalOpcionesComanda',
+      componentProps:{
+        comanda: _data
+      }
+    })
+    modal.present();
+    const comanda = await modal.onDidDismiss();
+    if(comanda['data'] != undefined){
+      console.log("Comanda =>", comanda);
+      
+      console.log("Comanda saliendo =>", comanda['data']);
+      if(comanda['data'].cantidad == "si"){
+        _data.qty = comanda['data'].comanda.cantidad;
+      }
+      if(comanda['data'].contornos == "si"){
+          _data.contorno_comandas.length = 0;
+          this.respuestaContornosGenerales = comanda.data.comanda['data'];
+          console.log("CONTORNOS ASIGNADOS =>", this.respuestaContornosGenerales);
+          
+          this.respuestaContornosGenerales.forEach((res) => {
+            _data.contorno_comandas.push(res);
+          });
+      }
+      if(comanda['data'].borrar == "si"){
+        this.borrarComandaLocal(_data)
+      }
+      this.calcularTotal();
+    }
   }
   /** FUNCION PARA BORRAR UNA COMANDA DE MANERA LOCAL**/
   borrarComandaLocal(_data) {
@@ -881,7 +944,7 @@ export class ComandasPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

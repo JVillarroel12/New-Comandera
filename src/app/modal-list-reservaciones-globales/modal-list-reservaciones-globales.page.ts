@@ -215,7 +215,7 @@ export class ModalListReservacionesGlobalesPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();

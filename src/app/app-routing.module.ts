@@ -115,6 +115,10 @@ const routes: Routes = [
     path: 'modal-venta-credito',
     loadChildren: () => import('./modal-venta-credito/modal-venta-credito.module').then( m => m.ModalVentaCreditoPageModule)
   },
+  {
+    path: 'modal-opcion-comandas',
+    loadChildren: () => import('./modal-opcion-comandas/modal-opcion-comandas.module').then( m => m.ModalOpcionComandasPageModule)
+  },
 ];
 
 @NgModule({

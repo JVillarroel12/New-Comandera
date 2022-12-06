@@ -142,6 +142,11 @@ export class CuentasPage implements OnInit {
     this.router.navigate(['/zonas'])
   }
   /** FUNCION PARA CREAR UNA CUENTA**/
+  pressCrearCuenta(_event){
+    if(_event == '13'){
+      this.crearCuenta();
+    }
+  }
   async crearCuenta() {
     const loading = await this.loadingCtrl.create({
       message: 'Cargando...',
@@ -700,6 +705,51 @@ export class CuentasPage implements OnInit {
     });
     await modal.present();
   }
+  async imprimirPreCuenta(_data) {
+    console.log("COMANDA =>", _data);
+    
+    const loading = await this.loadingCtrl.create({
+      message: 'Cargando...',
+      cssClass: 'spinner',
+    });
+
+    const alert = await this.alertCtrl.create({
+      cssClass: 'preCuenta',
+      message: 'Estas seguro de que quieres imprimir una pre-cuenta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: blah');
+          },
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            loading.present();
+            console.log('Confirm Okay');
+              this.http.get(this.apiService.pedirPreCuenta + _data.cuenta_id).subscribe(
+                (data) => {
+                  console.log(data);
+                  loading.dismiss();
+                  this.toast("Proceso de impresion completado", "success");
+                },
+                (error) => {
+                  console.log(error);
+                  this.toast(error.error.message, "danger");
+                  loading.dismiss();
+                }
+              );
+
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
   /*alertasMesero(){
     this.http.get(this.apiService.llamadasActivas).subscribe(data=>{
       this.alertasLlamadas = data['llamadas'];
@@ -740,7 +790,7 @@ export class CuentasPage implements OnInit {
       message: msg,
       position: 'top',
       color: status,
-      duration: 2000,
+      duration: 3000,
       cssClass: 'toastCss',
     });
     toast.present();
