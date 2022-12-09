@@ -9,21 +9,13 @@
 </ion-header>
 
 <ion-content [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+    <main>
+      <div class="reservaciones" (click)="abrirModalConfiguracionesAdmin()" [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
 
-  <div class="reservaciones" (click)="abrirModalConfiguracionesAdmin()" [ngClass]="{'freshMint': tema == 'freshMint', 'summerWine': tema == 'summerWine', 'pinkWine': tema == 'pinkWine'}">
+      </div>
 
-  </div>
-  <!-- <ion-card (click)="abrirModalCaja()">
-    <ion-card-content>
-        CAJA
-    </ion-card-content>
-  </ion-card> -->
-     <div class="login">
-        <div size="12" class="img">
-          <img src="../../assets/img/CDBLEU.png" alt="">
-        </div>
-
-          <div size="12" class="input">
+      <div class="login">
+            <img src="../../assets/img/CDBLEU.png" alt="">
             <form action="" [formGroup]="formLogin">
               <br>
                 <ion-card>
@@ -32,7 +24,8 @@
                 </ion-card>
                 <ion-button color="light" type="submit" [disabled]="formLogin.invalid" (click)="enviar(13)">Ingresar</ion-button>
             </form>
-          </div>
-      </div>     
+      </div>   
+    </main>
+  
      
 </ion-content>

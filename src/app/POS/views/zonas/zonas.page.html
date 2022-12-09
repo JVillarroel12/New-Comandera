@@ -5,11 +5,18 @@
         src="../../assets/img/logojaime-16.png"
         alt=""
         style="width: 100px; height: 40px"
+        routerLink="/zonas"
       />
     </ion-text>
-    <ion-icon name="ban-outline" class="generarReporteReservaciones" (click)="modalAnularFactura()" slot="end" *ngIf="activarFacturacion == 'true'"></ion-icon>
-    <ion-icon name="eye-outline" class="generarReporteReservaciones" slot="end" (click)="reservacionesGlobales()" *ngIf="activarReservaciones == 'true' "></ion-icon>    
-    <ion-icon name="print-outline" class="generarReporteReservaciones" slot="end" (click)="reporteReservaciones()" *ngIf="activarReservaciones == 'true' "></ion-icon>
+    <button class="generarReporteReservaciones" (click)="modalAnularFactura()" *ngIf="activarFacturacion == 'true'" title="Anular Factura">
+      <ion-icon name="ban-outline"></ion-icon>
+    </button>
+    <button class="generarReporteReservaciones" (click)="reservacionesGlobales()" *ngIf="activarReservaciones == 'true'" title="Ver todas las reservaciones">
+      <ion-icon name="eye-outline"></ion-icon> 
+    </button>
+    <button class="generarReporteReservaciones" (click)="reporteReservaciones()" *ngIf="activarReservaciones == 'true'" title="Reporte de reservaciones">
+      <ion-icon name="print-outline" ></ion-icon>
+    </button>
     <!-- <ion-button color="warning" (click)="abrirAlertas()" *ngIf="alertasLlamadas.length >= 1" [ngClass]="{'parpadeoAlertas': alertasLlamadas.length >= 1}"><ion-icon name="alert-outline"></ion-icon></ion-button>-->
     <ion-text slot="end" color="light">
       <ion-icon

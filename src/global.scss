@@ -182,7 +182,7 @@
                 background: var(--azulClaro);
             }
             .actualizarCategorias{
-                --background: var(--ion-color-succes-light);
+                background: var(--ion-color-succes-light);
             }
             .generarReporteReservaciones{
                 background-color: var(--ion-color-succes-light);
@@ -212,7 +212,6 @@
         }  
         // ! CSS LOGIN
         .login{
-            .input{
                 ion-card{
                     --background: transparent;
                     border: 2px solid var(--ion-color-fondo-light-2);
@@ -220,9 +219,7 @@
                         background-color: var(--ion-color-fondo-light);
                     }
             
-                }
-
-            }
+                }         
         }
         // ! CSS ZONAS
         .areas {
@@ -312,21 +309,20 @@
                 color: var(--azulClaro);
             }
             .pagarCuenta{
-                --background: var(--azulClaro);
+                background: var(--azulClaro);
                 color: white;
             }
-            .transladarCuenta{
-
-                --background: var(--ion-color-succes-light);
+            .transladarCuenta{              
+                background: var(--ion-color-succes-light);
             }
             .bloquearCuenta{
-                --background: var(--ion-color-fondo);
+                background: var(--ion-color-fondo);
                 ion-icon{
                     color: white;
                 }
             }
             .desbloquearCuenta{
-                --background: var(--ion-color-fondo-light-2);
+                background: var(--ion-color-fondo-light-2);
                 ion-icon{
                     color: black;
                 }
@@ -611,6 +607,10 @@
           .monedas {
             ion-card {
               background-color: var(--ion-color-fondo-light);
+              ion-badge{
+                --background: var(--ion-color-light);
+                color: black;
+            }
             }
           }
           .monto {
@@ -667,7 +667,7 @@
           .totales{
             .debeColumn{
               div{
-                background-color: var(--ion-color-fondo-light-1);
+                background-color: var(--ion-color-succes-light);
                 border: 1px solid var(--ion-color-fondo);
               }
           }
@@ -784,7 +784,7 @@
                 background: var(--ion-color-mclaro);
             }
             .actualizarCategorias{
-                --background: var(--ion-color-salmon);
+                background: var(--ion-color-salmon);
             }
             .generarReporteReservaciones{
                 background-color: var(--ion-color-mclaro);
@@ -818,7 +818,6 @@
 
         // ! CSS LOGIN
         .login{
-            .input{
                 ion-card{
                     --background: transparent;
                     border: 2px solid var(--ion-color-mclaro);
@@ -827,8 +826,6 @@
                     }
             
                 }
-
-            }
         }
         // !
 
@@ -940,19 +937,19 @@
                 color: var(--ion-color-amedio);
             }
             .pagarCuenta{
-                --background: var(--ion-color-salmon);
+                background: var(--ion-color-salmon);
                 color: white;
             }
             .transladarCuenta{
-                --background: var(--ion-color-aclaro);
+                background: var(--ion-color-aclaro);
                 color: black;
             }
             .bloquearCuenta{
-                --background: var(--ion-color-mmoscuro);
+                background: var(--ion-color-mmoscuro);
                 color: white;
             }
             .desbloquearCuenta{
-                --background: var(--ion-color-mclaro);
+                background: var(--ion-color-mclaro);
                 color: black;
             }
         }
@@ -1228,6 +1225,11 @@
             .monedas {
             ion-card {
                 background-color: var(--ion-color-moscuro);
+                color: claro !important;
+                ion-badge{
+                    --background: var(--ion-color-mmoscuro);
+                    color: white;
+                }
             }
             }
             .monto {
@@ -1284,7 +1286,7 @@
             .totales{
             .debeColumn{
                 div{
-                background-color: var(--ion-color-mmedio);
+                background-color: var(--ion-color-salmon);
                 color: white !important;
                 border: 1px solid var(--ion-color-mmoscuro);
                 }
@@ -1292,7 +1294,7 @@
             .totalColumn{
                 div{
                     color: white !important;
-                    background-color: var(--ion-color-moscuro);
+                    background-color: var(--ion-color-salmon);
                     border: 1px solid var(--ion-color-mmoscuro);
                 }
             }
@@ -1405,7 +1407,7 @@
                 background: var(--ion-color-pink-aqua);
             }
             .actualizarCategorias{
-                --background: var(--ion-color-pink-succes);
+                background: var(--ion-color-pink-succes);
             }
             .generarReporteReservaciones{
                 background-color: var(--ion-color-pink-light-2);
@@ -1437,7 +1439,6 @@
         }  
         // ! CSS LOGIN
         .login{
-            .input{
                 ion-card{
                     --background: transparent;
                     border: 2px solid var(--ion-color-pink-light-2);
@@ -1446,8 +1447,6 @@
                     }
             
                 }
-
-            }
         }
         // ! CSS ZONAS
         .areas {
@@ -1540,21 +1539,21 @@
                 color: var(--ion-color-pink-aqua);
             }
             .pagarCuenta{
-                --background: var(--ion-color-pink-aqua);
+                background: var(--ion-color-pink-aqua);
                 color: black;
             }
             .transladarCuenta{
 
-                --background: var(--ion-color-pink-succes);
+                background: var(--ion-color-pink-succes);
             }
             .bloquearCuenta{
-                --background: var(--ion-color-pink);
+                background: var(--ion-color-pink);
                 ion-icon{
                     color: white;
                 }
             }
             .desbloquearCuenta{
-                --background: var(--ion-color-pink-light-1);
+                background: var(--ion-color-pink-light-1);
                 ion-icon{
                     color: white;
                 }
@@ -1830,6 +1829,10 @@
             .monedas {
                 ion-card {
                 background-color: var(--ion-color-pink-light);
+                ion-badge{
+                    --background: var(--ion-color-light);
+                    color: black;
+                }
                 }
             }
             .monto {
@@ -1886,16 +1889,16 @@
             .totales{
                 .debeColumn{
                 div{
-                    background-color: var(--ion-color-pink-light-1);
+                    background-color: var(--ion-color-pink-aqua);
                     border: 1px solid var(--ion-color-pink);
                     color: black !important;
                 }
             }
                 .totalColumn{
                     div{
-                    background-color: var(--ion-color-pink-light);
+                    background-color: var(--ion-color-pink-aqua);
                     border: 1px solid var(--ion-color-pink);
-                    color: white !important;
+                    color: black !important;
                     }
                 }
                 

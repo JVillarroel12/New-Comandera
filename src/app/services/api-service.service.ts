@@ -83,6 +83,8 @@ export class ApiServiceService {
   validarPermiso = this.IP + 'validarPermiso/'                  // ! OAT
   buscarFactura = this.IP + 'factura/'                  // ! OAT
   anularFactura = this.IP + 'notaCredito'                  // ! OAT
+  borrarComandaGuardada = this.IP + 'comandas/'  // ! OAT
+  borrarCuenta = this.IP + 'cuentas/'  // ! OAT
   /** OBSERVABLE PARA EL USER**/
   private UserSource = new BehaviorSubject<{}>({});
 

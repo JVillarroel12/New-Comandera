@@ -43,6 +43,7 @@
       </ion-row>
       <ion-row class="monedas">
         <ion-card *ngFor="let data of metodosPagos" (click)="openPayment(data)">
+          <ion-icon name="pricetags"></ion-icon>
           {{data.descripcion}}
 
           <ion-badge>{{data.tipo}}</ion-badge>
@@ -54,14 +55,14 @@
         <form action="" [formGroup]="formImpuestos" style="width: 100%;height: 100%;">
           <ion-col size="6" class="tasa">
             <ion-card>
-              <span style="font-size: 16px;">Subtotal:</span><span style="font-size: 18px;">{{auxSubTotal | number:'1.2-2'}}bs</span>
+              <span style="font-size: 16px;">Subtotal:</span><span style="font-size: 19px;">{{auxSubTotal | number:'1.2-2'}}bs</span>
                
             </ion-card>
             <ion-card>
-              <span style="font-size: 16px;">Tasa:</span><span style="font-size: 18px;">{{tasa | number:'1.2-2'}}bs</span>  
+              <span style="font-size: 16px;">Tasa:</span><span style="font-size: 19px;">{{tasa | number:'1.2-2'}}bs</span>  
             </ion-card>
             <ion-card>
-              <span style="font-size: 16px;"> Servicio {{cuenta.porcentservice}}%:</span> <span style="font-size: 18px;">{{montoServicio | number:'1.2-2'}}bs </span> 
+              <span style="font-size: 16px;"> Servicio {{cuenta.porcentservice}}%:</span> <span style="font-size: 19px;">{{montoServicio | number:'1.2-2'}}bs </span> 
                 <ion-checkbox mode="ios" (ionChange)="aplicarPorcentajeServicio($event)" [checked]="aplicarServicio" formControlName="aplicarServicio" color="light"></ion-checkbox>
               
             </ion-card>
@@ -75,17 +76,17 @@
                 [value]="montoDescuento" 
                 formControlName="montoDescuento" 
                 (ionChange)="aplicarDescuento($event)"
-                style="font-size: 18px;">
+                style="font-size: 19px;">
               </ion-input>
               <ion-icon name="pencil-outline" class="iconPorcentaje" (click)="modalDescuento()"></ion-icon>
             </ion-card>
 
             <ion-card>
-              <span style="font-size: 16px;">Impuesto:</span><span style="font-size: 18px;">{{auxIva | number:'1.2-2'}}bs</span>
+              <span style="font-size: 16px;">Impuesto:</span><span style="font-size: 19px;">{{auxIva | number:'1.2-2'}}bs</span>
                
             </ion-card>
             <ion-card>
-              <span style="font-size: 16px;">IGTF:</span><span style="font-size: 18px;">{{IGTFBs | number:'1.2-2'}}bs</span>
+              <span style="font-size: 16px;">IGTF:</span><span style="font-size: 19px;">{{IGTFBs | number:'1.2-2'}}bs</span>
                 
             </ion-card>
           </ion-col>
@@ -126,24 +127,24 @@
           <div>
             <span *ngIf="faltanteBs > 0" style="font-size: 16px;">Falta Bolivares:</span>
             <span *ngIf="faltanteBs < 0" style="font-size: 16px;">Cambio Bolivares:</span>
-             <span style="font-size: 19px;">{{faltanteBs | number:'1.2-2'}}bs</span>
+             <span style="font-size: 20px;">{{faltanteBs | number:'1.2-2'}}bs</span>
           </div>
           <div>
             <span *ngIf="faltanteBs > 0" style="font-size: 16px;">Falta Dolares:</span>
             <span *ngIf="faltanteBs < 0" style="font-size: 16px;">Cambio Dolares:</span>
-             <span style="font-size: 19px;">{{faltanteBs / tasa | number:'1.2-2'}}$</span>
+             <span style="font-size: 20px;">{{faltanteBs / tasa | number:'1.2-2'}}$</span>
           </div>
           <div class="columns2" *ngIf="faltanteBs < 0">
-              Posible cambio: <span style="font-size: 19px;">{{truncFaltanteDolar}}$</span> con <span style="font-size: 19px;">{{faltanteBs - (truncFaltanteDolar * tasa)| number:'1.2-2'}}bs</span>
+              Posible cambio: <span style="font-size: 20px;">{{truncFaltanteDolar}}$</span> con <span style="font-size: 20px;">{{faltanteBs - (truncFaltanteDolar * tasa)| number:'1.2-2'}}bs</span>
           </div>
         </ion-col>
         <ion-col class="totalColumn">
           <div class="columns2">
             <span class="contentSpan">
-              <span style="font-size: 16px;">Total Bolivares:</span><br><span style="font-size: 19px;">{{auxTotalBs | number:'1.2-2'}}bs</span>
+              <span style="font-size: 16px;">Total Bolivares:</span><br><span style="font-size: 20px;">{{auxTotalBs | number:'1.2-2'}}bs</span>
             </span>
-            <span  class="contentSpan">
-              <span style="font-size: 16px;">Total Dolares:</span><br><span style="font-size: 19px;">{{auxTotalBs / tasa | number:'1.2-2'}}$</span>  
+            <span  class="contentSpan" style="border-top: 2px solid black;">
+              <span style="font-size: 16px;">Total Dolares:</span><br><span style="font-size: 20px;">{{auxTotalBs / tasa | number:'1.2-2'}}$</span>  
             </span>
 
           </div>
@@ -151,7 +152,7 @@
             <span style="font-size: 16px;">Total Dolares:</span><br><span style="font-size: 18px;">{{auxTotalBs / tasa | number:'1.2-2'}}$</span>      
           </div> -->
           <div (click)="pagarCuenta()" class="btnFacturar">
-            <span style="font-size: 18px;">Facturar</span>       
+            <span style="font-size: 20px;">Facturar</span>       
             <ion-icon name="wallet-outline"></ion-icon> 
           </div>
         </ion-col>

@@ -15,23 +15,22 @@ ion-header{
         padding: 6px 8px;
         cursor: pointer;
     }
-    .paginaAnterior{
-        margin-left: 10px;
-        font-size: 26px;
-    }
-    .agregarReserva{
+    button{
         font-size: 24px;
         margin-right: 15px;
         border-radius: 5px;
-        padding: 6px 8px;
+        padding: 5px;
         cursor: pointer;
+        width: 40px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    .verPrecios{
-        margin-right: 15px;
-        border-radius: 5px;
-        padding: 6px 8px;
-        cursor: pointer;
+    .bloquearMesa{
+        float: left !important;
     }
+
     ion-text{
         margin-right: 15px; 
         align-items: center; 
@@ -49,12 +48,13 @@ ion-header{
             font-size: 30px;
         }
     }
-    .verPrecios{
-        margin-right: 15px;
-        font-size: 18px;
-        ion-icon{
-            color: black;
-        }
+    ion-icon{
+        pointer-events: none;
+    }
+    .paginaAnterior{
+        margin-left: 10px;
+        font-size: 26px;
+        pointer-events: all;
     }
 }
 ion-content{
@@ -127,62 +127,78 @@ ion-content{
     width: 100%;
     height: calc(100% - 210px);
     overflow-y: scroll;
-
     ion-list{
         background-color: transparent;
         width: 100%;    
         margin:0;
         padding:0;
-
-        ion-item{
-            --width: 100% !important;
-            --min-width: 100%;
+        div{
+            width: 100% !important;
             margin: 10px 0px;
             height: 50px;
-            display: flex;
+            display: grid;
+            align-content: center;
+            grid-template-columns: 1fr 1fr;
             --background: transparent;
-            ion-label{
-                height: 100%;
-                text-align: center !important;
+            div{
                 display: flex;
                 align-items: center;
-                width: 100%;
+                z-index: 1;
+            }
+            .infoLineCuenta{
+                justify-content: space-around;
+                box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            }
+            .botonesLineCuenta{
+                justify-content: end;
+                button{
+                    width: 45px;
+                    height: 80%;
+                    border-radius: 5px;
+                    margin-right: 5px;
+                    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 99;
+                }
+                ion-checkbox{
+                    width: 45px;
+                    height: 84%;
+                    --border-radius: 5px;
+                    margin-right: 5px;        
+                }
+                ion-checkbox,ion-button{
+                    z-index: 99 !important;
+                }
+                .borrarCuenta{
+                    background-color: var(--ion-color-danger);
+                    color: white;
+                }
+            }
+            ion-label{
                 color:whitesmoke;
             }
-        }
+            ion-icon{
+                font-size: 23px;
+                font-weight: bold;
+                z-index: 1;
+                pointer-events: none;
+            }
+            .noComandas{
+                margin-right: 15px;
+            }
+            .siComandas{
+                margin-right: 15px;
+            }
 
-    }
-    .noComandas{
-        font-size: 25px;
-        margin-right: 15px;
-    }
-    .siComandas{
-        font-size: 25px;
-        margin-right: 15px;
+        }
     }
     .cuentaBloqueada{
         background-color: #222428;
     }
     .cuentaNoBloqueada{
         background-color: rgb(138, 138, 138,.7);
-    }
-    .pagarCuenta{
-        height: 40px; 
-        margin-right: 20px; 
-        width: 40px;
-    }
-    .transladarCuenta{
-        height: 40px; 
-        margin-right: 20px; 
-        width: 40px;
-    }
-    .desbloquearCuenta{
-        height: 40px; 
-        margin-right: 20px;
-    }
-    .bloquearCuenta{
-        height: 40px; 
-        margin-right: 20px;
     }
 }
 

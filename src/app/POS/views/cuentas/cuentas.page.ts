@@ -40,7 +40,7 @@ export class CuentasPage implements OnInit {
   activarFacturacion = localStorage.getItem('activarFacturacion');
   reservaciones: any;
   tema = localStorage.getItem('cambiarTema');
-
+  booleanAbrirCuenta = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     public http: HttpClient,
@@ -234,7 +234,6 @@ export class CuentasPage implements OnInit {
                       }
                     }
 
-
                     }
                   );
               }
@@ -244,7 +243,14 @@ export class CuentasPage implements OnInit {
       }
     }
   }
+  abrirCuenta(data, _event){
+  console.log("eventttt =>", _event);
+  
+    if(_event.srcElement.nodeName == 'DIV'){
+      this.router.navigate(['/comandas',data.cuenta_id]);
+    }
 
+  }
   /** FUNCION PARA ABRIR LA VISTA DE COMANDAS Y CATEGORIAS**/
   abrirCategorias(_data) {
     console.log('dataaaa', _data);
@@ -459,15 +465,24 @@ export class CuentasPage implements OnInit {
     })
     modal.present();
     const permiso = await modal.onDidDismiss();
+
     if(permiso['data'] != undefined){
-      const modal = await this.modalCtrl.create({
-        component: ModalRrppPage,
-        cssClass: 'modalRRPP',
-        componentProps: {
-          cuenta: _data,
-        }
-      })
-      modal.present();
+      this.abrirModalRRPP(_data);      
+    }
+
+  }
+  async abrirModalRRPP(_data){
+    const modal = await this.modalCtrl.create({
+      component: ModalRrppPage,
+      cssClass: 'modalRRPP',
+      componentProps: {
+        cuenta: _data,
+      }
+    })
+    modal.present();
+    const rrpp = await modal.onDidDismiss();
+    if(rrpp['data'] != undefined){
+      this.getMesa(this.id)
     }
 
   }
@@ -751,8 +766,33 @@ export class CuentasPage implements OnInit {
     await alert.present();
   }
   async borrarCuenta(_data){
-    console.log("CUENTA =>", _data);
-    
+    const modal = await this.modalCtrl.create({
+      component: ModalClaveUsuarioPage,
+      cssClass: 'modalClaveUsuario',
+      componentProps: {
+        cuenta: _data,
+        mode : 'BORRAR_CUENTA'
+      }
+    })
+    modal.present();
+    const permiso = await modal.onDidDismiss();
+    if(permiso['data'] != undefined){
+      const loading = await this.loadingCtrl.create({
+        message: 'Cargando...',
+        cssClass: 'spinner',
+      });
+      loading.present();
+      this.http.delete(this.apiService.borrarCuenta + _data.cuenta_id).subscribe(res=>{
+        this.toast("Cuenta borrada con exito", "success");
+        this.getMesa(this.id)
+        loading.dismiss();
+      },(error)=>{
+        loading.dismiss();
+        console.log("ERROR =>", error);
+        this.toast("Ha ocurrido un error al intentar borrar la cuenta","danger");
+      })
+    }
+
   }
   /*alertasMesero(){
     this.http.get(this.apiService.llamadasActivas).subscribe(data=>{

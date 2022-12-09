@@ -6,6 +6,7 @@
         src="../../assets/img/logojaime-16.png"
         alt=""
         style="width: 100px; height: 40px"
+        routerLink="/zonas"
       />
     </ion-text>
     
@@ -13,25 +14,18 @@
       <ion-icon name="easel-outline"></ion-icon>
       {{nameMesa}}
     </ion-text>
-
-    <ion-icon 
-    slot="start"
-    class="cuentaAbierta"
-    name="lock-closed"
-    *ngIf="statusCuenta == '2'"
-    (click)="bloquearCuenta()"
-    >
-  </ion-icon>
-    <ion-icon
-      name="lock-open-outline"
-      class="cuentaAbierta"
-      slot="start"
-      *ngIf="statusCuenta == '0'"
-      (click)="bloquearCuenta()"
-    ></ion-icon>
-    <ion-text style="font-size: 18px;margin-left: 15px;">
+    <button class="mesaAbierta" (click)="bloquearMesa()" *ngIf="statusCuenta == '2'" title="Desbloquear Mesa" style="float: left;">
+      <ion-icon name="lock-closed"></ion-icon>
+    </button>
+    <button class="mesaAbierta" (click)="bloquearMesa()" *ngIf="statusCuenta == '0'" title="Bloquear Mesa" style="float: left;">
+      <ion-icon name="lock-open-outline"></ion-icon>
+    </button>
+    <ion-text style="font-size: 18px;margin-left: 15px;margin-top: 8px;">
       Tasa: {{tasa | number:'1.2-2'}}bs
     </ion-text>
+    <button class="actualizarCategorias" slot="end" (click)="actualizarCategorias()" title="Recargar categorias">
+      <ion-icon name="reload-outline"></ion-icon>
+    </button>
     <ion-text slot="end">
       <ion-icon
         name="person-sharp"
@@ -41,9 +35,7 @@
       ></ion-icon
       >{{nameUser}}
     </ion-text>
-    <ion-button class="actualizarCategorias" slot="end" (click)="actualizarCategorias()"
-      ><ion-icon name="reload-outline"></ion-icon
-    ></ion-button>
+
     <ion-button color="danger" (click)="cerrarSesion()" slot="end"
       ><ion-icon name="log-out-outline"></ion-icon
     ></ion-button>
@@ -109,7 +101,7 @@
           class="comandas"
           *ngFor="let data of comandas"
           style="color: white"
-          (click)="verContornosComanda(data);"
+          (click)="opcionesComandaGuardada(data);"
         >
           <ion-card-content style="font-size: 13px">
             <ion-icon
@@ -237,7 +229,7 @@
       </ion-row>
 
     </ion-col>
-    <ion-card class="precioTotalCard" (click)="imprimirPreCuenta()">
+    <ion-card class="precioTotalCard" (click)="imprimirPreCuenta()" title="Imprimir Pre-Cuenta">
       <ion-text > 
         Total bolivares: {{precioTotal | number:'1.2-2'}}bs
       </ion-text>

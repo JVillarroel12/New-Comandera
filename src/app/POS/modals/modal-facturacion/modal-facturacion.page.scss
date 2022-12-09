@@ -69,7 +69,7 @@ ion-header {
             height: 80px;
             margin-top: 5px;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             font-size: 18px;
             color: whitesmoke;
@@ -79,9 +79,11 @@ ion-header {
               right: 0;
               font-size: 13px;
               margin-right: 2px;
-              --background:var(--ion-color-light);
               padding: 4px;
-              color: black;;
+              margin-bottom: 2px;
+            }
+            ion-icon{
+              font-size: 27px;
             }
           }
         }
@@ -243,6 +245,7 @@ ion-header {
               align-items: center;
               text-align: center;
               padding: 5px;
+              border-radius: 5px;
             }
             .columns2{
               padding: 0 !important;
@@ -263,6 +266,8 @@ ion-header {
                 width: 100%;
                 height: 100%;
                 padding: 0px;
+                border-radius: 5px;
+
                 .contentSpan{
                   width: 100%;
                   height: 50%;
@@ -278,8 +283,10 @@ ion-header {
                 align-items: center;
                 justify-content: center;
                 color: black !important;
+              border-radius: 5px;
+
                 ion-icon{
-                  font-size: 25px;
+                  font-size: 27px;
                   color: black;
                   margin-left: 10px;
                 }

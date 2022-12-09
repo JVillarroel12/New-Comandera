@@ -228,6 +228,9 @@ export class LoginPage implements OnInit {
           if(error.error.code == "401"){
             text = error.error['message'];
           }else{
+            if(error.error.code == "500"){
+              text = error.error['message'];
+            }
             text = "Ha ocurrido un error";
           }
           loading.dismiss();

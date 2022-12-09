@@ -19,14 +19,21 @@ ion-header ion-toolbar {
       font-size: 18px;
       margin-right: 10px;
     }
-    .generarReporteReservaciones{
+    button{
       font-size: 24px;
-      color: #222428;
       margin-right: 15px;
       border-radius: 5px;
-      padding: 6px 8px;
+      padding: 5px;
       cursor: pointer;
-  }
+      width: 40px;
+      float: right;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    ion-icon{
+      pointer-events: none;
+    }
   }
   ion-list {
     background-color: transparent;
@@ -52,7 +59,7 @@ ion-header ion-toolbar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 35px;  
+          height: 40px;  
           padding: 5px;
           ion-badge{
             width: 30px;

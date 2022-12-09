@@ -90,7 +90,7 @@ export class ComandasPage implements OnInit {
     this.tema = localStorage.getItem('cambiarTema');
   }
   async ngOnInit() {
-    console.log("IMAGENES =.>", this.imagenes);
+    //console.log("IMAGENES =.>", this.imagenes);
     this.formComentario = this.formBuilder.group({
       comentario: ['']
     });
@@ -110,7 +110,7 @@ export class ComandasPage implements OnInit {
         });
         /** CODIGO PARA OBTENER EL USER LOGEADO**/
         this.apiService.$getUser.subscribe((data) => {
-          console.log("USEEERR",data);
+          //console.log("USEEERR",data);
           this.user = data;
           this.nameUser = this.user.user_name;
 
@@ -122,8 +122,8 @@ export class ComandasPage implements OnInit {
           this.obtenerCuenta(this.id);
           /**OBTENER COMANDAS DESDE VER PRECIOS */
           this.apiService.$getComanda.subscribe((data) => {
-            console.log("LLEGANDO POR VISOR DE PRECIOOOOOS",data);
-            console.log("ID CUENTA", this.id);
+            //console.log("LLEGANDO POR VISOR DE PRECIOOOOOS",data);
+            //console.log("ID CUENTA", this.id);
       
             data.forEach((res) => {
               res.cuenta_id = this.id;
@@ -139,7 +139,7 @@ export class ComandasPage implements OnInit {
           
         } else {
           if (this.user.user_id == undefined) {
-            console.log('NO estas conectado');
+            //console.log('NO estas conectado');
             this.router.navigate(['/login'])
             //this.socket.disconnect();
           }
@@ -157,7 +157,7 @@ export class ComandasPage implements OnInit {
     var transformarCategorias = JSON.parse(this.obtenerCategorias);
     this.categorias = transformarCategorias.categorias;
     this.imagenes = transformarCategorias.imagenes;
-    console.log("IMAGENEES =>", this.imagenes);
+    //console.log("IMAGENEES =>", this.imagenes);
     
     this.categorias.forEach(res=>{
 
@@ -170,7 +170,7 @@ export class ComandasPage implements OnInit {
 
     this.incluyeImpuesto = localStorage.getItem('incluyeImpuesto')
     this.menuCategoria.length = 0;
-    console.log('categoriaaas', this.categorias);
+    //console.log('categoriaaas', this.categorias);
   }
   /**  CODIGO PARA OBTENER LA CUENTA POR ID**/
   async obtenerCuenta(id) {
@@ -181,7 +181,7 @@ export class ComandasPage implements OnInit {
     loading.present();
     this.http.get(this.apiService.getCuenta + id).subscribe(
       (data) => {
-        console.log("DATAAAAAAAAAAAAAAAAAAAAAAA",data);
+        //console.log("DATAAAAAAAAAAAAAAAAAAAAAAA",data);
         
         this.cuenta = data;
         console.log('CUENTAAA', this.cuenta);
@@ -536,17 +536,16 @@ export class ComandasPage implements OnInit {
       component: ModalOpcionComandasPage,
       cssClass: 'modalOpcionesComanda',
       componentProps:{
-        comanda: _data
+        comanda: _data,
+        guardada: 'no'
       }
     })
     modal.present();
     const comanda = await modal.onDidDismiss();
     if(comanda['data'] != undefined){
-      console.log("Comanda =>", comanda);
-      
-      console.log("Comanda saliendo =>", comanda['data']);
       if(comanda['data'].cantidad == "si"){
         _data.qty = comanda['data'].comanda.cantidad;
+        
       }
       if(comanda['data'].contornos == "si"){
           _data.contorno_comandas.length = 0;
@@ -560,7 +559,11 @@ export class ComandasPage implements OnInit {
       if(comanda['data'].borrar == "si"){
         this.borrarComandaLocal(_data)
       }
+
       this.calcularTotal();
+      setTimeout(() => {
+        this.btnGuardarComandas.nativeElement.focus();
+      }, 50);
     }
   }
   /** FUNCION PARA BORRAR UNA COMANDA DE MANERA LOCAL**/
@@ -730,20 +733,27 @@ export class ComandasPage implements OnInit {
   }
 
   /**MODAL PARA VER LAS COMANDAS QUE TIENEN CONTORNOS */
-  async verContornosComanda(data) {
-    if (data.contorno_comandas.length >= 1) {
-      this.apiService.sendContornosComanda(data);
-      const modal = await this.modalCtrl.create({
-        component: ModalContornosComandaPage,
-
-        swipeToClose: true,
-        backdropDismiss: false,
-        cssClass: 'modalContornos',
-      });
-      await modal.present();
-    } else {
-      this.toast('Esta comanda no tiene contornos', 'warning');
+  async opcionesComandaGuardada(_data) {
+    console.log("COMANDA SELECCIONADA =>", _data);
+    
+    const modal = await this.modalCtrl.create({
+      component: ModalOpcionComandasPage,
+      cssClass: 'modalOpcionesComanda',
+      componentProps:{
+        comanda: _data,
+        guardada: 'si'
+      }
+    })
+    modal.present();
+    const comanda = await modal.onDidDismiss();
+    if(comanda['data'] != undefined){
+      console.log("Comanda =>", comanda);
+      if(comanda['data'].borrarComandaGuardada == "si"){
+        console.log("HOLAAAAAAAAAAAAAA");
+        this.obtenerCuenta(this.id);
+      }  
     }
+
   }
   async imprimirPreCuenta() {
     const loading = await this.loadingCtrl.create({

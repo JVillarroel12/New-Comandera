@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IonButton, IonInput, ModalController, ToastController } from '@ionic/angular';
+import { IonButton, IonInput, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { ModalContornosGeneralesPage } from '../modal-contornos-generales/modal-contornos-generales.page';
 import { ApiServiceService } from '../../../services/api-service.service';
+import { ModalContornosComandaPage } from '../modal-contornos-comanda/modal-contornos-comanda.page';
+import { ModalClaveUsuarioPage } from '../modal-clave-usuario/modal-clave-usuario.page';
 
 @Component({
   selector: 'app-modal-opcion-comandas',
@@ -12,18 +14,23 @@ import { ApiServiceService } from '../../../services/api-service.service';
 })
 export class ModalOpcionComandasPage implements OnInit {
   @Input('') comanda;
+  @Input('') guardada;
   tema = localStorage.getItem('cambiarTema');
   @ViewChild('focus', { static: false }) focusInput: IonInput;
+  activarFacturacion = localStorage.getItem('activarFacturacion');
   formCantidad: FormGroup;
   constructor(
     public modalController: ModalController,
     public toastController: ToastController,
     public http: HttpClient,
     public apiService: ApiServiceService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public loadingController: LoadingController
   ) { }
 
   async ngOnInit() {
+    console.log("COMANDAAAA =>", this.comanda);
+    
      this.formCantidad = this.formBuilder.group({
       cantidad: [1]
      })
@@ -74,14 +81,61 @@ export class ModalOpcionComandasPage implements OnInit {
           contornos: 'si'
         });
       }
-
-
   }
-  borrarComanda(){
-    this.modalController.dismiss({
-      comanda: this.comanda,
-      borrar: 'si'
-    });
+  async borrarComanda(){
+    if(this.guardada == 'no'){
+      this.modalController.dismiss({
+        comanda: this.comanda,
+        borrar: 'si'
+      });
+    }else{
+      const modal = await this.modalController.create({
+        component: ModalClaveUsuarioPage,
+        cssClass: 'modalClaveUsuario',
+        componentProps: {
+          mode : 'BORRAR_COMANDA'
+        }
+      })
+      modal.present();
+      const permiso = await modal.onDidDismiss();
+      if(permiso['data'] != undefined){
+        const loading = await this.loadingController.create({
+          message: 'Cargando...',
+          cssClass: 'spinner',
+        });
+        loading.present();
+        this.http.delete(this.apiService.borrarComandaGuardada + this.comanda.comanda_id).subscribe(res=>{
+          this.toast("Comanda borrada con exito", "success");
+          loading.dismiss();
+          console.log("res =>", res);
+          this.modalController.dismiss({
+            comanda: this.comanda,
+            borrarComandaGuardada: 'si'
+          });
+        },(error)=>{
+          console.log("ERROR =>", error.error);
+          
+          this.toast("Ha ocurrido un error al intentar borrar la comanda", "danger");
+          loading.dismiss();
+        })
+      }
+  
+    }
+  }
+  async verContornosComanda(){
+    if (this.comanda.contorno_comandas.length >= 1) {
+      this.apiService.sendContornosComanda(this.comanda);
+      const modal = await this.modalController.create({
+        component: ModalContornosComandaPage,
+
+        swipeToClose: true,
+        backdropDismiss: false,
+        cssClass: 'modalContornos',
+      });
+      await modal.present();
+    } else {
+      this.toast('Esta comanda no tiene contornos', 'warning');
+    }
   }
   cerrarModal(){
     this.modalController.dismiss();

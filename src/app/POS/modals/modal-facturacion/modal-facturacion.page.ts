@@ -319,9 +319,9 @@ export class ModalFacturacionPage implements OnInit {
           console.log(res);
           this.toast("Cuenta facturada exitosamente","success");
           loading.dismiss();
-          // this.modalController.dismiss({
-          //   facturacion: 'si'
-          // });
+          this.modalController.dismiss({
+            facturacion: 'si'
+          });
         },(error)=>{
           loading.dismiss();
           console.log(error);
@@ -366,9 +366,9 @@ export class ModalFacturacionPage implements OnInit {
           console.log("PAGANDO DESDE CAJA",res);
           this.toast("Cuenta facturada exitosamente","success");
           loading.dismiss();
-          // this.modalController.dismiss({
-          //   facturacion: 'si'
-          // });
+          this.modalController.dismiss({
+            facturacion: 'si'
+          });
         },(error)=>{
           loading.dismiss();
           console.log(error);

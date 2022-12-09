@@ -112,16 +112,19 @@ export class ModalRrppPage implements OnInit {
     });
     loading.present();
     let data = {
-      dettale: this.formComentario.value.comentario
+      detalle: this.formComentario.value.comentario
     }
     this.http.post(this.apiService.cuentaRRPP + this.cuenta['cuenta_id'],data).subscribe(res=>{
       console.log("RESPUESTA RRHH =>", res);
-      //this.cerrarModal();
+      this.modalController.dismiss({
+        rrpp: 'si'
+      });
       loading.dismiss();
+      this.toast("Cuenta guardada como RRPP con exito", "success")
 
     },(error)=>{
       console.log("ERROR =>", error.error);
-      
+      this.toast("Ha ocurrido un error al intentar guardar RRPP", "danger")
       loading.dismiss();
     })
   }

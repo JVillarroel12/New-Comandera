@@ -7,19 +7,23 @@
 <ion-content>
   <ion-row class="rowOpcionesComanda">
     <form action="" [formGroup]="formCantidad">
-        <ion-card>
+        <ion-card *ngIf="guardada == 'no'">
           <ion-label>Cant:</ion-label>
           <ion-input placeholder="Cantidad" #focus formControlName="cantidad" type="number" (keypress)="pressGuardarCantidad($event.charCode)"></ion-input>
         </ion-card>
-        <ion-button color="success" (click)="guardarCantidad()">
+        <ion-button color="success" (click)="guardarCantidad()" *ngIf="guardada == 'no'">
           <ion-label style="color: black;">Guardar Cantidad </ion-label>
           <ion-icon name="save-outline" slot="end" style="color: black;"></ion-icon>
         </ion-button>
-        <ion-button color="success" (click)="agregarContorno()">
+        <ion-button color="success" (click)="verContornosComanda()" *ngIf="guardada == 'si'">
+          <ion-label style="color: black;">Ver Contornos </ion-label>
+          <ion-icon name="grid-outline" slot="end" style="color: black;"></ion-icon>
+        </ion-button>
+        <ion-button color="success" (click)="agregarContorno()" *ngIf="guardada == 'no'">
           <ion-label style="color: black;">Contornos </ion-label>
           <ion-icon name="grid-outline" slot="end" style="color: black;"></ion-icon>
         </ion-button>
-        <ion-button color="danger" (click)="borrarComanda()">
+        <ion-button color="danger" (click)="borrarComanda()" *ngIf="activarFacturacion == 'true'">
           <ion-label>Borrar Comanda </ion-label>    
           <ion-icon name="trash-outline" slot="end"></ion-icon>
         </ion-button>
